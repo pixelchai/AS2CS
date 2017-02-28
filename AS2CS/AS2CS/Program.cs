@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PygmentSharp.Core;
 using PygmentSharp.Core.Lexing;
+using PygmentSharp.Core.Tokens;
 
 namespace AS2CS
 {
@@ -12,7 +13,11 @@ namespace AS2CS
     {
         public static void Main(string[] args)
         {
-            var highlighted = Pygmentize.Content("var moo = new {Console.WriteLine(\"jadoijad\")}").WithLexer(new CSharpLexer()).GetTokens();
+            List<Token> tokens = Pygmentize.Content("var moo = new {Console.WriteLine(\"jadoijad\")}").WithLexer(new CSharpLexer()).GetTokens().ToList();
+            foreach (Token t in tokens)
+            {
+                Console.WriteLine(t.ToString());
+            }
         }
     }
 }
