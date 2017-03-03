@@ -27,9 +27,17 @@ namespace AS2CS
             rules["root"] = builder.NewRuleSet()
                 .Add("\\s+", TokenTypes.Text)
                 .ByGroups("(function\\s+)(" + identifier + ")(\\s*(\\()", "funcparams",
-                new TokenGroupProcessor(TokenTypes.Keyword.Declaration),
-                new TokenGroupProcessor(TokenTypes.Name.Function),
-                new TokenGroupProcessor(TokenTypes.Operator))
+                    new TokenGroupProcessor(TokenTypes.Keyword.Declaration),
+                    new TokenGroupProcessor(TokenTypes.Name.Function),
+                    new TokenGroupProcessor(TokenTypes.Operator))
+                .ByGroups("(var|const)(\\s+)("+identifier+")(\\s*)(:)(\\s*)("+typeidentifier+")",
+                    new TokenGroupProcessor(TokenTypes.Keyword.Declaration),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Name),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Punctuation),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Keyword.Type))
                 .Build();
         }
     }
