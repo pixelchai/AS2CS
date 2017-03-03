@@ -14,7 +14,7 @@ namespace AS2CS
     /// </summary>
     [Lexer("AS3", AlternateNames = "Actionscript3,ActionScript3,actionscript3,as3,as,Actionscript,ActionScript")]
     [LexerFileExtension("*.as")]
-    public class ASLexer
+    public class ASLexer : RegexLexer
     {
         public static string identifier = "[$a-zA-Z_][a-zA-Z0-9_]*";
         public static string typeidentifier = identifier + "(?:\\.<\\w+>)";
@@ -38,7 +38,79 @@ namespace AS2CS
                     new TokenGroupProcessor(TokenTypes.Punctuation),
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Keyword.Type))
+                 .ByGroups(@"(import|package)(\s+)((?:"+identifier+ @"|\.)+)(\s*)",
+                    new TokenGroupProcessor(TokenTypes.Keyword),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Name.Namespace),
+                    new TokenGroupProcessor(TokenTypes.Text))
+                .ByGroups(@"(new)(\s+)("+typeidentifier+ @")(\s*)(\()",
+                    new TokenGroupProcessor(TokenTypes.Keyword),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Keyword.Type),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Operator))
+                 .Add(@"//.*?\n", TokenTypes.Comment.Single)
+                 .Add(@"/\*.*?\*/",TokenTypes.Comment.Multiline)
+                 .Add(@"/(\\\\|\\/|[^\n])*/[gisx]*",TokenTypes.String.Regex)
+                 .ByGroups(@"(\.)("+identifier+")",
+                    new TokenGroupProcessor(TokenTypes.Operator),
+                    new TokenGroupProcessor(TokenTypes.Name.Attribute))
+                .Add(@"(case|default|for|each|in|while|do|break|return|continue|if|else|'
+             r'throw|try|catch|with|new|typeof|arguments|instanceof|this|'
+             r'switch|import|include|as|is)\b", TokenTypes.Keyword)
+                .Add(@"(class|public|final|internal|native|override|private|protected|'
+             r'static|import|extends|implements|interface|intrinsic|return|super|'
+             r'dynamic|function|const|get|namespace|package|set)\b", TokenTypes.Keyword.Declaration)
+                .Add(@"(true|false|null|NaN|Infinity|-Infinity|undefined|void)\b", TokenTypes.Keyword.Constant)
+                .Add(@"(decodeURI|decodeURIComponent|encodeURI|escape|eval|isFinite|isNaN|
+                      isXMLName|clearInterval|fscommand|getTimer|getURL|getVersion|
+                      isFinite|parseFloat|parseInt|setInterval|trace|updateAfterEvent|unescape)\b", TokenTypes.Name.Function)
+                .Add(identifier,TokenTypes.Name)
+                .Add(@"[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?",TokenTypes.Number.Float)
+                .Add(@"0x[0-9a-f]+",TokenTypes.Number.Hex)
+                .Add(@"[0-9]+",TokenTypes.Number.Integer)
+                .Add(@"""(\\\\|\\""|[^""])*""",TokenTypes.String.Double)
+                .Add(@"'(\\\\|\\'|[^'])*'",TokenTypes.String.Single)
+                .Add(@"[~\^\*!%&<>\|+=:;,/?\\{}\[\]().-]+",TokenTypes.Operator)
                 .Build();
+
+            rules["funcparams"] = builder.NewRuleSet()
+                .Add("\\s+", TokenTypes.Text)
+                .ByGroups(@"(\s*)(\.\.\.)?(" + identifier + @")(\s*)(:)(\s*)(" + typeidentifier + @"|\*)(\s*)",
+                    "defval",
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Punctuation),
+                    new TokenGroupProcessor(TokenTypes.Name),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Operator),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Keyword.Type),
+                    new TokenGroupProcessor(TokenTypes.Text))
+                .Add("\\", TokenTypes.Operator, "type")
+                .Build();
+
+            rules["type"] = builder.NewRuleSet()
+                .ByGroups(@"(\s*)(:)(\s*)("+typeidentifier+ @"|\*)",
+                "#pop:2",
+                new TokenGroupProcessor(TokenTypes.Text),
+                new TokenGroupProcessor(TokenTypes.Operator),
+                new TokenGroupProcessor(TokenTypes.Text),
+                new TokenGroupProcessor(TokenTypes.Keyword.Type))
+                .Add(@"\s*",TokenTypes.Text,"#pop:2")
+            .Build();
+
+            rules["defval"] = builder.NewRuleSet()
+                .ByGroups(@"(=)(\s*)([^(),]+)(\s*)(,?)",
+                "#pop",
+                new TokenGroupProcessor(TokenTypes.Operator),
+                new TokenGroupProcessor(TokenTypes.Text),
+                new LexerGroupProcessor(this),
+                new TokenGroupProcessor(TokenTypes.Text),
+                new TokenGroupProcessor(TokenTypes.Operator))
+                .Add(@",?*", TokenTypes.Operator, "#pop")
+            .Build();
+
+            return rules;
         }
     }
 }
