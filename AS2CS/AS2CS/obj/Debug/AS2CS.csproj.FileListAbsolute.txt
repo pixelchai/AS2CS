@@ -1,1 +1,7 @@
 C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\bin\Debug\AS2CS.exe.config
+C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\bin\Debug\AS2CS.exe
+C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\bin\Debug\AS2CS.pdb
+C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\bin\Debug\PygmentSharp.Core.dll
+C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\obj\Debug\AS2CS.csprojResolveAssemblyReference.cache
+C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\obj\Debug\AS2CS.exe
+C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\obj\Debug\AS2CS.pdb

@@ -16,8 +16,8 @@ namespace AS2CS
     [LexerFileExtension("*.as")]
     public class ASLexer : RegexLexer
     {
-        public static string identifier = "[$a-zA-Z_][a-zA-Z0-9_]*";
-        public static string typeidentifier = identifier + "(?:\\.<\\w+>)";
+        public static string identifier = @"[$a-zA-Z_][a-zA-Z0-9_]*";
+        public static string typeidentifier = identifier + @"(?:\.<\w+>)?";
 
         protected override IDictionary<string, StateRule[]> GetStateRules()
         {
@@ -26,7 +26,7 @@ namespace AS2CS
 
             rules["root"] = builder.NewRuleSet()
                 .Add("\\s+", TokenTypes.Text)
-                .ByGroups("(function\\s+)(" + identifier + ")(\\s*(\\()", "funcparams",
+                .ByGroups(@"(function\s+)(" + identifier + @")(\s*)(\()", "funcparams",
                     new TokenGroupProcessor(TokenTypes.Keyword.Declaration),
                     new TokenGroupProcessor(TokenTypes.Name.Function),
                     new TokenGroupProcessor(TokenTypes.Operator))
@@ -86,7 +86,7 @@ namespace AS2CS
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Keyword.Type),
                     new TokenGroupProcessor(TokenTypes.Text))
-                .Add("\\", TokenTypes.Operator, "type")
+                .Add("\\)", TokenTypes.Operator, "type")
                 .Build();
 
             rules["type"] = builder.NewRuleSet()
@@ -107,7 +107,7 @@ namespace AS2CS
                 new LexerGroupProcessor(this),
                 new TokenGroupProcessor(TokenTypes.Text),
                 new TokenGroupProcessor(TokenTypes.Operator))
-                .Add(@",?*", TokenTypes.Operator, "#pop")
+                .Add(@",?", TokenTypes.Operator, "#pop")
             .Build();
 
             return rules;
