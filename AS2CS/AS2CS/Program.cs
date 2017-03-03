@@ -13,7 +13,7 @@ namespace AS2CS
     {
         public static void Main(string[] args)
         {
-            List<Token> tokens = Pygmentize.Content("var moo = new {Console.WriteLine(\"jadoijad\")}").WithLexer(new CSharpLexer()).GetTokens().ToList();
+            List<Token> tokens = Pygmentize.Content("var moo = ()=>{new Console.WriteLine(\"jadoijad\")}").WithLexer(new CSharpLexer()).GetTokens().ToList();
             foreach (Token t in tokens)
             {
                 Console.WriteLine(t.ToString());
