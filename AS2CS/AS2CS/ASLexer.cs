@@ -40,7 +40,7 @@ namespace AS2CS
                     new TokenGroupProcessor(TokenTypes.Punctuation),
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Keyword.Type))
-                .ByGroups(@"(\s*)(\.\.\.)?([$a-zA-Z_][a-zA-Z0-9_]*)(\s*)(:)(\s*)([$a-zA-Z_][a-zA-Z0-9_]*(?:\.<\w+>)?|\*)(\s*)",
+                .ByGroups(@"(\s*)(\.\.\.)?("+identifier+@")(\s*)(:)(\s*)("+typeidentifier+@"|\*)(\s*)",
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Name),
@@ -101,21 +101,6 @@ namespace AS2CS
                 .Add(@"[0-9]+",TokenTypes.Number.Integer)
                 .Build();
 
-            rules["funcparams"] = builder.NewRuleSet()
-                .Add("\\s+", TokenTypes.Text)
-                .ByGroups(@"(\s*)(\.\.\.)?(" + identifier + @")(\s*)(:)(\s*)(" + typeidentifier + @"|\*)(\s*)",
-                    "defval",
-                    new TokenGroupProcessor(TokenTypes.Text),
-                    new TokenGroupProcessor(TokenTypes.Punctuation),
-                    new TokenGroupProcessor(TokenTypes.Name),
-                    new TokenGroupProcessor(TokenTypes.Text),
-                    new TokenGroupProcessor(TokenTypes.Operator),
-                    new TokenGroupProcessor(TokenTypes.Text),
-                    new TokenGroupProcessor(TokenTypes.Keyword.Type),
-                    new TokenGroupProcessor(TokenTypes.Text))
-                .Add("\\)", TokenTypes.Operator, "type")
-                .Build();
-
             rules["type"] = builder.NewRuleSet()
                 .ByGroups(@"(\s*)(:)(\s*)("+typeidentifier+ @"|\*)",
                 "#pop:2",
@@ -124,17 +109,6 @@ namespace AS2CS
                 new TokenGroupProcessor(TokenTypes.Text),
                 new TokenGroupProcessor(TokenTypes.Keyword.Type))
                 .Add(@"\s*",TokenTypes.Text,"#pop:2")
-            .Build();
-
-            rules["defval"] = builder.NewRuleSet()
-                .ByGroups(@"(=)(\s*)([^(),]+)(\s*)(,?)",
-                "#pop",
-                new TokenGroupProcessor(TokenTypes.Operator),
-                new TokenGroupProcessor(TokenTypes.Text),
-                new LexerGroupProcessor(this),
-                new TokenGroupProcessor(TokenTypes.Text),
-                new TokenGroupProcessor(TokenTypes.Operator))
-                .Add(@",?", TokenTypes.Operator, "#pop")
             .Build();
 
             return rules;
