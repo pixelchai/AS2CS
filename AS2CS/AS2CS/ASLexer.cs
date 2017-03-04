@@ -49,7 +49,7 @@ namespace AS2CS
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Keyword.Type),
                     new TokenGroupProcessor(TokenTypes.Text))//added
-                    .ByGroups(@"(\s*)(\.\.\.)?([$a-zA-Z_][a-zA-Z0-9_]*)(\s*)(:)(\s*)([$a-zA-Z_][a-zA-Z0-9_]*(?:\.<\w+>)?|\*)(\s*)((=)(\s*)([^(),]+)(\s*))",
+                    .ByGroups(@"(\s*)(\.\.\.)?("+identifier+@")(\s*)(:)(\s*)("+typeidentifier+@"|\*)(\s*)((=)(\s*)([^(),]+)(\s*))",
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Name),
