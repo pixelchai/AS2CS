@@ -18,6 +18,7 @@ namespace AS2CS
     {
         public static string identifier = @"[$a-zA-Z_][a-zA-Z0-9_]*";
         public static string typeidentifier = identifier + @"(?:\.<\w+>)?";
+        public static string ws = @"(?:\s|//.*?\n|/[*].*?[*]/)+";
 
         protected override IDictionary<string, StateRule[]> GetStateRules()
         {
@@ -25,7 +26,7 @@ namespace AS2CS
             var builder = new StateRuleBuilder();
 
             rules["root"] = builder.NewRuleSet()
-                .Add("\\s+", TokenTypes.Text)
+                .Add(@"[^\S\n]+", TokenTypes.Text)
                 .ByGroups(@"(function\s+)(" + identifier + @")(\s*)(\()", "funcparams",
                     new TokenGroupProcessor(TokenTypes.Keyword.Declaration),
                     new TokenGroupProcessor(TokenTypes.Name.Function),
@@ -49,12 +50,18 @@ namespace AS2CS
                     new TokenGroupProcessor(TokenTypes.Keyword.Type),
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Operator))
-                 .Add(@"//.*?\n", TokenTypes.Comment.Single)
-                 .Add(@"/\*.*?\*/",TokenTypes.Comment.Multiline)
-                 .Add(@"/(\\\\|\\/|[^\n])*/[gisx]*",TokenTypes.String.Regex)
                  .ByGroups(@"(\.)("+identifier+")",
                     new TokenGroupProcessor(TokenTypes.Operator),
                     new TokenGroupProcessor(TokenTypes.Name.Attribute))
+                .Add(@"""(\\\\|\\""|[^""])*""", TokenTypes.String.Double)
+                .Add(@"'(\\\\|\\'|[^'])*'", TokenTypes.String.Single)
+                .Add(@"\/\/.*?\n", TokenTypes.Comment.Single)
+                .Add(@"\/\*(.|\s)*?\*\/", TokenTypes.Comment.Multiline)
+                .Add(@"/(\\\\|\\/|[^\n])*/[gisx]*", TokenTypes.String.Regex)
+                .Add(@"[~\^\*!%&<>\|+=:;,/?\\{}\[\]().-]", TokenTypes.Operator)
+                //.ByGroups(@"[~\^\*!%&<>\|+=:;,/?\\{}\[\]().-]",
+                //    new TokenGroupProcessor(TokenTypes.Operator),
+                //    new TokenGroupProcessor(TokenTypes.Text))
                 .Add(@"(case|default|for|each|in|while|do|break|return|continue|if|else|'
              r'throw|try|catch|with|new|typeof|arguments|instanceof|this|'
              r'switch|import|include|as|is)\b", TokenTypes.Keyword)
@@ -67,11 +74,8 @@ namespace AS2CS
                       isFinite|parseFloat|parseInt|setInterval|trace|updateAfterEvent|unescape)\b", TokenTypes.Name.Function)
                 .Add(identifier,TokenTypes.Name)
                 .Add(@"[0-9][0-9]*\.[0-9]+([eE][0-9]+)?[fd]?",TokenTypes.Number.Float)
-                .Add(@"0x[0-9a-f]+",TokenTypes.Number.Hex)
+                .Add(@"0x[0-9a-f]+", TokenTypes.Number.Hex)
                 .Add(@"[0-9]+",TokenTypes.Number.Integer)
-                .Add(@"""(\\\\|\\""|[^""])*""",TokenTypes.String.Double)
-                .Add(@"'(\\\\|\\'|[^'])*'",TokenTypes.String.Single)
-                .Add(@"[~\^\*!%&<>\|+=:;,/?\\{}\[\]().-]+",TokenTypes.Operator)
                 .Build();
 
             rules["funcparams"] = builder.NewRuleSet()

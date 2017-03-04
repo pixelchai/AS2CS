@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using PygmentSharp.Core;
 using PygmentSharp.Core.Lexing;
 using PygmentSharp.Core.Tokens;
+using System.Diagnostics;
+using PygmentSharp.Core.Formatting;
 
 namespace AS2CS
 {
@@ -13,11 +15,16 @@ namespace AS2CS
     {
         public static void Main(string[] args)
         {
-            List<Token> tokens = Pygmentize.File("input.as").WithLexer(new ASLexer()).GetTokens().ToList();
-            foreach (Token t in tokens)
+            var highlighted = Pygmentize.File("input.as").WithLexer(new ASLexer());
+            foreach (Token t in highlighted.GetTokens().ToList())
             {
                 Console.WriteLine(t.ToString());
             }
+            highlighted.WithFormatter(new HtmlFormatter(new HtmlFormatterOptions()
+            {
+                Full = true,
+            })).ToFile("output.html");
+            Process.Start("output.html");
         }
     }
 }
