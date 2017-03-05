@@ -27,11 +27,18 @@ namespace AS2CS
 
             rules["root"] = builder.NewRuleSet()
                 .Add(@"[^\S\n]+", TokenTypes.Text)
-                .ByGroups(@"(function\s+)(" + identifier + @")(\s*)(\()"/*, "funcparams"*/,
+                .ByGroups(@"(function\s+)([$a-zA-Z_][a-zA-Z0-9_]*)(\s*)(\()(.+)(\))(\s*)(:)(\s*)([$a-zA-Z_][a-zA-Z0-9_]*)"/*, "funcparams"*/,
                     new TokenGroupProcessor(TokenTypes.Keyword.Declaration),
                     new TokenGroupProcessor(TokenTypes.Name.Function),
                     new TokenGroupProcessor(TokenTypes.Text),//added
-                    new TokenGroupProcessor(TokenTypes.Operator))
+                    new TokenGroupProcessor(TokenTypes.Operator),
+                    new LexerGroupProcessor(this),
+                    new TokenGroupProcessor(TokenTypes.Operator),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Operator),
+                    new TokenGroupProcessor(TokenTypes.Text),
+                    new TokenGroupProcessor(TokenTypes.Keyword.Type) //return type
+                    )
                 .ByGroups("(var|const)(\\s+)("+identifier+")(\\s*)(:)(\\s*)("+typeidentifier+")",
                     new TokenGroupProcessor(TokenTypes.Keyword.Declaration),
                     new TokenGroupProcessor(TokenTypes.Text),
