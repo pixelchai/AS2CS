@@ -16,12 +16,12 @@ namespace AS2CS
     {
         public static void Main(string[] args)
         {
-            var highlighted = Pygmentize.File("input.as").WithLexer(new ASLexer());
-            foreach (Token t in highlighted.GetTokens().ToList())
+            var lexed = Pygmentize.File("input.as").WithLexer(new ASLexer());
+            foreach (Token t in lexed.GetTokens().ToList())
             {
                 Console.WriteLine(t.ToString());
             }
-            highlighted.WithFormatter(new HtmlFormatter(new HtmlFormatterOptions()
+            lexed.WithFormatter(new HtmlFormatter(new HtmlFormatterOptions()
             {
             })).ToFile("output.html");
             File.WriteAllText("output.html", File.ReadAllText("output.html").Insert(0,

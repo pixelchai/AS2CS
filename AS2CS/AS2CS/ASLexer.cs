@@ -35,7 +35,7 @@ namespace AS2CS
                     new LexerGroupProcessor(this),
                     new TokenGroupProcessor(TokenTypes.Operator),
                     new TokenGroupProcessor(TokenTypes.Text),
-                    new TokenGroupProcessor(TokenTypes.Operator),
+                    new TokenGroupProcessor(TokenTypes.Punctuation),
                     new TokenGroupProcessor(TokenTypes.Text),
                     new TokenGroupProcessor(TokenTypes.Keyword.Type) //return type
                     )
