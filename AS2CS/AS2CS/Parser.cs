@@ -1,5 +1,6 @@
 ﻿//https://en.wikipedia.org/wiki/Recursive_descent_parser
 
+using AS2CS.Nodes;
 using PygmentSharp.Core.Tokens;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,9 @@ namespace AS2CS
             this.stream = ts;
         }
 
-
+        public ASFile Parse()
+        {
+            ASFile file = new ASFile();
+        }
     }
 }
