@@ -8,9 +8,13 @@ namespace AS2CS.Nodes
 {
     public class ASFile : Node
     {
-        public override Node Select(TokenStream ts)
+        public ASFile(TokenStream ts) : base(ts) { }
+
+        public override Node Select()
         {
-            return base.Select(ts);
+            if (base.Accept(new ASFile(ts)))
+            {
+            }
         }
     }
 }
