@@ -74,5 +74,26 @@ namespace AS2CS
             }
             return true;
         }
+
+        public static string EscapedValue(this Token token)
+        {
+            return token.Value.Replace("\n", "\\n").Replace("\r", "\\r");
+        }
+
+        public static string TokenStreamLoc(TokenStream ts)
+        {
+            StringBuilder ret = new StringBuilder();
+            for (int i = ts.index - 1; i > 0 && i > ts.index - 5; i--)
+            {
+                ret.Append(ts.GetAt(i).EscapedValue());
+            }
+            ret.Append(">>" + ts.getCur().EscapedValue() + "<<");
+            for (int i = ts.index + 1; i < ts.tokens.Count && i < ts.index + 5; i++)
+            {
+                ret.Append(ts.GetAt(i).EscapedValue());
+            }
+            return ret.ToString();
+        }
+
     }
 }

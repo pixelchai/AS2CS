@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ASLexer.cs" />
+    <Compile Include="Exceptions\CompilerException.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Nodes\ASFile.cs" />
     <Compile Include="Parser.cs" />

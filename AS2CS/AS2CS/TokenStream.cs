@@ -138,5 +138,10 @@ namespace AS2CS
         {
             this.index = save;
         }
+
+        public Token GetAt(int index)
+        {
+            return tokens[index];
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace AS2CS.Nodes
             if (base.Accept(new ASFile(ts)))
             {
             }
+            return null;//TODO
         }
     }
 }

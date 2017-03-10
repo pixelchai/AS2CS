@@ -22,8 +22,8 @@ namespace AS2CS
 
         public ASFile Parse()
         {
-            ASFile file = new ASFile();
-            
+            //ASFile file = new ASFile();
+            return null;//TODO
         }
     }
 }
