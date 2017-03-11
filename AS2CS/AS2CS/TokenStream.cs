@@ -14,7 +14,14 @@ namespace AS2CS
 
         public TokenStream(List<Token> tokens)
         {
-            this.tokens = tokens;
+            this.tokens = new List<Token>();
+            foreach (Token t in tokens)
+            {
+                if (!String.IsNullOrWhiteSpace(t.Value))
+                {
+                    this.tokens.Add(t);
+                }
+            }
         }
 
         public Token nextOf(string s)

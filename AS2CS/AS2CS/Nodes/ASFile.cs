@@ -12,10 +12,8 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (base.Accept(new ASFile(ts)))
-            {
-            }
-            return null;//TODO
+            if (!base.Accept<Package>()) return null;
+            return this;
         }
     }
 }

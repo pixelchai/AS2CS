@@ -9,6 +9,9 @@ namespace AS2CS
 {
     public static class Utils
     {
+        public static bool Quiet = false;
+        public static bool DEBUG_PARSING = true;
+
         /// <summary>
         /// contains type
         /// </summary>

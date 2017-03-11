@@ -22,8 +22,23 @@ namespace AS2CS
 
         public ASFile Parse()
         {
-            //ASFile file = new ASFile();
-            return null;//TODO
+            try {
+                if (Utils.DEBUG_PARSING)
+                {
+                    Debug.WriteLine("Parsing Actionscript...");
+                    Debug.Indent();
+                }
+                ASFile file = new ASFile(stream);
+                return (ASFile)file.Select();
+            }
+            finally
+            {
+                if (Utils.DEBUG_PARSING)
+                {
+                    Debug.UnIndent();
+                    Debug.WriteLine("Parsing done");
+                }
+            }
         }
     }
 }
