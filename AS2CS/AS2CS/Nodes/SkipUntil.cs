@@ -23,13 +23,14 @@ namespace AS2CS.Nodes
             while (true)
             {
                 this.until.ts = base.ts;
+                this.until.startIndex = base.ts.index;
                 if (until.Select() == null)
                 {
                     value += ts.getCur().Value + " ";
                     ts.increment();
                 }
                 else {
-                    ts.increment(-1);
+                    ts.increment(until.OffAmount()*-1);
                     break;
                 }
             }
