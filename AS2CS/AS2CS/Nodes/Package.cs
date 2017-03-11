@@ -13,7 +13,10 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            ts.SetSave(ts.tokens.Count - 2);
+            while (base.Accept<Import>()) { }//imports
+            while (Accept(new TokenNode(ts, TokenTypes.Keyword.Declaration))) { }//public static ...
+
+            base.ts.SetSave(ts.tokens.Count - 2);
             return this;
         }
     }
