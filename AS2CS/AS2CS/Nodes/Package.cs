@@ -19,9 +19,9 @@ namespace AS2CS.Nodes
             if (!Accept(new SkipUntil(ts, new TokenNode(ts, TokenTypes.Operator, "{")))) return null;//skip until {
             if (!Expect(new TokenNode(ts, TokenTypes.Operator,"{"))) return null;
             Accept<Class>();
-            if (!Expect(new TokenNode(ts, TokenTypes.Operator,"}"))) return null;
+            //if (!Expect(new TokenNode(ts, TokenTypes.Operator,"}"))) return null;
 
-            //base.ts.SetSave(ts.tokens.Count - 2);
+            base.ts.SetSave(ts.tokens.Count - 2);
             return this;
         }
     }

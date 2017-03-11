@@ -12,10 +12,12 @@ namespace AS2CS.Nodes
         [JsonIgnore]
         internal Node until = null;
         public string value = null;
+        public bool accept = false;
 
-        public SkipUntil(TokenStream tokenStream, Node until) : base(tokenStream)
+        public SkipUntil(TokenStream tokenStream, Node until, bool accept = false) : base(tokenStream)
         {
             this.until = until;
+            this.accept = accept;
         }
 
         public override Node Select()

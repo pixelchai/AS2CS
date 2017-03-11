@@ -15,6 +15,8 @@ namespace AS2CS
         public TokenStream ts = null;
         [JsonIgnore]
         public int startIndex = 0;
+        [JsonIgnore]
+        public Node lastAccepted = null;
 
         public string typeName
         {
@@ -48,7 +50,7 @@ namespace AS2CS
         {
             try {
                 Debug.Indent();
-                if (node.Select() != null)
+                if ((lastAccepted = node.Select()) != null)
                 {
                     if (Utils.DEBUG_PARSING)
                     {
@@ -66,6 +68,15 @@ namespace AS2CS
             {
                 Debug.UnIndent();
             }
+        }
+
+        public void UndoAccept()
+        {
+            if (Utils.DEBUG_PARSING)
+            {
+                Debug.WriteLine(this.typeName + " node undo-accepted: " + lastAccepted.typeName + "!");
+            }
+            this.ts.increment(this.lastAccepted.OffAmount() * -1);
         }
 
         public bool Expect(Node node)

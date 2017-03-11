@@ -16,7 +16,20 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            while (Accept(new TokenNode(ts, TokenTypes.Keyword.Declaration))) { }//public static ...
+            while (true)
+            {
+                if(Accept(new TokenNode(ts, TokenTypes.Keyword.Declaration)))
+                {
+                    if (((TokenNode)lastAccepted).matchedValue == "function")
+                    {
+                        base.UndoAccept();
+                        return null;
+                    }
+                }else
+                {
+                    break;
+                }
+            }
             if (!Expect(new TokenNode(ts, TokenTypes.Name))) return null;
             if (!Expect(new TokenNode(ts, TokenTypes.Punctuation,":"))) return null;
             if (!Expect(new TokenNode(ts, TokenTypes.Keyword.Type))) return null;
