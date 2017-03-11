@@ -89,16 +89,12 @@ namespace AS2CS
                 .Add(@"\/\*(.|\s)*?\*\/", TokenTypes.Comment.Multiline)
                 .Add(@"/(\\\\|\\/|[^\n])*/[gisx]*", TokenTypes.String.Regex)
                 .Add(@"[~\^\*!%&<>\|+=:;,/?\\{}\[\]().-]", TokenTypes.Operator)
-                .Add(@"(case|default|for|each|in|while|do|break|return|continue|if|else|"
-             +"throw|try|catch|with|new|typeof|arguments|instanceof|this|"
-             +"switch|import|include|as|is)\b", TokenTypes.Keyword)
-                .Add(@"(class|public|final|internal|native|override|private|protected|"
-             +"static|import|extends|implements|interface|intrinsic|return|super|"
-             +"dynamic|function|const|get|namespace|package|set)\b", TokenTypes.Keyword.Declaration)
+                .Add(@"(case|default|for|each|in|while|do|break|return|continue|if|else|
+             throw|try|catch|with|new|typeof|arguments|instanceof|this|
+             switch|import|include|as|is)\b", TokenTypes.Keyword)
+                .Add(@"(class|public|final|internal|native|override|private|protected|static|import|extends|implements|interface|intrinsic|return|super|dynamic|function|const|get|namespace|package|set)\b", TokenTypes.Keyword.Declaration)
                 .Add(@"(true|false|null|NaN|Infinity|-Infinity|undefined|void)\b", TokenTypes.Keyword.Constant)
-                .Add(@"(decodeURI|decodeURIComponent|encodeURI|escape|eval|isFinite|isNaN|
-                      isXMLName|clearInterval|fscommand|getTimer|getURL|getVersion|
-                      isFinite|parseFloat|parseInt|setInterval|trace|updateAfterEvent|unescape)\b", TokenTypes.Name.Function)
+                .Add(@"(decodeURI|decodeURIComponent|encodeURI|escape|eval|isFinite|isNaN|isXMLName|clearInterval|fscommand|getTimer|getURL|getVersion|isFinite|parseFloat|parseInt|setInterval|trace|updateAfterEvent|unescape)\b", TokenTypes.Name.Function)
                 .ByGroups(@"(\@)("+identifier+")",
                     new TokenGroupProcessor(TokenTypes.Punctuation),
                     new TokenGroupProcessor(TokenTypes.Name))
