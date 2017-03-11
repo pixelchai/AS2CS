@@ -22,12 +22,16 @@ namespace AS2CS.Nodes
         {
             while (true)
             {
+                this.until.ts = base.ts;
                 if (until.Select() == null)
                 {
-                    value += ts.getCur().Value;
+                    value += ts.getCur().Value + " ";
                     ts.increment();
                 }
-                break;
+                else {
+                    ts.increment(-1);
+                    break;
+                }
             }
             return this;
         }
