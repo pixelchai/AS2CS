@@ -16,7 +16,7 @@ namespace AS2CS.Nodes
             if (!base.Expect(new TokenNode(ts, TokenTypes.Keyword, "package"))) return null;
             if (!base.Expect(new TokenNode(ts, TokenTypes.Name.Namespace))) return null;
             if (!base.Expect(new TokenNode(ts, TokenTypes.Operator, "{"))) return null;
-            if (!base.Accept<Package>()) return null;
+            base.Accept<Package>();
             if (!base.Expect(new TokenNode(ts, TokenTypes.Operator, "}"))) return null;
             return this;
         }

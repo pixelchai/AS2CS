@@ -58,10 +58,13 @@
     <Compile Include="Exceptions\CompilerException.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Nodes\ASFile.cs" />
+    <Compile Include="Nodes\Class.cs" />
+    <Compile Include="Nodes\Expression.cs" />
     <Compile Include="Nodes\Import.cs" />
     <Compile Include="Nodes\Package.cs" />
     <Compile Include="Nodes\SkipUntil.cs" />
     <Compile Include="Nodes\TokenNode.cs" />
+    <Compile Include="Nodes\Variable.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -87,8 +87,8 @@ namespace AS2CS
                 .Add(@"'(\\\\|\\'|[^'])*'", TokenTypes.String.Single)
                 .Add(@"\/\/.*?\n", TokenTypes.Comment.Single)
                 .Add(@"\/\*(.|\s)*?\*\/", TokenTypes.Comment.Multiline)
-                .Add(@"/(\\\\|\\/|[^\n])*/[gisx]*", TokenTypes.String.Regex)
                 .Add(@"[~\^\*!%&<>\|+=:;,/?\\{}\[\]().-]", TokenTypes.Operator)
+                .Add(@"/(\\\\|\\/|[^\n])*/[gisx]*", TokenTypes.String.Regex)
                 .Add(@"(case|default|for|each|in|while|do|break|return|continue|if|else|
              throw|try|catch|with|new|typeof|arguments|instanceof|this|
              switch|import|include|as|is)\b", TokenTypes.Keyword)
