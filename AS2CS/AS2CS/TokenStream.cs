@@ -17,7 +17,7 @@ namespace AS2CS
             this.tokens = new List<Token>();
             foreach (Token t in tokens)
             {
-                if (!String.IsNullOrWhiteSpace(t.Value))
+                if (!String.IsNullOrWhiteSpace(t.Value) && !t.isType("Comment"))
                 {
                     this.tokens.Add(t);
                 }
