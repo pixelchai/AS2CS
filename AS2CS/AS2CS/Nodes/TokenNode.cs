@@ -26,9 +26,10 @@ namespace AS2CS.Nodes
             IsX,
         }
 
+        public string type { get; private set; } = null;
+
         [JsonIgnore]
         public VerificationMode mode { get; private set; } = VerificationMode.Is;
-        public string type { get; private set; } = null;
         [JsonIgnore]
         public bool matched { get; private set; } = true;
         [JsonIgnore]
@@ -39,7 +40,10 @@ namespace AS2CS.Nodes
         [JsonIgnore]
         public Token value = new Token();
 
-        public string matchedValue { get { return value.Value; } }
+        public override string GetValue()
+        {
+            return value.Value;
+        }
 
         public TokenNode(TokenStream tokenStream, TokenType type, VerificationMode verificationMode = VerificationMode.Is) : base(tokenStream)
         {

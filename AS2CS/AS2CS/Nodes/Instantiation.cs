@@ -28,13 +28,13 @@ namespace AS2CS.Nodes
                 }
                 else
                 {
-                    Type = ((TokenNode)base.lastAccepted).matchedValue;
+                    Type = ((TokenNode)base.lastAccepted).GetValue() ;
                 }
                 if (!Expect(new TokenNode(ts, TokenTypes.Operator, ">"))) return null;
             }
             else
             {
-                Type = ((TokenNode)base.lastAccepted).matchedValue;
+                Type = ((TokenNode)base.lastAccepted).GetValue();
             }
 
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, "(")))

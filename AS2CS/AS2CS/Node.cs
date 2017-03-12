@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace AS2CS
 {
     public abstract class Node
-    { 
+    {
         public List<Node> children = new List<Node>();
         [JsonIgnore]
         public TokenStream ts = null;
@@ -21,6 +21,15 @@ namespace AS2CS
         public string typeName
         {
             get { return this.GetType().Name; }
+        }
+
+        private string value = "";
+
+        public string Value { get { return GetValue(); } }
+
+        public virtual string GetValue()
+        {
+            return value;
         }
 
         protected Node(TokenStream tokenStream)
@@ -57,6 +66,7 @@ namespace AS2CS
                         Debug.WriteLine(this.typeName + " node accepted: " + node.typeName+" -- "+ts.look(-1).Value);
                     }
                     children.Add(node);
+                    this.value += node.GetValue()+" ";
                     //ts.increment(node.OffAmount());
                     return true;
                 }
@@ -68,6 +78,18 @@ namespace AS2CS
                 Debug.UnIndent();
             }
         }
+
+        //public string GetValue()
+        //{
+        //    if (this is IBaseNode)
+        //    {
+        //        return ((IBaseNode)this).Value;
+        //    }
+        //    else
+        //    {
+        //        return this.selected;
+        //    }
+        //}
 
         public void UndoAccept()
         {
@@ -87,14 +109,10 @@ namespace AS2CS
             throw new CompilerException(ts);
         }
 
-        public override string ToString()
+        public string ToJSON()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, new Newtonsoft.Json.JsonSerializerSettings()
             {
-                //ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore,
-                //PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects,
-                //CheckAdditionalContent = false,
-                //MaxDepth = 1,
             });
         }
     }

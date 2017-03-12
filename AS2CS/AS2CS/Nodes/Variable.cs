@@ -20,7 +20,7 @@ namespace AS2CS.Nodes
             {
                 if(Accept(new TokenNode(ts, TokenTypes.Keyword.Declaration)))
                 {
-                    if (((TokenNode)lastAccepted).matchedValue == "function")
+                    if (((TokenNode)lastAccepted).GetValue() == "function")
                     {
                         base.UndoAccept();
                         return null;

@@ -11,8 +11,13 @@ namespace AS2CS.Nodes
     {
         [JsonIgnore]
         internal Node until = null;
-        public string value = null;
         public bool accept = false;
+        private string value = "";
+
+        public override string GetValue()
+        {
+            return value;
+        }
 
         public SkipUntil(TokenStream tokenStream, Node until, bool accept = false) : base(tokenStream)
         {
@@ -28,7 +33,7 @@ namespace AS2CS.Nodes
                 this.until.startIndex = base.ts.index;
                 if (until.Select() == null)
                 {
-                    value += ts.getCur().Value + " ";
+                    this.value += ts.getCur().Value + " ";
                     ts.increment();
                 }
                 else {

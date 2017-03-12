@@ -45,84 +45,58 @@ namespace AS2CS
 
         private TreeNode Json2Tree(JObject obj)
         {
-            //create the parent node
             TreeNode parent = new TreeNode();
-            //loop through the obj. all token should be pair<key, value>
             foreach (var token in obj)
             {
-                //change the display Content of the parent
+                if (token.Key.ToString() == "Value") continue;
+                if (token.Key.ToString() == "typeName") continue;
                 parent.Text = token.Key.ToString();
 
-                //create the child node
                 TreeNode child = new TreeNode();
-                //child.Text = token.Key.ToString();
                 if (token.Key.ToString() == "children")
                 {
-                    child.Text = "(...)";
+                    try
+                    {
+                        child.Text = "("+obj.GetValue("typeName").ToString()+")";
+                    }
+                    catch
+                    {
+                        child.Text = "(...)";
+                    }
                 }
                 else
                 {
-                    if (token.Key.ToString() == "typeName")
-                    {
-                        child.Text ="Type: "+ token.Value.ToString();
-                    }
-                    else {
-                        if (token.Key.ToString() == "matchedValue")
-                        {
-                            //MessageBox.Show(parent.Text);
-                            try
-                            {
-                                parent.Parent.Text = token.Value.ToString();
-                            }
-                            catch { }
-                            child.Text = "Matched: " + token.Value.ToString();
-                        }
-                        else {
-                            //MessageBox.Show(token.Key.ToString());
-                            child.Text = token.Key.ToString();
-                        }
-                    }
+                    child.Text = token.Key.ToString();
                 }
-                //check if the value is of type obj recall the method
+
                 if (token.Value.Type.ToString() == "Object")
                 {
-                    // child.Text = token.Key.ToString();
-                    //create a new JObject using the the Token.value
                     JObject o = (JObject)token.Value;
-                    //recall the method
                     child = Json2Tree(o);
-                    //add the child to the parentNode
                     parent.Nodes.Add(child);
                 }
-                //if type is of array
                 else if (token.Value.Type.ToString() == "Array")
                 {
                     int ix = -1;
-                    //  child.Text = token.Key.ToString();
-                    //loop though the array
                     foreach (var itm in token.Value)
                     {
-                        //check if value is an Array of objects
                         if (itm.Type.ToString() == "Object")
                         {
                             TreeNode objTN = new TreeNode();
-                            //child.Text = token.Key.ToString();
-                            //call back the method
                             ix++;
 
                             JObject o = (JObject)itm;
                             objTN = Json2Tree(o);
                             objTN.Text = "(...)";
-                            //objTN.Text = o.ToString();
                             try
                             {
-                                objTN.Text = GetValueDeep(o).ToString();
+                                objTN.Text = Limit(o.GetValue("Value").ToString());
                             }
-                            catch { }
+                            catch
+                            {
+                            }
                             child.Nodes.Add(objTN);
-                            //parent.Nodes.Add(child);
                         }
-                        //regular array string, int, etc
                         else if (itm.Type.ToString() == "Array")
                         {
                             ix++;
@@ -144,9 +118,6 @@ namespace AS2CS
                 }
                 else
                 {
-                    //if token.Value is not nested
-                    // child.Text = token.Key.ToString();
-                    //change the value into N/A if value == null or an empty string 
                     if (token.Value.ToString() == "")
                         child.Nodes.Add("N/A");
                     else
@@ -157,54 +128,17 @@ namespace AS2CS
             return parent;
 
         }
-
-        private JToken GetValueDeep(JObject o)
+        private string Limit(string str, int length = 120)
         {
-            //if (o.Type != JTokenType.Array && o.Type != JTokenType.Object)
-            //{
-            //    return null;
-            //}
-
-            //JToken ret = null;
-            //if (o.TryGetValue(search, out ret))
-            //{
-            //    return ret;
-            //}
-            //else
-            //{
-            //    foreach (JToken ch in o.())
-            //    {
-            //        GetValueDeep(ch, search);
-            //    }
-            //}
-
-            foreach (JToken token in o.Descendants())
+            if (str.Length > length * 2)
             {
-                //try
-                //{
-                //    foreach (JObject content in token.Children<JObject>())
-                //    {
-                //        try
-                //        {
-                //            foreach (JProperty prop in content.Properties())
-                //            {
-                //                if (prop.Name == search)
-                //                {
-                //                    return prop.Value;
-                //                }
-                //            }
-                //        }
-                //        catch { }
-                //    }
-                //}
-                //catch { }
-                //MessageBox.Show(token.ToString());
-                if (token.ToString().StartsWith("\"matchedValue\"")|| token.ToString().StartsWith("\"Matched\"")|| token.ToString().StartsWith("\"value\""))
-                {
-                    return token.ToString().Substring(token.ToString().IndexOf(":")+3,token.ToString().Length- token.ToString().IndexOf(":")-4);
-                }
+                return "(...)";
             }
-            throw new Exception();
+            if (str.Length > length)
+            {
+                return str.Substring(0, length - 3) + "...";
+            }
+            return str;
         }
     }
 }

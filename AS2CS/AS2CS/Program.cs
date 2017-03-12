@@ -35,7 +35,7 @@ namespace AS2CS
 
             ASFile file = new Parser(ts).Parse();
             //Console.WriteLine(file.ToString());
-            new TreeDebug(file.ToString()).ShowDialog();
+            new TreeDebug(file.ToJSON()).ShowDialog();
         }
     }
 }
