@@ -35,7 +35,11 @@ namespace AS2CS
         protected Node(TokenStream tokenStream)
         {
             this.ts = tokenStream;
-            this.startIndex = this.ts.GetSave();
+            try
+            {
+                this.startIndex = this.ts.GetSave();
+            }
+            catch { }
         }
 
         public abstract Node Select();
@@ -45,14 +49,23 @@ namespace AS2CS
             return this.ts.GetSave() - startIndex;
         }
 
-        public bool Accept<T>() where T : Node
+        public bool Accept<T>(params object[] addArgs) where T : Node
         {
-           return Accept((Node)Activator.CreateInstance(typeof(T), new object[] { ts }));
+            List<object> args = new List<object>();
+            args.Add(ts);
+            if (addArgs.Length > 0)
+            {
+                args.AddRange(addArgs);
+            }
+           return Accept((Node)Activator.CreateInstance(typeof(T), args.ToArray()));
         }
 
-        public bool Expect<T>() where T : Node
+        public bool Expect<T>(params object[] addArgs) where T : Node
         {
-            return Expect((Node)Activator.CreateInstance(typeof(T), new object[] { ts }));
+            List<object> args = new List<object>();
+            args.Add(ts);
+            args.AddRange(addArgs);
+            return Expect((Node)Activator.CreateInstance(typeof(T), args.ToArray()));
         }
 
         public bool Accept(Node node)

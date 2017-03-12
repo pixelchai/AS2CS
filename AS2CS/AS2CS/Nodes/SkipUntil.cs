@@ -34,9 +34,12 @@ namespace AS2CS.Nodes
                 if (until.Select() == null)
                 {
                     this.value += ts.getCur().Value + " ";
+                    children.Add(new TokenNode(ts.getCur()));
                     ts.increment();
                 }
                 else {
+                    //children.RemoveAt(children.Count - 1);
+                    children.Remove(until);
                     ts.increment(until.OffAmount()*-1);
                     break;
                 }

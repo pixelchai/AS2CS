@@ -28,6 +28,8 @@ namespace AS2CS.Nodes
 
         public string type { get; private set; } = null;
 
+        public bool generated = false;
+
         [JsonIgnore]
         public VerificationMode mode { get; private set; } = VerificationMode.Is;
         [JsonIgnore]
@@ -43,6 +45,13 @@ namespace AS2CS.Nodes
         public override string GetValue()
         {
             return value.Value;
+        }
+
+        public TokenNode(Token t) : base(null)
+        {
+            generated = true;
+            this.value = t;
+            this.type = t.Type.ToString();
         }
 
         public TokenNode(TokenStream tokenStream, TokenType type, VerificationMode verificationMode = VerificationMode.Is) : base(tokenStream)
