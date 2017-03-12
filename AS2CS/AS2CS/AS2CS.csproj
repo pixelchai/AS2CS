@@ -45,6 +45,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,7 +63,9 @@
     <Compile Include="Nodes\Class.cs" />
     <Compile Include="Nodes\Expression.cs" />
     <Compile Include="Nodes\Import.cs" />
+    <Compile Include="Nodes\Instantiation.cs" />
     <Compile Include="Nodes\Package.cs" />
+    <Compile Include="Nodes\ParamsSend.cs" />
     <Compile Include="Nodes\SkipUntil.cs" />
     <Compile Include="Nodes\TokenNode.cs" />
     <Compile Include="Nodes\Variable.cs" />
@@ -69,11 +73,22 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenStream.cs" />
+    <Compile Include="TreeDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeDebug.Designer.cs">
+      <DependentUpon>TreeDebug.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TreeDebug.resx">
+      <DependentUpon>TreeDebug.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

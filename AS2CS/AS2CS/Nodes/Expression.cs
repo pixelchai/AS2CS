@@ -13,6 +13,7 @@ namespace AS2CS.Nodes
         {
             TokenTypes.Number,
             TokenTypes.String,
+            TokenTypes.Keyword.Constant,
         };
 
         public Expression(TokenStream tokenStream) : base(tokenStream)
@@ -21,6 +22,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
+            Accept(new TokenNode(ts, TokenTypes.Operator));//- or +
             foreach (TokenType type in types)
             {
                 if(Accept(new TokenNode(ts, type)))
@@ -28,7 +30,11 @@ namespace AS2CS.Nodes
                     return this;
                 }
             }
-            Skip();
+            if (!Accept<Instantiation>())
+            {
+                //Skip();
+                return null;
+            }
             return this;
         }
 

@@ -14,3 +14,5 @@ C:\Users\user\Documents\AS2CS\AS2CS\AS2CS\bin\Debug\AS2CS.pdb
 C:\Users\user\Documents\AS2CS\AS2CS\AS2CS\bin\Debug\PygmentSharp.Core.dll
 C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\bin\Debug\Newtonsoft.Json.dll
 C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\bin\Debug\Newtonsoft.Json.xml
+C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\obj\Debug\AS2CS.TreeDebug.resources
+C:\Users\PixelZerg\Documents\GitHub\AS2CS\AS2CS\AS2CS\obj\Debug\AS2CS.csproj.GenerateResource.Cache
