@@ -56,7 +56,6 @@ namespace AS2CS
                     {
                         Debug.WriteLine(this.typeName + " node accepted: " + node.typeName+" -- "+ts.look(-1).Value);
                     }
-
                     children.Add(node);
                     //ts.increment(node.OffAmount());
                     return true;
