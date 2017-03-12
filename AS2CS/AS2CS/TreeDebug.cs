@@ -111,12 +111,12 @@ namespace AS2CS
                             ix++;
 
                             JObject o = (JObject)itm;
-                            //objTN = Json2Tree(o);
+                            objTN = Json2Tree(o);
                             objTN.Text = "(...)";
-                            objTN.Text = o.ToString();
+                            //objTN.Text = o.ToString();
                             try
                             {
-                                objTN.Text = GetValueDeep(o,"matchedValue").ToString();
+                                objTN.Text = GetValueDeep(o).ToString();
                             }
                             catch { }
                             child.Nodes.Add(objTN);
@@ -158,22 +158,53 @@ namespace AS2CS
 
         }
 
-        private JToken GetValueDeep(JObject o, string search, int depth = 2)
+        private JToken GetValueDeep(JObject o)
         {
-            if (o.Type != JTokenType.Array && o.Type != JTokenType.Object)
-            {
-                return null;
-            }
+            //if (o.Type != JTokenType.Array && o.Type != JTokenType.Object)
+            //{
+            //    return null;
+            //}
 
-            JToken ret = null;
-            if (o.TryGetValue(search, out ret))
+            //JToken ret = null;
+            //if (o.TryGetValue(search, out ret))
+            //{
+            //    return ret;
+            //}
+            //else
+            //{
+            //    foreach (JToken ch in o.())
+            //    {
+            //        GetValueDeep(ch, search);
+            //    }
+            //}
+
+            foreach (JToken token in o.Descendants())
             {
-                return ret;
+                //try
+                //{
+                //    foreach (JObject content in token.Children<JObject>())
+                //    {
+                //        try
+                //        {
+                //            foreach (JProperty prop in content.Properties())
+                //            {
+                //                if (prop.Name == search)
+                //                {
+                //                    return prop.Value;
+                //                }
+                //            }
+                //        }
+                //        catch { }
+                //    }
+                //}
+                //catch { }
+                //MessageBox.Show(token.ToString());
+                if (token.ToString().StartsWith("\"matchedValue\"")|| token.ToString().StartsWith("\"Matched\"")|| token.ToString().StartsWith("\"value\""))
+                {
+                    return token.ToString().Substring(token.ToString().IndexOf(":")+3,token.ToString().Length- token.ToString().IndexOf(":")-4);
+                }
             }
-            else
-            {
-                
-            }
+            throw new Exception();
         }
     }
 }
