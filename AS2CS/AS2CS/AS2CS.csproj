@@ -64,9 +64,12 @@
     <Compile Include="Nodes\ASFile.cs" />
     <Compile Include="Nodes\Call.cs" />
     <Compile Include="Nodes\Class.cs" />
+    <Compile Include="Nodes\Comparer.cs" />
     <Compile Include="Nodes\Condition.cs" />
     <Compile Include="Nodes\Conditional.cs" />
+    <Compile Include="Nodes\Else.cs" />
     <Compile Include="Nodes\Expression.cs" />
+    <Compile Include="Nodes\If.cs" />
     <Compile Include="Nodes\Import.cs" />
     <Compile Include="Nodes\IncrDcr.cs" />
     <Compile Include="Nodes\Instantiation.cs" />

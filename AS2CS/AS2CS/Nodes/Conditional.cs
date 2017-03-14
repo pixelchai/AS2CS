@@ -15,6 +15,12 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             //TODO: case
+            if (!Accept<If>())
+            {
+                //case
+                return null;
+            }
+            Accept<Else>();
             return null;
         }
     }

@@ -21,8 +21,11 @@ namespace AS2CS.Nodes
                 {
                     if (!Accept<IncrDcr>())
                     {
-                        //todo
-                        Skip();
+                        if (!Accept<Conditional>())
+                        {
+                            //todo
+                            Skip();
+                        }
                     }
                 }
             }
