@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PygmentSharp.Core.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,16 @@ namespace AS2CS.Nodes
                     if (!Accept<IncrDcr>())
                     {
                         //todo
-                        return null;
+                        Skip();
                     }
                 }
             }
             return this;
+        }
+
+        private void Skip()
+        {
+            Accept(new SkipUntil(ts, new TokenNode(ts, TokenTypes.Operator, ";"), true));
         }
     }
 }

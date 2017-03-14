@@ -15,6 +15,17 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
+            if (!SelectPart()) return null;
+            if (Accept<Comparer>())
+            {
+                if (!SelectPart()) throw new Exceptions.CompilerException(ts);
+            }
+            return this;
+        }
+
+        public bool SelectPart()
+        {
+            Accept(new TokenNode(ts, TokenTypes.Operator));//- or +
             if (!Accept<Call>(false))
             {
                 if (!Accept<Variable>(false))
@@ -25,19 +36,19 @@ namespace AS2CS.Nodes
                         {
                             if (!Accept<Access>())
                             {
-                                return null;
+                                return false;
                             }
                             else
                             {
-                                if (!Accept<TokenNode>(TokenTypes.Operator)) return null;
+                                if (!Accept<TokenNode>(TokenTypes.Operator)) return false;
                                 while (Accept<TokenNode>(TokenTypes.Operator)) { }
-                                if (!Accept<Access>()) return null;
+                                if (!Accept<Access>()) return false;
                             }
                         }
                     }
                 }
             }
-            return this;
+            return true;
         }
     }
 }
