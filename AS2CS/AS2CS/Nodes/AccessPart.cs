@@ -11,6 +11,7 @@ namespace AS2CS.Nodes
     {
         public bool IsThis = false;
         public bool IsAttribute = false;
+        public bool IsSuper = false;
 
         public AccessPart(TokenStream tokenStream) : base(tokenStream)
         {
@@ -24,7 +25,14 @@ namespace AS2CS.Nodes
                 {
                     if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "this")))
                     {
-                        return null;
+                        if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "super")))
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            IsSuper = true;
+                        }
                     }
                     else
                     {

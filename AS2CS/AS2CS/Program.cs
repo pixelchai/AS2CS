@@ -34,6 +34,7 @@ namespace AS2CS
             //Process.Start("output.html");
             ASFile file = null;
             file = new Parser(ts).Parse();
+            new TreeDebug(file.ToJSON()).ShowDialog();
         }
     }
 }

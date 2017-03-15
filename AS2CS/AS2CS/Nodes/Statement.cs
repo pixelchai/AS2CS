@@ -24,7 +24,9 @@ namespace AS2CS.Nodes
                         if (!Accept<Conditional>())
                         {
                             //todo
-                            Skip();
+                            //throw new Exceptions.CompilerException(ts);
+                            return null;
+                           // Skip();
                         }
                     }
                 }
