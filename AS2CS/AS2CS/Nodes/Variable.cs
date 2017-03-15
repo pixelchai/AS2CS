@@ -36,9 +36,11 @@ namespace AS2CS.Nodes
                 }
             }
             //if (!Expect(new TokenNode(ts, TokenTypes.Name))) return null;
-            if (!Expect<Access>()) return null;
-            if (!Expect(new TokenNode(ts, TokenTypes.Punctuation,":"))) return null;
-            if (!Expect(new TokenNode(ts, TokenTypes.Keyword.Type))) return null;
+            if (!Accept<Access>()) return null;
+            if (Accept(new TokenNode(ts, TokenTypes.Punctuation, ":")))
+            {
+                if (!Expect(new TokenNode(ts, TokenTypes.Keyword.Type))) return null;
+            }
             if (Accept(new TokenNode(ts, TokenTypes.Operator, "=")))
             {
                 IsInitialised = true;

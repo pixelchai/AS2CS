@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace AS2CS.Nodes
 {
-    public class Method : Node
+    public class Constructor : Node
     {
-        public Method(TokenStream tokenStream) : base(tokenStream)
+        public Constructor(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
@@ -19,7 +19,7 @@ namespace AS2CS.Nodes
             {
                 if (Accept(new TokenNode(ts, TokenTypes.Keyword.Declaration)))
                 {
-                    if (((TokenNode)lastAccepted).GetValue() == "var"|| ((TokenNode)lastAccepted).GetValue() == "const")
+                    if (((TokenNode)lastAccepted).GetValue() == "var" || ((TokenNode)lastAccepted).GetValue() == "const")
                     {
                         base.UndoAccept();
                         return null;
@@ -30,12 +30,10 @@ namespace AS2CS.Nodes
                     break;
                 }
             }//public static ... function 
-            if (!Accept(new TokenNode(ts, TokenTypes.Name))) return null;
-            if (!Accept(new TokenNode(ts, TokenTypes.Operator, "("))) return null;
+            if (!Expect(new TokenNode(ts, TokenTypes.Name))) return null;
+            if (!Expect(new TokenNode(ts, TokenTypes.Operator, "("))) return null;
             if (!Accept<ParamsRecv>()) return null;
-            if (!Accept(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
-            if (!Accept(new TokenNode(ts, TokenTypes.Punctuation, ":"))) return null;
-            if (!Expect(new TokenNode(ts, TokenTypes.Keyword.Type))) return null;
+            if (!Expect(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, "{"))) return null;
             Accept<MethodBody>();
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, "}"))) return null;

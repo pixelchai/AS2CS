@@ -16,6 +16,10 @@ namespace AS2CS.Nodes
             TokenTypes.Keyword.Constant,
         };
 
+        /// <summary>
+        /// NB: never needs semicolon
+        /// </summary>
+        /// <param name="tokenStream"></param>
         public Expression(TokenStream tokenStream) : base(tokenStream)
         {
         }
@@ -33,7 +37,10 @@ namespace AS2CS.Nodes
             if (!Accept<Instantiation>())
             {
                 //Skip();
-                return null;
+                if (!Accept<Call>())
+                {
+                    return null;
+                };
             }
             return this;
         }

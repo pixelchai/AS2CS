@@ -14,7 +14,13 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            while (Accept<Variable>()) { }
+            while (true)
+            {
+                if (!Accept<Method>() && !Accept<Constructor>() && !Accept<Variable>())
+                {
+                    break;
+                }
+            }
             //TODO: methods and stuff
             return this;
         }

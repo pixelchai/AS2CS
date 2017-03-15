@@ -21,9 +21,9 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             if (!Accept<Access>()) return null;
-            if (!Expect(new TokenNode(ts, TokenTypes.Operator, "("))) return null;
+            if (!Accept(new TokenNode(ts, TokenTypes.Operator, "("))) return null;
             Accept<ParamsSend>();
-            if (!Expect(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
+            if (!Accept(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
             if (needSemicolon)
                 if (!Expect(new TokenNode(ts, TokenTypes.Operator, ";"))) return null;
             return this;

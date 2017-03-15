@@ -67,6 +67,7 @@
     <Compile Include="Nodes\Comparer.cs" />
     <Compile Include="Nodes\Condition.cs" />
     <Compile Include="Nodes\Conditional.cs" />
+    <Compile Include="Nodes\Constructor.cs" />
     <Compile Include="Nodes\Else.cs" />
     <Compile Include="Nodes\Expression.cs" />
     <Compile Include="Nodes\If.cs" />
