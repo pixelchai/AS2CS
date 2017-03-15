@@ -52,7 +52,7 @@ namespace AS2CS.Nodes
                 if (!Expect<Expression>()) return null;
             }
             if (needSemicolon)
-                if (!Expect(new TokenNode(ts, TokenTypes.Operator, ";"))) return null;
+                if (!Accept(new TokenNode(ts, TokenTypes.Operator, ";"))) return null;
             return this;
         }
     }
