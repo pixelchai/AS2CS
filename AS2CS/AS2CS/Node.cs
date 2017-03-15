@@ -17,6 +17,8 @@ namespace AS2CS
         public int startIndex = 0;
         [JsonIgnore]
         public Node lastAccepted = null;
+        [JsonIgnore]
+        public Node parent = null;
 
         public string typeName
         {
@@ -43,6 +45,16 @@ namespace AS2CS
         }
 
         public abstract Node Select();
+
+        public Node mostParent()
+        {
+            Node cur = this;
+            while (cur.parent != null)
+            {
+                cur = cur.parent;
+            }
+            return cur;
+        }
 
         public int OffAmount()
         {
@@ -72,6 +84,7 @@ namespace AS2CS
         {
             try {
                 Debug.Indent();
+                node.parent = this;
                 if ((lastAccepted = node.Select()) != null)
                 {
                     if (Utils.DEBUG_PARSING)

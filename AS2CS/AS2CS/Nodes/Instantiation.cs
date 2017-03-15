@@ -20,17 +20,23 @@ namespace AS2CS.Nodes
             if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "new"))) return null;
             if (!Accept(new TokenNode(ts, TokenTypes.Keyword.Type)))
             {
-                if (!Expect(new TokenNode(ts, TokenTypes.Operator, "<"))) return null;
-                TypeIsGeneric = true;
-                if (!Expect(new TokenNode(ts, TokenTypes.Name)))
+                if (!Accept(new TokenNode(ts, TokenTypes.Operator, "<")))
                 {
-                    return null;
+                    if (!Expect<Access>()) return null;
                 }
-                else
-                {
-                    Type = ((TokenNode)base.lastAccepted).GetValue() ;
+                else {
+                    TypeIsGeneric = true;
+                    if (!Expect(new TokenNode(ts, TokenTypes.Name)))
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        Type = ((TokenNode)base.lastAccepted).GetValue();
+                    }
+                    if (!Expect(new TokenNode(ts, TokenTypes.Operator, ">"))) return null;
                 }
-                if (!Expect(new TokenNode(ts, TokenTypes.Operator, ">"))) return null;
+                
             }
             else
             {
