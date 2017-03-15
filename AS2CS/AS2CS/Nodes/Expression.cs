@@ -17,7 +17,7 @@ namespace AS2CS.Nodes
         };
 
         /// <summary>
-        /// NB: never needs semicolon
+        /// NB: never reads semicolon
         /// </summary>
         /// <param name="tokenStream"></param>
         public Expression(TokenStream tokenStream) : base(tokenStream)
@@ -37,7 +37,7 @@ namespace AS2CS.Nodes
             if (!Accept<Instantiation>())
             {
                 //Skip();
-                if (!Accept<Call>())
+                if (!Accept<Call>(false))
                 {
                     return null;
                 };
