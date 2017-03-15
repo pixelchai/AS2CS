@@ -30,6 +30,11 @@ namespace AS2CS.Nodes
                         base.UndoAccept();
                         return null;
                     }
+                    else if (lastAccepted.GetValue() == "super")
+                    {
+                        //base.UndoAccept();
+                        Expect<Call>();
+                    }
                 }else
                 {
                     break;
