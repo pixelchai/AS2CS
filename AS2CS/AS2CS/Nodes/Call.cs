@@ -22,7 +22,9 @@ namespace AS2CS.Nodes
         {
             if (!Accept<Access>()) return null;
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, "("))) return null;
+            Console.WriteLine("WOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             Accept<ParamsSend>();
+            Console.WriteLine("LOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
             if (needSemicolon)
                 if (!Expect(new TokenNode(ts, TokenTypes.Operator, ";"))) return null;

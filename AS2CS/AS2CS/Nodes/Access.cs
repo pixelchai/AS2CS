@@ -9,6 +9,8 @@ namespace AS2CS.Nodes
 {
     public class Access : Node
     {
+        public bool attr { get; private set; } = false;
+
         public Access(TokenStream tokenStream) : base(tokenStream)
         {
         }
@@ -20,6 +22,11 @@ namespace AS2CS.Nodes
             Accept<AccessPart>();
             while ((Accept(new TokenNode(ts, TokenTypes.Operator, "."))))
             {
+                if (Accept(new TokenNode(ts, TokenTypes.Punctuation, "@")))
+                {
+                    attr = true;
+                }
+
                 Expect<AccessPart>();
             }
             return this;
