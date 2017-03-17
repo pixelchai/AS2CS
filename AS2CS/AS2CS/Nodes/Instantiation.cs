@@ -13,7 +13,7 @@ namespace AS2CS.Nodes
         public string Type = null;
         public Instantiation(TokenStream tokenStream) : base(tokenStream)
         {
-        }
+        } 
 
         public override Node Select()
         {
@@ -22,7 +22,7 @@ namespace AS2CS.Nodes
             {
                 if (!Accept(new TokenNode(ts, TokenTypes.Operator, "<")))
                 {
-                    if (!Expect<Access>()) return null;
+                    if (!Expect<Access>()) return null;//problem here!!!!!
                 }
                 else {
                     TypeIsGeneric = true;

@@ -10,6 +10,7 @@ namespace AS2CS.Nodes
     public class Access : Node
     {
         public bool attr { get; private set; } = false;
+        public bool enclosed { get; private set; } = false;
 
         public Access(TokenStream tokenStream) : base(tokenStream)
         {
@@ -17,6 +18,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
+            if (Accept(new TokenNode(ts, TokenTypes.Operator, "("))) enclosed = true;
             Accept(new TokenNode(ts, TokenTypes.Operator,"-"));//- or +
             Accept(new TokenNode(ts, TokenTypes.Operator,"+"));//- or +
             Accept<AccessPart>();
@@ -28,6 +30,10 @@ namespace AS2CS.Nodes
                 }
 
                 Expect<AccessPart>();
+            }
+            if (enclosed)
+            {
+                if (!Expect(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
             }
             return this;
         }
