@@ -26,28 +26,43 @@ namespace AS2CS.Nodes
         public bool SelectPart()
         {
             Accept(new TokenNode(ts, TokenTypes.Operator));//- or +
-            if (!Accept<Call>(false))
+
+            if (!Accept(new TokenNode(ts,TokenTypes.Keyword.Constant)))
             {
-                if (!Accept<Variable>(false))
+
+                if (!Accept<Access>() && !String.IsNullOrWhiteSpace(this.lastAccepted.GetValue()))
                 {
-                    if (!Accept<IncrDcr>(false))
+                    if (!Accept<Call>(false))
                     {
-                        if (!Accept<TokenNode>(TokenTypes.Keyword.Constant))
+                        if (!Accept<Variable>(false))
                         {
-                            if (!Accept<Access>())
+                            if (!Accept<IncrDcr>(false))
                             {
                                 return false;
-                            }
-                            else
-                            {
-                                if (!Accept<TokenNode>(TokenTypes.Operator)) return false;
-                                while (Accept<TokenNode>(TokenTypes.Operator)) { }
-                                if (!Accept<Access>()) return false;
                             }
                         }
                     }
                 }
+                else
+                {
+                    //if (!Accept<TokenNode>(TokenTypes.Operator)) return false;
+                    //while (Accept<TokenNode>(TokenTypes.Operator)) { }
+                    //if (!Accept<Access>()) return false;
+                }
             }
+            //if (!Accept<Expression>())
+            //{
+            //    if (!Accept<Variable>(false))
+            //    {
+            //        if (!Accept<IncrDcr>(false))
+            //        {
+            //            if (!Accept<TokenNode>(TokenTypes.Keyword.Constant))
+            //            {
+            //                return false;
+            //            }
+            //        }
+            //    }
+            //}
             return true;
         }
     }

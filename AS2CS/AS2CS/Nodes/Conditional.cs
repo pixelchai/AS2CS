@@ -21,7 +21,7 @@ namespace AS2CS.Nodes
                 return null;
             }
             Accept<Else>();
-            return null;
+            return this;
         }
     }
 }

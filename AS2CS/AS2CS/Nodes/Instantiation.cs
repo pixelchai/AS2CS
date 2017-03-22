@@ -22,7 +22,7 @@ namespace AS2CS.Nodes
             {
                 if (!Accept(new TokenNode(ts, TokenTypes.Operator, "<")))
                 {
-                    if (!Expect<Access>()) return null;//problem here!!!!!
+                    if (!Expect<Access>()) return null;
                 }
                 else {
                     TypeIsGeneric = true;

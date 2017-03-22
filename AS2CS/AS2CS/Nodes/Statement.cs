@@ -15,18 +15,18 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept<Call>())
+            if (!Accept<Conditional>())
             {
-                if (!Accept<Variable>())
+                if (!Accept<Call>())
                 {
-                    if (!Accept<IncrDcr>())
+                    if (!Accept<Variable>())
                     {
-                        if (!Accept<Conditional>())
+                        if (!Accept<IncrDcr>())
                         {
-                            //todo
-                            //throw new Exceptions.CompilerException(ts);
-                            return null;
-                           // Skip();
+                                //todo
+                                //throw new Exceptions.CompilerException(ts);
+                                return null;
+                                // Skip();
                         }
                     }
                 }
