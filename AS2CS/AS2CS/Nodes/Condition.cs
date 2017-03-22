@@ -16,23 +16,37 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             if (!SelectPart()) return null;
+            SelectSecond();
+            return this;
+        }
+
+        public bool SelectSecond()
+        {
             if (Accept<Comparer>())
             {
-                if (!SelectPart()) throw new Exceptions.CompilerException(ts);
+                if (!SelectPart())
+                {
+                    this.UndoAccept();
+                    return false;
+                }
             }
-            return this;
+            else
+            {
+                return false;
+            }
+            return true;
         }
 
         public bool SelectPart()
         {
             Accept(new TokenNode(ts, TokenTypes.Operator));//- or +
 
-            if (!Accept(new TokenNode(ts,TokenTypes.Keyword.Constant)))
+            if (!Accept(new TokenNode(ts, TokenTypes.Keyword.Constant)))
             {
-
-                if (!Accept<Access>() && !String.IsNullOrWhiteSpace(this.lastAccepted.GetValue()))
+                if (!Accept<Call>(false))
                 {
-                    if (!Accept<Call>(false))
+
+                    if (!Accept<Access>() && !String.IsNullOrWhiteSpace(this.lastAccepted.GetValue()))
                     {
                         if (!Accept<Variable>(false))
                         {
@@ -42,12 +56,6 @@ namespace AS2CS.Nodes
                             }
                         }
                     }
-                }
-                else
-                {
-                    //if (!Accept<TokenNode>(TokenTypes.Operator)) return false;
-                    //while (Accept<TokenNode>(TokenTypes.Operator)) { }
-                    //if (!Accept<Access>()) return false;
                 }
             }
             //if (!Accept<Expression>())
