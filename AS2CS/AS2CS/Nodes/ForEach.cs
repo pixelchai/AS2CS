@@ -18,7 +18,7 @@ namespace AS2CS.Nodes
             if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "for"))) return null;
             if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "each"))) return null;
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, "("))) return null;
-            if (!Accept<InExpression>()) return null;//PROBLEM HERE
+            if (!Accept<InExpression>()) return null;//PROBLEM fixed
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, "{"))) return null;
             if (!Accept<MethodBody>()) return null;
