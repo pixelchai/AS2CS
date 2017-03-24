@@ -15,7 +15,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept<Variable>()) return null;
+            if (!Accept<Variable>()) return null;//PROBLEM HERE
             if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "in"))) return null;
             if (!Accept<Expression>()) return null;
             return this;
