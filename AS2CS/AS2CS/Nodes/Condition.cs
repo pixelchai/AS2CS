@@ -39,7 +39,7 @@ namespace AS2CS.Nodes
 
         public bool SelectPart()
         {
-            Accept(new TokenNode(ts, TokenTypes.Operator));//- or +
+            Accept<OperationOperator>();
 
             if (!Accept(new TokenNode(ts, TokenTypes.Keyword.Constant)))
             {

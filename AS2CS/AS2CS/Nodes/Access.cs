@@ -19,8 +19,7 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             if (Accept(new TokenNode(ts, TokenTypes.Operator, "("))) enclosed = true;
-            Accept(new TokenNode(ts, TokenTypes.Operator,"-"));//- or +
-            Accept(new TokenNode(ts, TokenTypes.Operator,"+"));//- or +
+            Accept<OperationOperator>();
             Accept<AccessPart>();
             while ((Accept(new TokenNode(ts, TokenTypes.Operator, "."))))
             {

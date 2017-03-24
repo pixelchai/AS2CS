@@ -26,8 +26,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            Accept(new TokenNode(ts, TokenTypes.Operator, "+"));//- or +
-            Accept(new TokenNode(ts, TokenTypes.Operator, "-"));//- or +
+            Accept<OperationOperator>();
             foreach (TokenType type in types)
             {
                 if(Accept(new TokenNode(ts, type)))
