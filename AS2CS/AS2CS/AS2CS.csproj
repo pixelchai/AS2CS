@@ -76,6 +76,7 @@
     <Compile Include="Nodes\Instantiation.cs" />
     <Compile Include="Nodes\Method.cs" />
     <Compile Include="Nodes\MethodBody.cs" />
+    <Compile Include="Nodes\OperationOperator.cs" />
     <Compile Include="Nodes\Package.cs" />
     <Compile Include="Nodes\Parameter.cs" />
     <Compile Include="Nodes\ParamsRecv.cs" />

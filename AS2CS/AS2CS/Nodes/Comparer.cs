@@ -15,8 +15,10 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(new TokenNode(ts,TokenTypes.Operator))) return null;
-            while (Accept(new TokenNode(ts, TokenTypes.Operator))) { }
+            //if (!Accept(new TokenNode(ts,TokenTypes.Operator))) return null;
+            //while (Accept(new TokenNode(ts, TokenTypes.Operator))) { }
+            if (!Accept<OperationOperator>()) return null;
+            while (Accept<OperationOperator>()) { }
             return this;
         }
     }
