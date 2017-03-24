@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 
 namespace AS2CS.Nodes
 {
-    public class Conditional : Node
+    public class Loop : Node
     {
-        public Conditional(TokenStream tokenStream) : base(tokenStream)
+        public Loop(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
         public override Node Select()
         {
-            if (!Accept<If>())
+            //TODO: for, for...in, for each...in, while, do...while
+            if (!Accept<ForEach>())
             {
-                //TODO: case
                 return null;
             }
-            Accept<Else>();
             return this;
         }
     }

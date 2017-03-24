@@ -17,16 +17,19 @@ namespace AS2CS.Nodes
         {
             if (!Accept<Conditional>())
             {
-                if (!Accept<Call>())
+                if (!Accept<Loop>())
                 {
-                    if (!Accept<Variable>())
+                    if (!Accept<Call>())
                     {
-                        if (!Accept<IncrDcr>())
+                        if (!Accept<Variable>())
                         {
+                            if (!Accept<IncrDcr>())
+                            {
                                 //todo
                                 //throw new Exceptions.CompilerException(ts);
                                 return null;
                                 // Skip();
+                            }
                         }
                     }
                 }

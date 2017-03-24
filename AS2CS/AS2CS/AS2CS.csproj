@@ -70,10 +70,13 @@
     <Compile Include="Nodes\Constructor.cs" />
     <Compile Include="Nodes\Else.cs" />
     <Compile Include="Nodes\Expression.cs" />
+    <Compile Include="Nodes\ForEach.cs" />
     <Compile Include="Nodes\If.cs" />
     <Compile Include="Nodes\Import.cs" />
     <Compile Include="Nodes\IncrDcr.cs" />
+    <Compile Include="Nodes\InExpression.cs" />
     <Compile Include="Nodes\Instantiation.cs" />
+    <Compile Include="Nodes\Loop.cs" />
     <Compile Include="Nodes\Method.cs" />
     <Compile Include="Nodes\MethodBody.cs" />
     <Compile Include="Nodes\OperationOperator.cs" />
