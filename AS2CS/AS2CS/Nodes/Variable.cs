@@ -49,7 +49,10 @@ namespace AS2CS.Nodes
             if (Accept(new TokenNode(ts, TokenTypes.Operator, "=")))
             {
                 IsInitialised = true;
-                if (!Expect<Expression>()) return null;
+                if (!Accept<Expression>())
+                {
+                    if (!Expect<As>()) return null;
+                }
             }
             if (needSemicolon)
                 if (!Accept(new TokenNode(ts, TokenTypes.Operator, ";"))) return null;

@@ -61,6 +61,7 @@
     <Compile Include="Node.cs" />
     <Compile Include="Nodes\Access.cs" />
     <Compile Include="Nodes\AccessPart.cs" />
+    <Compile Include="Nodes\As.cs" />
     <Compile Include="Nodes\ASFile.cs" />
     <Compile Include="Nodes\Call.cs" />
     <Compile Include="Nodes\Class.cs" />

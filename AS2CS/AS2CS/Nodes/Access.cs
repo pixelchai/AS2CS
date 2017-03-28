@@ -32,7 +32,7 @@ namespace AS2CS.Nodes
             }
             if (enclosed)
             {
-                if (!Expect(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
+                if (!Accept(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
             }
             return this;
         }
