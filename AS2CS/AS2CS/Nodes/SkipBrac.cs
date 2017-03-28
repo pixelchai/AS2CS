@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PygmentSharp.Core.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,10 +29,10 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
+            int depth = 0;
+            if(!Accept(new TokenNode(ts,TokenTypes.Operator)))
             while (true)
             {
-                this.until.ts = base.ts;
-                this.until.startIndex = base.ts.index;
                 if (until.Select() == null)
                 {
                     this.value += ts.getCur().Value + " ";
