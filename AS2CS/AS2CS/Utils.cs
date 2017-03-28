@@ -11,6 +11,7 @@ namespace AS2CS
     {
         public static bool Quiet = false;
         public static bool DEBUG_PARSING = true;
+        public static bool LAZY = true;
 
         /// <summary>
         /// contains type

@@ -17,7 +17,21 @@ namespace AS2CS.Nodes
         {
             if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "if"))) return null;
             if (!Expect(new TokenNode(ts, TokenTypes.Operator, "("))) return null;
-            if (!Expect<Condition>()) return null;
+            try
+            {
+                Expect<Condition>();
+            }
+            catch
+            {
+                    if (Utils.LAZY)
+                    {
+                        if (!Accept(new SkipUntil(ts, new TokenNode(ts, TokenTypes.Operator, ")"), true))) return null;
+                    }
+                    else
+                    {
+                        throw new Exceptions.CompilerException(ts);
+                    }
+            }
             if (!Expect(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
             if (!Expect(new TokenNode(ts, TokenTypes.Operator, "{"))) return null;
             Accept<MethodBody>();
