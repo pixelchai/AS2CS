@@ -25,7 +25,8 @@ namespace AS2CS.Nodes
             {
                     if (Utils.LAZY)
                     {
-                        if (!Accept(new SkipUntil(ts, new TokenNode(ts, TokenTypes.Operator, ")"), true))) return null;
+                    //if (!Accept(new SkipUntil(ts, new TokenNode(ts, TokenTypes.Operator, ")"), true))) return null;
+                    if (!Accept(new SkipBrac(ts))) return null;
                     }
                     else
                     {

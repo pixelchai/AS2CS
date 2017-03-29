@@ -12,7 +12,7 @@ namespace AS2CS.Nodes
         public string LBRAC = "(";
         public string RBRAC = ")";
 
-        public bool accept = false;
+        public bool accept = true;
         private string value = "";
 
         public override string GetValue()
@@ -20,7 +20,12 @@ namespace AS2CS.Nodes
             return value;
         }
 
-        public SkipBrac(TokenStream tokenStream, string lbrac = "(", string rbrac = ")", bool accept = false) : base(tokenStream)
+        public SkipBrac(TokenStream tokenStream, bool accept) : base(tokenStream)
+        {
+            this.accept = accept;
+        }
+
+        public SkipBrac(TokenStream tokenStream, string lbrac = "(", string rbrac = ")", bool accept = true) : base(tokenStream)
         {
             this.LBRAC = lbrac;
             this.RBRAC = rbrac;
@@ -30,21 +35,24 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             int depth = 0;
-            if(!Accept(new TokenNode(ts,TokenTypes.Operator)))
-            while (true)
+            if (!Accept(new TokenNode(ts, TokenTypes.Operator,LBRAC))) return null;
+            else depth++;
+            while (depth > 0)
             {
-                if (until.Select() == null)
+                if (Accept(new TokenNode(ts, TokenTypes.Operator, LBRAC)))
                 {
-                    this.value += ts.getCur().Value + " ";
+                    depth++;
+                }
+                else if (Accept(new TokenNode(ts, TokenTypes.Operator, RBRAC)))
+                {
+                    depth--;
+                }
+                else
+                {
                     children.Add(new TokenNode(ts.getCur()));
                     ts.increment();
                 }
-                else {
-                    //children.RemoveAt(children.Count - 1);
-                    children.Remove(until);
-                    ts.increment(until.OffAmount() * -1);
-                    break;
-                }
+
             }
             return this;
         }

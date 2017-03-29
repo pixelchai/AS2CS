@@ -85,6 +85,7 @@
     <Compile Include="Nodes\Parameter.cs" />
     <Compile Include="Nodes\ParamsRecv.cs" />
     <Compile Include="Nodes\ParamsSend.cs" />
+    <Compile Include="Nodes\SkipBrac.cs" />
     <Compile Include="Nodes\SkipUntil.cs" />
     <Compile Include="Nodes\Statement.cs" />
     <Compile Include="Nodes\TokenNode.cs" />
