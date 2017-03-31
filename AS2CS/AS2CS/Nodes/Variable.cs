@@ -51,7 +51,7 @@ namespace AS2CS.Nodes
                 IsInitialised = true;
                 if (!Accept<Expression>())
                 {
-                    if (!Expect<As>()) return null;
+                    if (!Accept<As>()) return null;
                 }
             }
             if (needSemicolon)

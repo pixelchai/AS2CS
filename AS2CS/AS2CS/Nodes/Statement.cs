@@ -23,12 +23,15 @@ namespace AS2CS.Nodes
                     {
                         if (!Accept<Variable>())
                         {
-                            if (!Accept<IncrDcr>())
+                            if (!Accept(new Bracket<Statement>(ts)))
                             {
-                                //todo
-                                //throw new Exceptions.CompilerException(ts);
-                                return null;
-                                // Skip();
+                                if (!Accept<IncrDcr>())
+                                {
+                                    //todo
+                                    //throw new Exceptions.CompilerException(ts);
+                                    return null;
+                                    // Skip();
+                                }
                             }
                         }
                     }
