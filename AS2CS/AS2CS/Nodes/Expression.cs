@@ -29,25 +29,28 @@ namespace AS2CS.Nodes
             Accept<OperationOperator>();
             foreach (TokenType type in types)
             {
-                if(Accept(new TokenNode(ts, type)))
+                if (Accept(new TokenNode(ts, type)))
                 {
                     return this;
                 }
             }
-            if (!Accept<Instantiation>())
+            if (!Accept(new SkipBrac(ts)))
             {
-                //Skip();
-                if (!Accept<Call>(false))
+                if (!Accept<Instantiation>())
                 {
-                    //if (!Accept(new TokenNode(ts, TokenTypes.Name)))
-                    //{
-                    //    return null;
-                    //}
-                    if (!Accept<Access>())
+                    //Skip();
+                    if (!Accept<Call>(false))
                     {
-                        return null;
-                    }
-                };
+                        //if (!Accept(new TokenNode(ts, TokenTypes.Name)))
+                        //{
+                        //    return null;
+                        //}
+                        if (!Accept<Access>())
+                        {
+                            return null;
+                        }
+                    };
+                }
             }
             return this;
         }

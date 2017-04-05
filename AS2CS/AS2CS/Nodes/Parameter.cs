@@ -16,9 +16,9 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Expect(new TokenNode(ts, TokenTypes.Name))) return null;
-            if (!Expect(new TokenNode(ts, TokenTypes.Punctuation, ":"))) return null;
-            if (!Expect(new TokenNode(ts, TokenTypes.Keyword.Type))) return null;
+            if (!Accept(new TokenNode(ts, TokenTypes.Name))) return null;
+            if (!Accept(new TokenNode(ts, TokenTypes.Punctuation, ":"))) return null;
+            if (!Accept(new TokenNode(ts, TokenTypes.Keyword.Type))) return null;
 
             if (Accept(new TokenNode(ts, TokenTypes.Operator, "=")))
             {
