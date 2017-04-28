@@ -48,11 +48,20 @@ namespace AS2CS.Nodes
                 if (!Expect(new TokenNode(ts, TokenTypes.Operator, "["))) return null;
             }
 
-            if (!Expect<ParamsSend>()) return null;
+            if (!Accept(new TokenNode(ts, TokenTypes.Operator, ")")))
+            {
+                if (Accept(new TokenNode(ts, TokenTypes.Operator, "]"))) return this;
+            }
+            else
+            {
+                return this;
+            }//no params
+
+            Accept<ParamsSend>();
 
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, ")")))
             {
-                if (!Expect(new TokenNode(ts, TokenTypes.Operator, "]"))) return null;
+                if (!Accept(new TokenNode(ts, TokenTypes.Operator, "]"))) return null;
             }
             return this;
         }

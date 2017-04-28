@@ -34,6 +34,23 @@ namespace AS2CS.Nodes
             {
                 if (!Accept(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
             }
+            if (children.Count == 0)
+            {
+                if (Accept<Instantiation>())
+                {
+                    if ((Accept(new TokenNode(ts, TokenTypes.Operator, "."))))
+                    {
+                        if (Accept<AccessPart>())
+                        {
+                            while ((Accept(new TokenNode(ts, TokenTypes.Operator, "."))))
+                            {
+                                Expect<AccessPart>();
+                            }
+                            Console.WriteLine("ACCEPT INSTANTIATION! -----------------------------------------------");
+                        }
+                    }
+                }
+            }
             return this;
         }
     }

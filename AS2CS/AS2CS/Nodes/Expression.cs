@@ -34,22 +34,26 @@ namespace AS2CS.Nodes
                     return this;
                 }
             }
-            if (!Accept(new SkipBrac(ts))&& !Accept(new SkipBrac(ts,"{","}")))
+            if (!Accept(new SkipBrac(ts)) && !Accept(new SkipBrac(ts, "{", "}")))
             {
-                if (!Accept<Instantiation>())
+                if (!Accept(new Call(ts, false)))//CHANGED
                 {
-                    //Skip();
-                    if (!Accept(new Call(ts,false)))
+                    if (!Accept<Instantiation>())
                     {
-                        //if (!Accept(new TokenNode(ts, TokenTypes.Name)))
-                        //{
-                        //    return null;
-                        //}
-                        if (!Accept<Access>())
+                        //Skip();
+                       // if (!Accept(new Call(ts, false)))
                         {
-                            return null;
+                            //if (!Accept(new TokenNode(ts, TokenTypes.Name)))
+                            //{
+                            //    return null;
+                            //}
+                            if (!Accept<Access>())
+                            {
+                                return null;
+                            }
+
                         }
-                    };
+                    }
                 }
             }
             return this;
