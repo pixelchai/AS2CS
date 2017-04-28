@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AS2CS
 {
+    [System.Diagnostics.DebuggerStepThrough]
     public static class Debug
     {
         private static int indent = 0;
@@ -13,7 +14,7 @@ namespace AS2CS
 
         public static string indentBody = "=-";
         public static string indentEnd = " ";
-        
+
         private static IEnumerable<string> Chunk(this string str, int chunkSize)
         {
             for (int i = 0; i < str.Length; i += chunkSize)

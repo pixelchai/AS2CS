@@ -9,28 +9,37 @@ namespace AS2CS.Nodes
 {
     public class Statement : Node
     {
+        public bool NeedSemicolon = true;
         public Statement(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
+        public Statement(TokenStream tokenStream, bool needSemicolon) : base(tokenStream)
+        {
+            this.NeedSemicolon = needSemicolon;
+        }
+
         public override Node Select()
         {
-            if (!Accept<Conditional>())
+            if (!Accept<Return>())
             {
-                if (!Accept<Loop>())
+                if (!Accept<Conditional>())
                 {
-                    if (!Accept<Call>())
+                    if (!Accept<Loop>())
                     {
-                        if (!Accept<Variable>())
+                        if (!Accept<Call>(NeedSemicolon))
                         {
-                            if (!Accept(new Bracket<Statement>(ts)))
+                            if (!Accept<Variable>())
                             {
-                                if (!Accept<IncrDcr>())
+                                if (!Accept(new Bracket<Statement>(ts)))
                                 {
-                                    //todo
-                                    //throw new Exceptions.CompilerException(ts);
-                                    return null;
-                                    // Skip();
+                                    if (!Accept<IncrDcr>())
+                                    {
+                                        //todo
+                                        //throw new Exceptions.CompilerException(ts);
+                                        return null;
+                                        // Skip();
+                                    }
                                 }
                             }
                         }

@@ -39,7 +39,7 @@ namespace AS2CS.Nodes
                 if (!Accept<Instantiation>())
                 {
                     //Skip();
-                    if (!Accept<Call>(false))
+                    if (!Accept(new Call(ts,false)))
                     {
                         //if (!Accept(new TokenNode(ts, TokenTypes.Name)))
                         //{

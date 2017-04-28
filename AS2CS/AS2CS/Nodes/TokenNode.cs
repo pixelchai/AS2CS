@@ -27,7 +27,6 @@ namespace AS2CS.Nodes
         }
 
         public string type { get; private set; } = null;
-
         public bool generated = false;
 
         [JsonIgnore]

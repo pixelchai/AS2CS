@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AS2CS
 {
+    [System.Diagnostics.DebuggerStepThrough]
     public class TokenStream
     {
         public List<Token> tokens = null;

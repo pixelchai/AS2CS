@@ -23,20 +23,23 @@ namespace AS2CS.Nodes
             {
                 if (!Accept(new TokenNode(ts, TokenTypes.Name, TokenNode.VerificationMode.IsX)))
                 {
-                    if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "this")))
+                    if (!Accept(new TokenNode(ts, TokenTypes.Name.Function, TokenNode.VerificationMode.IsX)))
                     {
-                        if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "super")))
+                        if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "this")))
                         {
-                            return null;
+                            if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "super")))
+                            {
+                                return null;
+                            }
+                            else
+                            {
+                                IsSuper = true;
+                            }
                         }
                         else
                         {
-                            IsSuper = true;
+                            IsThis = true;
                         }
-                    }
-                    else
-                    {
-                        IsThis = true;
                     }
                 }
             }

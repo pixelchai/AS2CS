@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AS2CS
 {
+    [System.Diagnostics.DebuggerStepThrough]
     public abstract class Node
     {
         public List<Node> children = new List<Node>();

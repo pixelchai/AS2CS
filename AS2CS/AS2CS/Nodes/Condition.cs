@@ -26,9 +26,11 @@ namespace AS2CS.Nodes
             {
                 if (!SelectPart())
                 {
+                    Console.WriteLine("NO SECOND PART!");
                     this.UndoAccept();
                     return false;
                 }
+                Console.WriteLine("SELECTED SECOND PART!!");
             }
             else
             {
@@ -52,6 +54,7 @@ namespace AS2CS.Nodes
                         {
                             if (!Accept<IncrDcr>(false))
                             {
+                                if(!Accept<Expression>())
                                 return false;
                             }
                         }

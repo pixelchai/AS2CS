@@ -34,7 +34,7 @@ namespace AS2CS.Nodes
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, "("))) return null;
             if (!Accept<ParamsRecv>()) return null;
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, ")"))) return null;
-            if (!Accept(new TokenNode(ts, TokenTypes.Punctuation, ":"))) return null;
+            if (!Accept(new TokenNode(ts, TokenTypes.Punctuation, ":"))) return null;//!!!!!!!
             if (!Expect(new TokenNode(ts, TokenTypes.Keyword.Type))) return null;
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, "{"))) return null;
             Accept<MethodBody>();

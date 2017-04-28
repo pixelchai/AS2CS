@@ -11,6 +11,10 @@ namespace AS2CS.Nodes
     {
         public bool needSemicolon = true;
         public bool IsIndexerCall { get; private set; } = false;
+        /// <summary>
+        /// i.e: no access
+        /// </summary>
+        //public bool IsBuiltIn { get; private set; } = false;
         public Call(TokenStream tokenStream) : base(tokenStream)
         {
         }
@@ -22,6 +26,7 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             if (!Accept<Access>()) return null;
+            //if (String.IsNullOrWhiteSpace(this.lastAccepted.GetValue())) IsBuiltIn = true;
             if (!Accept(new TokenNode(ts, TokenTypes.Operator, "(")))
             {
                 if (!Accept(new TokenNode(ts, TokenTypes.Operator, "["))) { return null; }
