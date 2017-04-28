@@ -42,6 +42,13 @@ namespace AS2CS.Nodes
         public bool SelectPart()
         {
             Accept<OperationOperator>();
+            foreach (TokenType type in Expression.types)
+            {
+                if (Accept(new TokenNode(ts, type)))
+                {
+                    return true;
+                }
+            }
 
             if (!Accept(new TokenNode(ts, TokenTypes.Keyword.Constant)))
             {
@@ -54,7 +61,6 @@ namespace AS2CS.Nodes
                         {
                             if (!Accept<IncrDcr>(false))
                             {
-                                if(!Accept<Expression>())
                                 return false;
                             }
                         }
