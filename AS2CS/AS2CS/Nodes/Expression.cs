@@ -34,7 +34,7 @@ namespace AS2CS.Nodes
                     return this;
                 }
             }
-            if (!Accept(new SkipBrac(ts)))
+            if (!Accept(new SkipBrac(ts))&& !Accept(new SkipBrac(ts,"{","}")))
             {
                 if (!Accept<Instantiation>())
                 {
