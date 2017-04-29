@@ -88,6 +88,7 @@ namespace AS2CS
         [JsonIgnore] public TokenNode N_CATCH { get { return new TokenNode(this.ts, TokenTypes.Keyword, "catch"); } }
         [JsonIgnore] public TokenNode N_CASE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "case"); } }
         [JsonIgnore] public TokenNode N_DEFAULT { get { return new TokenNode(this.ts, TokenTypes.Keyword, "default"); } }
+        [JsonIgnore] public TokenNode N_CONTINUE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "continue"); } }
 
         #endregion
 

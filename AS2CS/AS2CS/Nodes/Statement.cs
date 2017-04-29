@@ -32,32 +32,37 @@ namespace AS2CS.Nodes
                                         {
                                             if (!Accept(N_SUPER))
                                             {
-                                                //h labelablestatement
-                                                return null;
+                                                if(!Accept<LabelableStatement>())return null;
                                             }
                                             else
                                             {
-                                                //h
+                                                Expect(N_LBRAC);
+                                                Expect<Arguments>();
+                                                Expect(N_RBRAC);
                                             }
                                         }
                                         else
                                         {
-                                            //h
+                                            Expect<CommaExpr>();
+                                            Expect(N_SEMICOLON);
                                         }
                                     }
                                     else
                                     {
-                                        //h
+                                        Expect<ExprOrObjectLiteral>();
+                                        Expect(N_SEMICOLON);
                                     }
                                 }
                                 else
                                 {
-                                    //h
+                                    Accept(N_IDENTIFIER);//opt
+                                    Expect(N_SEMICOLON);
                                 }
                             }
                             else
                             {
-                                //h
+                                Accept(N_IDENTIFIER);//opt
+                                Expect(N_SEMICOLON);
                             }
                         }
                         else
@@ -68,7 +73,7 @@ namespace AS2CS.Nodes
                     else
                     {
                         Expect(N_COLON);
-                        //h labelableStatement
+                        Expect<LabelableStatement>();
                     }
                 }
                 else
@@ -76,6 +81,7 @@ namespace AS2CS.Nodes
                     Expect(N_SEMICOLON);
                 }
             }
+            return this;
         }
     }
 }
