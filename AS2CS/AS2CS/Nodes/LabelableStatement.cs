@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AS2CS.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,9 +25,39 @@ namespace AS2CS.Nodes
                         {
                             if (!Accept(N_FOR))
                             {
+                                if (!Accept(N_TRY))
+                                {
+                                    if (!Accept<NamedFunctionExpr>())
+                                    {
+                                        if (!Accept<Block>())
+                                        {
+                                            return null;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    #region fancy TRY stuff
+                                    //ad
+                                    Expect<Block>();
+                                    bool isCatches = Accept<Catches>();
+                                    if (Accept(N_FINALLY))
+                                    {
+                                        Expect<Block>();
+                                    }
+                                    else
+                                    {
+                                        if (!isCatches)
+                                        {
+                                            throw new CompilerException(ts);
+                                        }
+                                    }
+                                    #endregion
+                                }
                             }
                             else
                             {
+                                #region fancy FOR stuff
                                 //ad
                                 bool isEach = Accept(N_EACH);
                                 Expect(N_LBRAC);
@@ -65,7 +96,7 @@ namespace AS2CS.Nodes
                                     }
                                     else
                                     {
-                                        return null;
+                                        throw new CompilerException(ts);
                                     }
                                 }
                                 else
@@ -91,9 +122,10 @@ namespace AS2CS.Nodes
                                     }
                                     else
                                     {
-                                        return null; //CHECK //PODO
+                                        throw new CompilerException(ts);
                                     }
                                 }
+                                #endregion
                             }
                         }
                         else
@@ -129,6 +161,8 @@ namespace AS2CS.Nodes
                     Expect<Statement>();
                 }
             }
+
+            return this;
         }
     }
 }
