@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace AS2CS.Nodes
 {
-    public class ObjectLiteral : Node
+    public class Block : Node
     {
-        public ObjectLiteral(TokenStream tokenStream) : base(tokenStream)
+        public Block(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
         public override Node Select()
         {
             if (!Accept(new TokenNode(ts, "", "{"))) return null;
-            Accept<ObjectFields>();
+            //h statements
             if (!Expect(new TokenNode(ts, "", "}"))) return null;
-            return this;
         }
     }
 }

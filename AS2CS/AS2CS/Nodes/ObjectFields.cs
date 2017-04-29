@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AS2CS.Nodes
 {
+    /// <summary>
+    /// a
+    /// </summary>
     public class ObjectFields : Node
     {
         public ObjectFields(TokenStream tokenStream) : base(tokenStream)

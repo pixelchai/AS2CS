@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 
 namespace AS2CS.Nodes
 {
-    public class ExprOrObjectLiteral : Node
+    public class CommaExpr : Node
     {
-        public ExprOrObjectLiteral(TokenStream tokenStream) : base(tokenStream)
+        public CommaExpr(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
         public override Node Select()
         {
-            if (!Accept<Expr>())
+            if (!Accept<Expr>()) return null;
+            while (Accept(TokenNode.Comma(ts)))
             {
-                if (!Accept<ObjectLiteral>())
-                {
-                    //h
-                }
+                Accept<Expr>();
             }
+            return this;
         }
     }
 }

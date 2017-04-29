@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AS2CS.Nodes
 {
+    /// <summary>
+    /// a
+    /// </summary>
     public class Arguments : Node
     {
         public Arguments(TokenStream tokenStream) : base(tokenStream)
@@ -15,7 +18,14 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             //optional
-            //h
+            if (Accept<ExprOrObjectLiteral>())
+            {
+                while (Accept(new TokenNode(ts, "", ",")))
+                {
+                    Expect<ExprOrObjectLiteral>();
+                }
+            }
+            return this;
         }
     }
 }

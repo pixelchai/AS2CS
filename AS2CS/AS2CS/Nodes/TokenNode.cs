@@ -10,6 +10,19 @@ namespace AS2CS.Nodes
 {
     public class TokenNode : Node
     {
+        public static TokenNode Semicolon(TokenStream ts)
+        {
+            return new TokenNode(ts, TokenTypes.Operator, ";");
+        }
+        public static TokenNode Comma(TokenStream ts)
+        {
+            return new TokenNode(ts, "", ",");
+        }
+        public static TokenNode Identifier(TokenStream ts)
+        {
+            return new TokenNode(ts, TokenTypes.Name);
+        }
+
         public enum VerificationMode
         {
             /// <summary>
