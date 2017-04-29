@@ -31,7 +31,49 @@ namespace AS2CS.Nodes
                             {
                                 if (!Accept<Lvalue>())
                                 {
-                                    //h anonFunctionExpr
+                                    if (!Accept<AnonFunctionExpr>())
+                                    {
+                                        if (!Accept(N_THIS))
+                                        {
+                                            if (!Accept<ParenthesizedExpr>())
+                                            {
+                                                if (!Accept(N_NEW))
+                                                {
+                                                    if (!Accept(N_DELETE))
+                                                    {
+                                                        if (!Accept<Expr>())
+                                                        {
+                                                            //h prefix
+                                                        }
+                                                        else
+                                                        {
+                                                            /**
+                                                              | expr "as" type  
+                                                              | expr "is" expr  
+                                                              | expr POSTFIX_OPERATOR  
+                                                              | expr INFIX_OPERATOR expr  
+                                                              | expr "(" arguments ")"  
+                                                              | expr "?" exprOrObjectLiteral ":" exprOrObjectLiteral;
+                                                            */
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        Expect<Expr>();
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Expect<Type>();
+                                                    if (Accept(N_LBRAC))//opt
+                                                    {
+                                                        Expect<Arguments>();
+                                                        Expect(N_RBRAC);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

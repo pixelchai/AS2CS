@@ -70,9 +70,9 @@ expr ::=
   | parenthesizedExpr  
   | "new" type ["(" arguments ")"]  
   | "delete" expr  
+  | PREFIX_OPERATOR expr  
   | expr "as" type  
   | expr "is" expr  
-  | PREFIX_OPERATOR expr  
   | expr POSTFIX_OPERATOR  
   | expr INFIX_OPERATOR expr  
   | expr "(" arguments ")"  

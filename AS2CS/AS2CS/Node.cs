@@ -61,6 +61,10 @@ namespace AS2CS
         /// </summary>
         [JsonIgnore] public TokenNode N_COLON { get { return new TokenNode(this.ts, "", ":"); } }
         /// <summary>
+        /// ?
+        /// </summary>
+        [JsonIgnore] public TokenNode N_QUESTION { get { return new TokenNode(this.ts, "", "?"); } }
+        /// <summary>
         /// *
         /// </summary>
         [JsonIgnore] public TokenNode N_ASTERISK { get { return new TokenNode(this.ts, "", "*"); } }
@@ -101,6 +105,11 @@ namespace AS2CS
         [JsonIgnore] public TokenNode N_OVERRIDE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "override"); } }
         [JsonIgnore] public TokenNode N_INTERNAL { get { return new TokenNode(this.ts, TokenTypes.Keyword, "internal"); } }
         [JsonIgnore] public TokenNode N_CONTINUE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "continue"); } }
+        [JsonIgnore] public TokenNode N_THIS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "this"); } }
+        [JsonIgnore] public TokenNode N_NEW { get { return new TokenNode(this.ts, TokenTypes.Keyword, "new"); } }
+        [JsonIgnore] public TokenNode N_AS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "as"); } }
+        [JsonIgnore] public TokenNode N_IS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "is"); } }
+        [JsonIgnore] public TokenNode N_DELETE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "delete"); } }
 
         #endregion
 
