@@ -15,8 +15,9 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             if (!Accept(N_LCURLY)) return null;
-            //h statements
+            Expect<Statements>();
             if (!Expect(N_RCURLY)) return null;
+            return this;
         }
     }
 }
