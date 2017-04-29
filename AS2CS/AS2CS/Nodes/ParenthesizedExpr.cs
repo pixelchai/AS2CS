@@ -14,9 +14,9 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(N_LCURLY)) return null;
+            if (!Accept(N_LBRAC)) return null;
             if (!Accept<ExprOrObjectLiteral>()) return null;
-            if (!Accept(N_RCURLY)) return null;
+            if (!Accept(N_RBRAC)) return null;
             return this;
         }
     }

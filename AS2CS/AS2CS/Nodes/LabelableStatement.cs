@@ -14,16 +14,121 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            ///*h: 
-            ///paranthesizedExpr,
-            ///(statement), 
-            ///statementInSwitch, 
-            ///catches, 
-            ///(block), 
-            ///namedFunctionExpr
-            ///*
-            
-            throw new NotImplementedException();
+            if (!Accept(N_IF))
+            {
+                if (!Accept(N_SWITCH))
+                {
+                    if (!Accept(N_WHILE))
+                    {
+                        if (!Accept(N_DO))
+                        {
+                            if (!Accept(N_FOR))
+                            {
+                            }
+                            else
+                            {
+                                //ad
+                                bool isEach = Accept(N_EACH);
+                                Expect(N_LBRAC);
+                                if (Accept(N_VAR))
+                                {
+                                    ///* "for" "(" "var" identifierDeclaration {"," identifierDeclaration} ";"
+                                    ///         [commaExpr] ";" [commaExpr] ")" statement
+                                    // or
+                                    ///* "for" ["each"] "(" "var" IDENTIFIER [typeRelation] "in" expr ")" statement  
+
+                                    if (!isEach)
+                                    {
+                                        if (Accept<IdentifierDeclaration>())
+                                        {
+                                            while (Accept(N_COMMA))
+                                            {
+                                                Expect<IdentifierDeclaration>();
+                                            }
+                                            Expect(N_SEMICOLON);
+                                            Accept<CommaExpr>();//opt
+                                            Expect(N_SEMICOLON);
+                                            Accept<CommaExpr>();//opt
+                                            Expect(N_RBRAC);
+                                            Expect<Statement>();
+                                            return this;
+                                        }//else fall to next if
+                                    }
+
+                                    if (Expect(N_IDENTIFIER))
+                                    {
+                                        Accept<TypeRelation>();//opt
+                                        Expect(N_IN);
+                                        Expect<Expr>();
+                                        Expect(N_RBRAC);
+                                        Expect<Statement>();
+                                    }
+                                    else
+                                    {
+                                        return null;
+                                    }
+                                }
+                                else
+                                {
+                                    if (Accept(N_IDENTIFIER))
+                                    {
+                                        //"for"["each"] "(" IDENTIFIER "in" expr ")" statement
+                                        Expect(N_IN);
+                                        Expect<Expr>();
+                                        Expect(N_RBRAC);
+                                        Expect<Statement>();
+                                    }
+                                    else if (!isEach)
+                                    {
+                                        //"for" "(" [commaExpr] ";" [commaExpr] ";" [commaExpr] ")" statement
+                                        Accept<CommaExpr>();//opt
+                                        Expect(N_SEMICOLON);
+                                        Accept<CommaExpr>();//opt
+                                        Expect(N_SEMICOLON);
+                                        Accept<CommaExpr>();//opt
+                                        Expect(N_RBRAC);
+                                        Expect<Statement>();
+                                    }
+                                    else
+                                    {
+                                        return null; //CHECK //PODO
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Expect<Statement>();
+                            Expect(N_WHILE);
+                            Expect<ParenthesizedExpr>();
+                            Expect(N_SEMICOLON);
+                        }
+                    }
+                    else
+                    {
+                        Expect<ParenthesizedExpr>();
+                        Expect<Statement>();
+                    }
+                }
+                else
+                {
+                    Expect<ParenthesizedExpr>();
+                    Expect(N_LCURLY);
+                    while (Accept<StatementInSwitch>()) { }
+                    Expect(N_RCURLY);
+                }
+            }
+            else
+            {
+                Expect<ParenthesizedExpr>();
+                Expect<Statement>();
+
+                //ad
+                if (Accept(N_ELSE))
+                {
+                    Expect<Statement>();
+                }
+            }
         }
     }
 }

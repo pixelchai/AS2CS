@@ -20,10 +20,11 @@ namespace AS2CS.Nodes
                 {
                     if (!Accept(N_DEFAULT))
                     {
+                        return null;
                     }
                     else
                     {
-                        //h
+                        Expect(N_COLON);
                     }
                 }
                 else
@@ -32,6 +33,7 @@ namespace AS2CS.Nodes
                     Expect(N_COLON);
                 }
             }
+            return this;
         }
     }
 }

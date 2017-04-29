@@ -188,6 +188,7 @@ statementInSwitch ::=
     statement  
   | "case" expr ":"  
   | "default" ":";  
+
 staticInitializer ::=  
     block;
 
