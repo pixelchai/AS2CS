@@ -61,6 +61,7 @@
     <Compile Include="Node.cs" />
     <Compile Include="Nodes\AnnotationField.cs" />
     <Compile Include="Nodes\AnnotationFields.cs" />
+    <Compile Include="Nodes\AnonFunctionExpr.cs" />
     <Compile Include="Nodes\Arguments.cs" />
     <Compile Include="Nodes\ArrayLiteral.cs" />
     <Compile Include="Nodes\Block.cs" />
@@ -73,8 +74,13 @@
     <Compile Include="Nodes\Expr.cs" />
     <Compile Include="Nodes\ExprOrObjectLiteral.cs" />
     <Compile Include="Nodes\IdentifierDeclaration.cs" />
+    <Compile Include="Nodes\InfixOperator.cs" />
     <Compile Include="Nodes\LabelableStatement.cs" />
+    <Compile Include="Nodes\Lvalue.cs" />
+    <Compile Include="Nodes\Modifier.cs" />
+    <Compile Include="Nodes\Modifiers.cs" />
     <Compile Include="Nodes\NamedFunctionExpr.cs" />
+    <Compile Include="Nodes\NamespacedIdentifier.cs" />
     <Compile Include="Nodes\ObjectField.cs" />
     <Compile Include="Nodes\ObjectFields.cs" />
     <Compile Include="Nodes\ObjectLiteral.cs" />
@@ -82,6 +88,8 @@
     <Compile Include="Nodes\Parameter.cs" />
     <Compile Include="Nodes\Parameters.cs" />
     <Compile Include="Nodes\ParenthesizedExpr.cs" />
+    <Compile Include="Nodes\PostfixOperator.cs" />
+    <Compile Include="Nodes\PrefixOperator.cs" />
     <Compile Include="Nodes\QualifiedIde.cs" />
     <Compile Include="Nodes\Statement.cs" />
     <Compile Include="Nodes\StatementInSwitch.cs" />
