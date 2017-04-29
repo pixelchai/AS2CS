@@ -15,6 +15,14 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             //optional
+            if (Accept<ObjectField>())
+            {
+                while (Accept(new TokenNode(ts, "", ",")))
+                {
+                    Expect<ObjectField>();
+                }
+            }
+            return this;
         }
     }
 }
