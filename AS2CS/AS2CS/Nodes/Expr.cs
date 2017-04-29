@@ -55,6 +55,12 @@ namespace AS2CS.Nodes
                                                               | expr "(" arguments ")"  
                                                               | expr "?" exprOrObjectLiteral ":" exprOrObjectLiteral;
                                                             */
+                                                            //CFGad proposition:
+                                                            /**
+                                                                expr "[" expr "]"
+                                                                + maybe
+                                                                expr "{" expr "}"
+                                                            */
                                                         }
                                                     }
                                                     else
