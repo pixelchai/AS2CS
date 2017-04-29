@@ -61,13 +61,34 @@ namespace AS2CS.Nodes
                                                                 + maybe
                                                                 expr "{" expr "}"
                                                             */
-                                                            if (Accept(N_AS))
+                                                            if (!Accept(N_AS))
                                                             {
-                                                                Expect<Type>();
+                                                                if (!Accept(N_IS))
+                                                                {
+                                                                    //ad fancy
+                                                                    if (Accept<InfixOperator>())
+                                                                    {
+                                                                        if (Accept<Expr>())
+                                                                        {
+                                                                            return this;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            base.UndoAccept();//undo PostFix
+                                                                            if (Accept<PostfixOperator>())
+                                                                            {
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    Expect<Expr>();
+                                                                }
                                                             }
                                                             else
                                                             {
-
+                                                                Expect<Type>();
                                                             }
                                                         }
                                                     }
