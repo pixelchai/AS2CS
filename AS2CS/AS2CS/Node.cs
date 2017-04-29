@@ -88,6 +88,14 @@ namespace AS2CS
         [JsonIgnore] public TokenNode N_CATCH { get { return new TokenNode(this.ts, TokenTypes.Keyword, "catch"); } }
         [JsonIgnore] public TokenNode N_CASE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "case"); } }
         [JsonIgnore] public TokenNode N_DEFAULT { get { return new TokenNode(this.ts, TokenTypes.Keyword, "default"); } }
+        [JsonIgnore] public TokenNode N_PUBLIC { get { return new TokenNode(this.ts, TokenTypes.Keyword, "public"); } }
+        [JsonIgnore] public TokenNode N_PROTECTED { get { return new TokenNode(this.ts, TokenTypes.Keyword, "protected"); } }
+        [JsonIgnore] public TokenNode N_PRIVATE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "private"); } }
+        [JsonIgnore] public TokenNode N_STATIC { get { return new TokenNode(this.ts, TokenTypes.Keyword, "static"); } }
+        [JsonIgnore] public TokenNode N_ABSTRACT { get { return new TokenNode(this.ts, TokenTypes.Keyword, "abstract"); } }
+        [JsonIgnore] public TokenNode N_FINAL { get { return new TokenNode(this.ts, TokenTypes.Keyword, "final"); } }
+        [JsonIgnore] public TokenNode N_OVERRIDE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "override"); } }
+        [JsonIgnore] public TokenNode N_INTERNAL { get { return new TokenNode(this.ts, TokenTypes.Keyword, "internal"); } }
         [JsonIgnore] public TokenNode N_CONTINUE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "continue"); } }
 
         #endregion
