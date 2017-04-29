@@ -27,7 +27,10 @@ namespace AS2CS.Nodes
                     {
                         if (!Accept(new TokenNode(ts, TokenTypes.Keyword.Constant)))
                         {
-                            //TODO //h
+                            if (!Accept<ArrayLiteral>())
+                            {
+                                //h
+                            }
                         }
                     }
                 }

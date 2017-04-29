@@ -18,9 +18,13 @@ namespace AS2CS.Nodes
             {
                 if (!Accept<ObjectLiteral>())
                 {
-                    //h
+                    if (!Accept<NamedFunctionExpr>())
+                    {
+                        return null;
+                    }
                 }
             }
+            return this;
         }
     }
 }

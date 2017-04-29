@@ -14,9 +14,10 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(N_LSQUARE) return null;
-            //h arguments
+            if (!Accept(N_LSQUARE)) return null;
+            Accept<Arguments>();
             if (!Expect(N_RSQUARE)) return null;
+            return this;
         }
     }
 }

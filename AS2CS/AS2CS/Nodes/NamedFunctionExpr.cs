@@ -22,7 +22,8 @@ namespace AS2CS.Nodes
             Expect(N_RBRAC);
             //optional
             Accept<TypeRelation>();
-            //h block
+            Expect<Block>();
+            return this;
         }
     }
 }
