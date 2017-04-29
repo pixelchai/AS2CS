@@ -18,7 +18,8 @@ namespace AS2CS.Nodes
             //CHECK
             Expect(N_IDENTIFIER);
             Expect(N_EQUALS);
-            //TODO //h
+            Expect<Expr>();
+            return this;
         }
     }
 }
