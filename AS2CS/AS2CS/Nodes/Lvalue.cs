@@ -14,7 +14,35 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            //h namespacedIdentifier
+            if (!Accept<NamespacedIdentifier>())
+            {
+                if (!Accept<Expr>())
+                {
+                    if (!Accept(N_SUPER))
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        Expect(N_DOT);
+                        Expect<NamespacedIdentifier>();
+                    }
+                }
+                else
+                {
+                    if (!Accept(N_DOT))
+                    {
+                        Expect(N_LSQUARE);
+                        Expect<CommaExpr>();
+                        Expect(N_RSQUARE);
+                    }
+                    else
+                    {
+                        Expect<NamespacedIdentifier>();
+                    }
+                }
+            }
+            return this;
         }
     }
 }

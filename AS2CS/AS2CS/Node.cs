@@ -21,6 +21,10 @@ namespace AS2CS
         /// </summary>
         [JsonIgnore] public TokenNode N_SEMICOLON { get { return new TokenNode(this.ts, TokenTypes.Operator, ";"); } }
         /// <summary>
+        /// .
+        /// </summary>
+        [JsonIgnore] public TokenNode N_DOT { get { return new TokenNode(this.ts, "", "."); } }
+        /// <summary>
         /// ,
         /// </summary>
         [JsonIgnore] public TokenNode N_COMMA { get { return new TokenNode(this.ts, "", ","); } }
