@@ -59,39 +59,9 @@
     <Compile Include="Debug.cs" />
     <Compile Include="Exceptions\CompilerException.cs" />
     <Compile Include="Node.cs" />
-    <Compile Include="Nodes\Access.cs" />
-    <Compile Include="Nodes\AccessPart.cs" />
-    <Compile Include="Nodes\As.cs" />
-    <Compile Include="Nodes\ASFile.cs" />
-    <Compile Include="Nodes\Bracket.cs" />
-    <Compile Include="Nodes\Call.cs" />
-    <Compile Include="Nodes\Class.cs" />
-    <Compile Include="Nodes\Comparer.cs" />
-    <Compile Include="Nodes\Condition.cs" />
-    <Compile Include="Nodes\Conditional.cs" />
-    <Compile Include="Nodes\Constructor.cs" />
-    <Compile Include="Nodes\Else.cs" />
-    <Compile Include="Nodes\Expression.cs" />
-    <Compile Include="Nodes\ForEach.cs" />
-    <Compile Include="Nodes\If.cs" />
-    <Compile Include="Nodes\Import.cs" />
-    <Compile Include="Nodes\IncrDcr.cs" />
-    <Compile Include="Nodes\InExpression.cs" />
-    <Compile Include="Nodes\Instantiation.cs" />
-    <Compile Include="Nodes\Loop.cs" />
-    <Compile Include="Nodes\Method.cs" />
-    <Compile Include="Nodes\MethodBody.cs" />
-    <Compile Include="Nodes\OperationOperator.cs" />
-    <Compile Include="Nodes\Package.cs" />
-    <Compile Include="Nodes\Parameter.cs" />
-    <Compile Include="Nodes\ParamsRecv.cs" />
-    <Compile Include="Nodes\ParamsSend.cs" />
-    <Compile Include="Nodes\Return.cs" />
-    <Compile Include="Nodes\SkipBrac.cs" />
-    <Compile Include="Nodes\SkipUntil.cs" />
-    <Compile Include="Nodes\Statement.cs" />
+    <Compile Include="Nodes\CompilationUnit.cs" />
+    <Compile Include="Nodes\PackageDeclaration.cs" />
     <Compile Include="Nodes\TokenNode.cs" />
-    <Compile Include="Nodes\Variable.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +82,9 @@
     <EmbeddedResource Include="TreeDebug.resx">
       <DependentUpon>TreeDebug.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Grammar.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

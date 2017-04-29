@@ -20,7 +20,7 @@ namespace AS2CS
             this.stream = ts;
         }
 
-        public ASFile Parse()
+        public CompilationUnit Parse()
         {
             try {
                 if (Utils.DEBUG_PARSING)
@@ -28,8 +28,8 @@ namespace AS2CS
                     Debug.WriteLine("Parsing Actionscript...");
                     Debug.Indent();
                 }
-                ASFile file = new ASFile(stream);
-                return (ASFile)file.Select();
+                CompilationUnit file = new CompilationUnit(stream);
+                return (CompilationUnit)file.Select();
             }
             finally
             {
