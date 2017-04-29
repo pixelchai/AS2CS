@@ -61,6 +61,14 @@ namespace AS2CS.Nodes
                                                                 + maybe
                                                                 expr "{" expr "}"
                                                             */
+                                                            if (Accept(N_AS))
+                                                            {
+                                                                Expect<Type>();
+                                                            }
+                                                            else
+                                                            {
+
+                                                            }
                                                         }
                                                     }
                                                     else

@@ -16,8 +16,11 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             if (!Accept(N_IDENTIFIER)) return null;
-            //while(Accept(new TokenNode(ts,TokenTypes)))
-            throw new NotImplementedException();
+            while (Accept(N_DOT))
+            {
+                Expect(N_IDENTIFIER);
+            }
+            return this;
         }
     }
 }
