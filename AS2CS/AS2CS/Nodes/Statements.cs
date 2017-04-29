@@ -17,7 +17,8 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            //h statement
+            while (Accept<Statement>()) { }
+            return this;
         }
     }
 }
