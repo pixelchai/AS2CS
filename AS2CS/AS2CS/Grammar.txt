@@ -1,4 +1,8 @@
-﻿anonFunctionExpr ::=  
+﻿
+
+
+
+anonFunctionExpr ::=  
     "function" "(" parameters ")" [typeRelation] block;
 
 annotationFields ::=  

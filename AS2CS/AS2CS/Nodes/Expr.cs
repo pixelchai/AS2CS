@@ -29,7 +29,10 @@ namespace AS2CS.Nodes
                         {
                             if (!Accept<ArrayLiteral>())
                             {
-                                //h lvalue
+                                if (!Accept<Lvalue>())
+                                {
+                                    //h anonFunctionExpr
+                                }
                             }
                         }
                     }
