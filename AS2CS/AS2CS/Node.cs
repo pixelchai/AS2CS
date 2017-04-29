@@ -14,8 +14,8 @@ namespace AS2CS
     public abstract class Node
     {
         #region N_TOKENS
-        [JsonIgnore]
-        public TokenNode N_IDENTIFIER { get { return new TokenNode(this.ts, TokenTypes.Name); } }
+        [JsonIgnore] public TokenNode N_NAMESPACE { get { return new TokenNode(this.ts, TokenTypes.Name.Namespace); } }
+        [JsonIgnore] public TokenNode N_IDENTIFIER { get { return new TokenNode(this.ts, TokenTypes.Name); } }
         /// <summary>
         /// ;
         /// </summary>
@@ -60,46 +60,34 @@ namespace AS2CS
         /// *
         /// </summary>
         [JsonIgnore] public TokenNode N_ASTERISK { get { return new TokenNode(this.ts, "", "*"); } }
-        /// <summary>
-        /// use
-        /// </summary>
+
         [JsonIgnore] public TokenNode N_USE { get { return new TokenNode(this.ts, "", "use"); } } //FIXME
-        /// <summary>
-        /// import
-        /// </summary>
         [JsonIgnore] public TokenNode N_IMPORT { get { return new TokenNode(this.ts, TokenTypes.Keyword, "import"); } }
-        /// <summary>
-        /// true
-        /// </summary>
         [JsonIgnore] public TokenNode N_TRUE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "true"); } }
-        /// <summary>
-        /// false
-        /// </summary>
         [JsonIgnore] public TokenNode N_FALSE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "false"); } }
-        /// <summary>
-        /// null
-        /// </summary>
         [JsonIgnore] public TokenNode N_NULL { get { return new TokenNode(this.ts, TokenTypes.Keyword, "null"); } }
-        /// <summary>
-        /// function
-        /// </summary>
         [JsonIgnore] public TokenNode N_FUNCTION { get { return new TokenNode(this.ts, TokenTypes.Keyword, "function"); } }
-        /// <summary>
-        /// package
-        /// </summary>
         [JsonIgnore] public TokenNode N_PACKAGE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "package"); } }
-        /// <summary>
-        /// const
-        /// </summary>
         [JsonIgnore] public TokenNode N_CONST { get { return new TokenNode(this.ts, TokenTypes.Keyword, "const"); } }
-        /// <summary>
-        /// void
-        /// </summary>
+        [JsonIgnore] public TokenNode N_VAR { get { return new TokenNode(this.ts, TokenTypes.Keyword, "var"); } }
         [JsonIgnore] public TokenNode N_VOID { get { return new TokenNode(this.ts, TokenTypes.Keyword, "void"); } }
-        /// <summary>
-        /// (namespace)
-        /// </summary>
-        [JsonIgnore] public TokenNode N_NAMESPACE { get { return new TokenNode(this.ts, TokenTypes.Name.Namespace); } }
+        [JsonIgnore] public TokenNode N_BREAK { get { return new TokenNode(this.ts, TokenTypes.Keyword, "break"); } }
+        [JsonIgnore] public TokenNode N_RETURN { get { return new TokenNode(this.ts, TokenTypes.Keyword, "return"); } }
+        [JsonIgnore] public TokenNode N_THROW { get { return new TokenNode(this.ts, TokenTypes.Keyword, "throw"); } }
+        [JsonIgnore] public TokenNode N_SUPER { get { return new TokenNode(this.ts, TokenTypes.Keyword, "super"); } }
+        [JsonIgnore] public TokenNode N_IF { get { return new TokenNode(this.ts, TokenTypes.Keyword, "if"); } }
+        [JsonIgnore] public TokenNode N_ELSE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "else"); } }
+        [JsonIgnore] public TokenNode N_SWITCH { get { return new TokenNode(this.ts, TokenTypes.Keyword, "switch"); } }
+        [JsonIgnore] public TokenNode N_WHILE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "while"); } }
+        [JsonIgnore] public TokenNode N_DO { get { return new TokenNode(this.ts, TokenTypes.Keyword, "do"); } }
+        [JsonIgnore] public TokenNode N_FOR { get { return new TokenNode(this.ts, TokenTypes.Keyword, "for"); } }
+        [JsonIgnore] public TokenNode N_EACH { get { return new TokenNode(this.ts, TokenTypes.Keyword, "each"); } }
+        [JsonIgnore] public TokenNode N_IN { get { return new TokenNode(this.ts, TokenTypes.Keyword, "in"); } }
+        [JsonIgnore] public TokenNode N_TRY { get { return new TokenNode(this.ts, TokenTypes.Keyword, "try"); } }
+        [JsonIgnore] public TokenNode N_FINALLY { get { return new TokenNode(this.ts, TokenTypes.Keyword, "finally"); } }
+        [JsonIgnore] public TokenNode N_CATCH { get { return new TokenNode(this.ts, TokenTypes.Keyword, "catch"); } }
+        [JsonIgnore] public TokenNode N_CASE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "case"); } }
+        [JsonIgnore] public TokenNode N_DEFAULT { get { return new TokenNode(this.ts, TokenTypes.Keyword, "default"); } }
 
         #endregion
 
