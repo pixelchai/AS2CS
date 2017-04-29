@@ -17,9 +17,9 @@ namespace AS2CS.Nodes
         {
             if (!Accept<QualifiedIde>())
             {
-                if (!Accept(new TokenNode(ts, "", "*")))//q
+                if (!Accept(N_ASTERISK))//q
                 {
-                    if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "void")))
+                    if (!Accept(N_VOID))
                     {
                         return null;
                     }

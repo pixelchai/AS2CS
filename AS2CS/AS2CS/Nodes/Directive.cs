@@ -15,34 +15,34 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "import")))
+            if (!Accept(N_IMPORT))
             {
-                Expect(new TokenNode(ts, TokenTypes.Name.Namespace)); //ad //PODO: *s
+                Expect(N_NAMESPACE); //ad //PODO: *s
             }
             else
             {
-                if (!Accept(new TokenNode(ts, "", "[")))
+                if (!Accept(N_LSQUARE))
                 {
-                    if (!Accept(new TokenNode(ts, "", "use")))//FIXME
+                    if (!Accept(N_USE))
                     {
-                        if (!Accept(new TokenNode(ts, "", ";"))) return null;//q
+                        if (!Accept(N_SEMICOLON)) return null;//q
                     }
                     else
                     {
-                        if (!Expect(new TokenNode(ts, TokenTypes.Name))) return null;
+                        if (!Expect(N_IDENTIFIER)) return null;
                         if (!Expect<Type>()) return null;
                     }
                 }
                 else
                 {
-                    if (!Expect(new TokenNode(ts, TokenTypes.Name))) return null;
+                    if (!Expect(N_IDENTIFIER)) return null;
                     //optional
-                    if (Accept(new TokenNode(ts, "", "(")))
+                    if (Accept(N_LBRAC))
                     {
                         Expect<AnnotationFields>();
-                        Expect(new TokenNode(ts, "", ")"));
+                        Expect(N_RBRAC);
                     }
-                    if (!Expect(new TokenNode(ts, "", "]"))) return null;
+                    if (!Expect(N_RSQUARE)) return null;
                 }
             }
             return this;

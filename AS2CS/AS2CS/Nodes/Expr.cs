@@ -21,9 +21,9 @@ namespace AS2CS.Nodes
                 if (!Accept(new TokenNode(ts, TokenTypes.String)))//PODO
                 {
                     //r regex//PODO
-                    if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "true"))
-                        && !Accept(new TokenNode(ts, TokenTypes.Keyword, "false"))
-                        && !Accept(new TokenNode(ts, TokenTypes.Keyword, "null")))
+                    if (!Accept(N_TRUE)
+                        && !Accept(N_FALSE)
+                        && !Accept(N_NULL))
                     {
                         if (!Accept(new TokenNode(ts, TokenTypes.Keyword.Constant)))
                         {

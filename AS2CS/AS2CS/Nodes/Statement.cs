@@ -14,7 +14,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(TokenNode.Semicolon(ts)))
+            if (!Accept(N_SEMICOLON))
             {
                 if (!Accept<CommaExpr>())
                 {
@@ -22,7 +22,7 @@ namespace AS2CS.Nodes
                 }
                 else
                 {
-                    Expect(TokenNode.Semicolon(ts));
+                    Expect(N_SEMICOLON);
                 }
             }
         }

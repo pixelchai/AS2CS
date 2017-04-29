@@ -15,7 +15,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(new TokenNode(ts, TokenTypes.Name))
+            if (!Accept(N_IDENTIFIER)
                 && !Accept(new TokenNode(ts, TokenTypes.String))
                 && !Accept(new TokenNode(ts, TokenTypes.Number)))
             {
@@ -23,7 +23,7 @@ namespace AS2CS.Nodes
             }
             else
             {
-                if (!Accept(new TokenNode(ts, "", ":"))) return null;
+                if (!Accept(N_COLON)) return null;
                 if (!Accept<ExprOrObjectLiteral>()) return null;
             }
             return this;

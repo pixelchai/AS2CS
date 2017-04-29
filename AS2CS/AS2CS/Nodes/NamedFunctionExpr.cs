@@ -15,11 +15,11 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "function"))) return null;
-            Expect(new TokenNode(ts, TokenTypes.Name));
-            Expect(new TokenNode(ts, "", "("));
+            if (!Accept(N_FUNCTION)) return null;
+            Expect(N_IDENTIFIER);
+            Expect(N_LBRAC);
             Expect<Parameters>();
-            Expect(new TokenNode(ts, "", ")"));
+            Expect(N_RBRAC);
             //optional
             Accept<TypeRelation>();
             //h block

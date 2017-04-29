@@ -16,7 +16,7 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             Expect<PackageDeclaration>();
-            Expect(new TokenNode(ts, "", "{"));
+            Expect(N_RCURLY);
             Accept<Directives>(); //a
 
         }

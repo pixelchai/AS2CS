@@ -20,7 +20,7 @@ namespace AS2CS.Nodes
             //optional
             if (Accept<ObjectField>())
             {
-                while (Accept(new TokenNode(ts, "", ",")))
+                while (Accept(N_COMMA))
                 {
                     Expect<ObjectField>();
                 }

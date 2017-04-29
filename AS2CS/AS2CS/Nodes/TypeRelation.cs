@@ -14,7 +14,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(new TokenNode(ts, "", ":"))) return null;
+            if (!Accept(N_COLON)) return null;
             Expect<Type>();
             return this;
         }

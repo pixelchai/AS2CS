@@ -15,7 +15,7 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             if (!Accept<Expr>()) return null;
-            while (Accept(TokenNode.Comma(ts)))
+            while (Accept(N_COMMA))
             {
                 Accept<Expr>();
             }

@@ -20,7 +20,7 @@ namespace AS2CS.Nodes
             //optional
             if (Accept<ExprOrObjectLiteral>())
             {
-                while (Accept(new TokenNode(ts, "", ",")))
+                while (Accept(N_COMMA))
                 {
                     Expect<ExprOrObjectLiteral>();
                 }

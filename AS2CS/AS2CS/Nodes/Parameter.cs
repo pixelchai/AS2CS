@@ -15,11 +15,11 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            Accept(new TokenNode(ts, TokenTypes.Keyword, "const"));//opt
-            if (!Accept(new TokenNode(ts, TokenTypes.Name))) return null;
+            Accept(N_CONST);//opt
+            if (!Accept(N_IDENTIFIER)) return null;
             Accept<TypeRelation>();//optional
             //optional
-            if (Accept(new TokenNode(ts, "", "=")))
+            if (Accept(N_EQUALS))
             {
                 Expect<ExprOrObjectLiteral>();
             }

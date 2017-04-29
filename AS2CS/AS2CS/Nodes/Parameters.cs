@@ -35,7 +35,7 @@ namespace AS2CS.Nodes
 
             if (Accept<Parameter>())
             {
-                while (Accept(new TokenNode(ts, "", ",")))
+                while (Accept(N_COMMA))
                 {
                     Accept<Parameter>();
                 }

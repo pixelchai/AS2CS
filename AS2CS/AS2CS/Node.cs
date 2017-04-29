@@ -1,5 +1,7 @@
 ﻿using AS2CS.Exceptions;
+using AS2CS.Nodes;
 using Newtonsoft.Json;
+using PygmentSharp.Core.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +13,101 @@ namespace AS2CS
     [System.Diagnostics.DebuggerStepThrough]
     public abstract class Node
     {
+        #region N_TOKENS
+        [JsonIgnore]
+        public TokenNode N_IDENTIFIER { get { return new TokenNode(this.ts, TokenTypes.Name); } }
+        /// <summary>
+        /// ;
+        /// </summary>
+        [JsonIgnore] public TokenNode N_SEMICOLON { get { return new TokenNode(this.ts, TokenTypes.Operator, ";"); } }
+        /// <summary>
+        /// ,
+        /// </summary>
+        [JsonIgnore] public TokenNode N_COMMA { get { return new TokenNode(this.ts, "", ","); } }
+        /// <summary>
+        /// {
+        /// </summary>
+        [JsonIgnore] public TokenNode N_LCURLY { get { return new TokenNode(this.ts, "", "{"); } }
+        /// <summary>
+        /// }
+        /// </summary>
+        [JsonIgnore] public TokenNode N_RCURLY { get { return new TokenNode(this.ts, "", "}"); } }
+        /// <summary>
+        /// (
+        /// </summary>
+        [JsonIgnore] public TokenNode N_LBRAC { get { return new TokenNode(this.ts, "", "("); } }
+        /// <summary>
+        /// )
+        /// </summary>
+        [JsonIgnore] public TokenNode N_RBRAC { get { return new TokenNode(this.ts, "", ")"); } }
+        /// <summary>
+        /// [
+        /// </summary>
+        [JsonIgnore] public TokenNode N_LSQUARE { get { return new TokenNode(this.ts, "", "["); } }
+        /// <summary>
+        /// ]
+        /// </summary>
+        [JsonIgnore] public TokenNode N_RSQUARE { get { return new TokenNode(this.ts, "", "]"); } }
+        /// <summary>
+        /// =
+        /// </summary>
+        [JsonIgnore] public TokenNode N_EQUALS { get { return new TokenNode(this.ts, "", "="); } }
+        /// <summary>
+        /// :
+        /// </summary>
+        [JsonIgnore] public TokenNode N_COLON { get { return new TokenNode(this.ts, "", ":"); } }
+        /// <summary>
+        /// *
+        /// </summary>
+        [JsonIgnore] public TokenNode N_ASTERISK { get { return new TokenNode(this.ts, "", "*"); } }
+        /// <summary>
+        /// use
+        /// </summary>
+        [JsonIgnore] public TokenNode N_USE { get { return new TokenNode(this.ts, "", "use"); } } //FIXME
+        /// <summary>
+        /// import
+        /// </summary>
+        [JsonIgnore] public TokenNode N_IMPORT { get { return new TokenNode(this.ts, TokenTypes.Keyword, "import"); } }
+        /// <summary>
+        /// true
+        /// </summary>
+        [JsonIgnore] public TokenNode N_TRUE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "true"); } }
+        /// <summary>
+        /// false
+        /// </summary>
+        [JsonIgnore] public TokenNode N_FALSE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "false"); } }
+        /// <summary>
+        /// null
+        /// </summary>
+        [JsonIgnore] public TokenNode N_NULL { get { return new TokenNode(this.ts, TokenTypes.Keyword, "null"); } }
+        /// <summary>
+        /// function
+        /// </summary>
+        [JsonIgnore] public TokenNode N_FUNCTION { get { return new TokenNode(this.ts, TokenTypes.Keyword, "function"); } }
+        /// <summary>
+        /// package
+        /// </summary>
+        [JsonIgnore] public TokenNode N_PACKAGE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "package"); } }
+        /// <summary>
+        /// const
+        /// </summary>
+        [JsonIgnore] public TokenNode N_CONST { get { return new TokenNode(this.ts, TokenTypes.Keyword, "const"); } }
+        /// <summary>
+        /// void
+        /// </summary>
+        [JsonIgnore] public TokenNode N_VOID { get { return new TokenNode(this.ts, TokenTypes.Keyword, "void"); } }
+        /// <summary>
+        /// (namespace)
+        /// </summary>
+        [JsonIgnore] public TokenNode N_NAMESPACE { get { return new TokenNode(this.ts, TokenTypes.Name.Namespace); } }
+
+        #endregion
+
         public List<Node> children = new List<Node>();
-        [JsonIgnore]
-        public TokenStream ts = null;
-        [JsonIgnore]
-        public int startIndex = 0;
-        [JsonIgnore]
-        public Node lastAccepted = null;
-        [JsonIgnore]
-        public Node parent = null;
+        [JsonIgnore] public TokenStream ts = null;
+        [JsonIgnore] public int startIndex = 0;
+        [JsonIgnore] public Node lastAccepted = null;
+        [JsonIgnore] public Node parent = null;
 
         public string typeName
         {

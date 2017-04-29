@@ -16,8 +16,8 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             //CHECK
-            Expect(new TokenNode(ts, TokenTypes.Name));
-            Expect(new TokenNode(ts, "","="));
+            Expect(N_IDENTIFIER);
+            Expect(N_EQUALS);
             //TODO //h
         }
     }

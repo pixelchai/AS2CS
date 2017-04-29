@@ -15,8 +15,8 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(new TokenNode(ts, TokenTypes.Keyword, "package"))) return null;
-            Accept(new TokenNode(ts, TokenTypes.Name.Namespace)); //optional //added
+            if (!Accept(N_PACKAGE)) return null;
+            Accept(N_NAMESPACE); //optional //added
             return this;
         }
     }

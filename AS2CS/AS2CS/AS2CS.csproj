@@ -59,9 +59,30 @@
     <Compile Include="Debug.cs" />
     <Compile Include="Exceptions\CompilerException.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="Nodes\AnnotationField.cs" />
+    <Compile Include="Nodes\AnnotationFields.cs" />
+    <Compile Include="Nodes\Arguments.cs" />
+    <Compile Include="Nodes\ArrayLiteral.cs" />
+    <Compile Include="Nodes\Block.cs" />
+    <Compile Include="Nodes\CommaExpr.cs" />
     <Compile Include="Nodes\CompilationUnit.cs" />
+    <Compile Include="Nodes\Directive.cs" />
+    <Compile Include="Nodes\Directives.cs" />
+    <Compile Include="Nodes\Expr.cs" />
+    <Compile Include="Nodes\ExprOrObjectLiteral.cs" />
+    <Compile Include="Nodes\NamedFunctionExpr.cs" />
+    <Compile Include="Nodes\ObjectField.cs" />
+    <Compile Include="Nodes\ObjectFields.cs" />
+    <Compile Include="Nodes\ObjectLiteral.cs" />
     <Compile Include="Nodes\PackageDeclaration.cs" />
+    <Compile Include="Nodes\Parameter.cs" />
+    <Compile Include="Nodes\Parameters.cs" />
+    <Compile Include="Nodes\QualifiedIde.cs" />
+    <Compile Include="Nodes\Statement.cs" />
+    <Compile Include="Nodes\Statements.cs" />
     <Compile Include="Nodes\TokenNode.cs" />
+    <Compile Include="Nodes\Type.cs" />
+    <Compile Include="Nodes\TypeRelation.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Grammar.txt" />
+    <Content Include="Info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

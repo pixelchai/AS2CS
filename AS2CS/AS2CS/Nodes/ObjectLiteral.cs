@@ -14,9 +14,9 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept(new TokenNode(ts, "", "{"))) return null;
+            if (!Accept(N_LCURLY)) return null;
             Accept<ObjectFields>();
-            if (!Expect(new TokenNode(ts, "", "}"))) return null;
+            if (!Expect(N_RCURLY)) return null;
             return this;
         }
     }
