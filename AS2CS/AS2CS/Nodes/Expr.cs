@@ -65,6 +65,7 @@ namespace AS2CS.Nodes
                                                             {
                                                                 if (!Accept(N_IS))
                                                                 {
+                                                                    #region fancy
                                                                     //ad fancy
                                                                     if (Accept<InfixOperator>())
                                                                     {
@@ -77,8 +78,28 @@ namespace AS2CS.Nodes
                                                                             base.UndoAccept();//undo PostFix
                                                                             if (Accept<PostfixOperator>())
                                                                             {
-                                                                            }
+                                                                                return this;
+                                                                            }//else fall to next if
                                                                         }
+                                                                    }
+                                                                    #endregion
+                                                                    if (!Accept(N_LBRAC))
+                                                                    {
+                                                                        if (!Accept(N_QUESTION))
+                                                                        {
+                                                                            return null;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            Expect<ExprOrObjectLiteral>();
+                                                                            Expect(N_COLON);
+                                                                            Expect<ExprOrObjectLiteral>();
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        Expect<Arguments>();
+                                                                        Expect(N_RBRAC);
                                                                     }
                                                                 }
                                                                 else
