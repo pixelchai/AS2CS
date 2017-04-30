@@ -43,7 +43,14 @@ namespace AS2CS.Nodes
                                                     {
                                                         if (!Accept<Expr>())
                                                         {
-                                                            //h prefix
+                                                            if (!Accept<PrefixOperator>())
+                                                            {
+                                                                return null;
+                                                            }
+                                                            else
+                                                            {
+                                                                Expect<Expr>();
+                                                            }
                                                         }
                                                         else
                                                         {
@@ -55,9 +62,9 @@ namespace AS2CS.Nodes
                                                               | expr "(" arguments ")"  
                                                               | expr "?" exprOrObjectLiteral ":" exprOrObjectLiteral;
                                                             */
-                                                            //CFGad proposition:
+                                                            //CFGad proposition: //OVERRULED for now
                                                             /**
-                                                                expr "[" expr "]"
+                                                                expr "[" expr "]" //OVERRULED! - In lvalue
                                                                 + maybe
                                                                 expr "{" expr "}"
                                                             */
@@ -75,7 +82,7 @@ namespace AS2CS.Nodes
                                                                         }
                                                                         else
                                                                         {
-                                                                            base.UndoAccept();//undo PostFix
+                                                                            base.UndoAccept();//undo infix
                                                                             if (Accept<PostfixOperator>())
                                                                             {
                                                                                 return this;
