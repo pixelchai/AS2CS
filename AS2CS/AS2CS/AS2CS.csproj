@@ -64,6 +64,7 @@
     <Compile Include="Nodes\AnonFunctionExpr.cs" />
     <Compile Include="Nodes\Arguments.cs" />
     <Compile Include="Nodes\ArrayLiteral.cs" />
+    <Compile Include="Nodes\BExpr.cs" />
     <Compile Include="Nodes\Block.cs" />
     <Compile Include="Nodes\Catches.cs" />
     <Compile Include="Nodes\ClassBody.cs" />
@@ -77,8 +78,10 @@
     <Compile Include="Nodes\Expr.cs" />
     <Compile Include="Nodes\ExprOrObjectLiteral.cs" />
     <Compile Include="Nodes\FieldDeclaration.cs" />
+    <Compile Include="Nodes\Holder.cs" />
     <Compile Include="Nodes\Identifier.cs" />
     <Compile Include="Nodes\IdentifierDeclaration.cs" />
+    <Compile Include="Nodes\IndexExpr.cs" />
     <Compile Include="Nodes\InfixOperator.cs" />
     <Compile Include="Nodes\LabelableStatement.cs" />
     <Compile Include="Nodes\Lvalue.cs" />
