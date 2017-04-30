@@ -14,6 +14,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
+            //CHECK
             if (Accept<Modifier>())//opt
             {
                 Expect(N_COLON);

@@ -6,3 +6,6 @@
 //CHECK = needs checking/debugging
 //r = removed from CFG
 //CFGad = added to the CFG
+
+DROPPED SUPPORT FOR:
+Expr NamespacedIdentifier
