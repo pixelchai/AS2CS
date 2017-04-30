@@ -77,6 +77,7 @@
     <Compile Include="Nodes\Expr.cs" />
     <Compile Include="Nodes\ExprOrObjectLiteral.cs" />
     <Compile Include="Nodes\FieldDeclaration.cs" />
+    <Compile Include="Nodes\Identifier.cs" />
     <Compile Include="Nodes\IdentifierDeclaration.cs" />
     <Compile Include="Nodes\InfixOperator.cs" />
     <Compile Include="Nodes\LabelableStatement.cs" />

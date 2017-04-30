@@ -15,7 +15,7 @@ namespace AS2CS
     {
         #region N_TOKENS
         [JsonIgnore] public TokenNode N_NAMESPACE { get { return new TokenNode(this.ts, TokenTypes.Name.Namespace); } }
-        [JsonIgnore] public TokenNode N_IDENTIFIER { get { return new TokenNode(this.ts, TokenTypes.Name); } }
+        [JsonIgnore] public Identifier N_IDENTIFIER { get { return new Identifier(this.ts); } }
         /// <summary>
         /// ;
         /// </summary>
