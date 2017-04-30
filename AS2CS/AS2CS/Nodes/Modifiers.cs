@@ -14,7 +14,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            while (!Accept<Modifier>())
+            while (Accept<Modifier>())
             {
             }
             return this;
