@@ -9,7 +9,7 @@ namespace AS2CS.Nodes
 {
     public class QualifiedIde : Node
     {
-        protected QualifiedIde(TokenStream tokenStream) : base(tokenStream)
+        public QualifiedIde(TokenStream tokenStream) : base(tokenStream)
         {
         }
 

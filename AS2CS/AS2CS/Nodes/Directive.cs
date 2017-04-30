@@ -17,10 +17,6 @@ namespace AS2CS.Nodes
         {
             if (!Accept(N_IMPORT))
             {
-                Expect(N_NAMESPACE); //ad //PODO: *s
-            }
-            else
-            {
                 if (!Accept(N_LSQUARE))
                 {
                     if (!Accept(N_USE))
@@ -44,6 +40,11 @@ namespace AS2CS.Nodes
                     }
                     if (!Expect(N_RSQUARE)) return null;
                 }
+            }
+            else
+            {
+                Expect(N_NAMESPACE); //ad //PODO: *s
+                Expect(N_SEMICOLON);
             }
             return this;
         }
