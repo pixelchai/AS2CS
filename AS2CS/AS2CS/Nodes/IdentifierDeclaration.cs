@@ -20,6 +20,7 @@ namespace AS2CS.Nodes
             {
                 Expect<ExprOrObjectLiteral>();
             }
+            return this;
         }
     }
 }

@@ -143,6 +143,7 @@ namespace AS2CS.Nodes
                     }
                 }
             }
+            return this;
         }
     }
 }
