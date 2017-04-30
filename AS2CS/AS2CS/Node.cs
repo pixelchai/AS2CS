@@ -110,6 +110,11 @@ namespace AS2CS
         [JsonIgnore] public TokenNode N_AS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "as"); } }
         [JsonIgnore] public TokenNode N_IS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "is"); } }
         [JsonIgnore] public TokenNode N_DELETE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "delete"); } }
+        [JsonIgnore] public TokenNode N_EXTENDS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "extends"); } }
+        [JsonIgnore] public TokenNode N_IMPLEMENTS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "implements"); } }
+        [JsonIgnore] public TokenNode N_CLASS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "class"); } }
+        [JsonIgnore] public TokenNode N_GET { get { return new TokenNode(this.ts, TokenTypes.Keyword, "get"); } }
+        [JsonIgnore] public TokenNode N_SET { get { return new TokenNode(this.ts, TokenTypes.Keyword, "set"); } }
 
         #endregion
 
