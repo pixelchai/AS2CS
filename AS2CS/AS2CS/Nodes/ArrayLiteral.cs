@@ -8,7 +8,7 @@ namespace AS2CS.Nodes
 {
     public class ArrayLiteral : Node
     {
-        protected ArrayLiteral(TokenStream tokenStream) : base(tokenStream)
+        public ArrayLiteral(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
