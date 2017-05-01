@@ -76,6 +76,10 @@ namespace AS2CS
         /// &gt;
         /// </summary>
         [JsonIgnore] public TokenNode N_RPOINTY { get { return new TokenNode(this.ts, "", ">"); } }
+        /// <summary>
+        /// @
+        /// </summary>
+        [JsonIgnore] public TokenNode N_AT { get { return new TokenNode(this.ts, "", "@"); } }
 
         [JsonIgnore] public TokenNode N_USE { get { return new TokenNode(this.ts, "", "use"); } } //FIXME
         [JsonIgnore] public TokenNode N_IMPORT { get { return new TokenNode(this.ts, TokenTypes.Keyword, "import"); } }
