@@ -68,6 +68,14 @@ namespace AS2CS
         /// *
         /// </summary>
         [JsonIgnore] public TokenNode N_ASTERISK { get { return new TokenNode(this.ts, "", "*"); } }
+        /// <summary>
+        /// &lt;
+        /// </summary>
+        [JsonIgnore] public TokenNode N_LPOINTY { get { return new TokenNode(this.ts, "", "<"); } }
+        /// <summary>
+        /// &gt;
+        /// </summary>
+        [JsonIgnore] public TokenNode N_RPOINTY { get { return new TokenNode(this.ts, "", ">"); } }
 
         [JsonIgnore] public TokenNode N_USE { get { return new TokenNode(this.ts, "", "use"); } } //FIXME
         [JsonIgnore] public TokenNode N_IMPORT { get { return new TokenNode(this.ts, TokenTypes.Keyword, "import"); } }
