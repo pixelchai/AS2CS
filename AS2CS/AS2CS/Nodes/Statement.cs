@@ -36,7 +36,7 @@ namespace AS2CS.Nodes
                                             }
                                             else
                                             {
-                                                Expect(N_LBRAC);
+                                                if(!Accept(N_LBRAC))return null;
                                                 Expect<Arguments>();
                                                 Expect(N_RBRAC);
                                             }

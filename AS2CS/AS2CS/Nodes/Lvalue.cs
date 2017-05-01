@@ -24,7 +24,7 @@ namespace AS2CS.Nodes
                     }
                     else
                     {
-                        Expect(N_DOT);
+                        if(!Accept(N_DOT))return null;
                         Expect<NamespacedIdentifier>();
                     }
                 }
