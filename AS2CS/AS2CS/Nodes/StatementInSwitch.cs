@@ -29,7 +29,7 @@ namespace AS2CS.Nodes
                 }
                 else
                 {
-                    if (!Expect<Expr>()) return null;
+                    if (!Expect<BExpr>()) return null;
                     Expect(N_COLON);
                 }
             }

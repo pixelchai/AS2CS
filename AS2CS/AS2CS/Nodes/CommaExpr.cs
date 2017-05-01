@@ -14,10 +14,10 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept<Expr>()) return null;
+            if (!Accept<BExpr>()) return null;
             while (Accept(N_COMMA))
             {
-                Accept<Expr>();
+                Accept<BExpr>();
             }
             return this;
         }

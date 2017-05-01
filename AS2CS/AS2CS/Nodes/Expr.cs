@@ -55,7 +55,7 @@ namespace AS2CS.Nodes
                                                         }
                                                         else
                                                         {
-                                                            Expect<Expr>();
+                                                            Expect<BExpr>();
                                                         }
 
                                                         //if (!Accept<Expr>())
@@ -139,7 +139,7 @@ namespace AS2CS.Nodes
                                                     }
                                                     else
                                                     {
-                                                        Expect<Expr>();
+                                                        Expect<BExpr>();
                                                     }
                                                 }
                                                 else

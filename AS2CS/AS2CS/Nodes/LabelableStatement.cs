@@ -90,7 +90,7 @@ namespace AS2CS.Nodes
                                     {
                                         Accept<TypeRelation>();//opt
                                         Expect(N_IN);
-                                        Expect<Expr>();
+                                        Expect<BExpr>();
                                         Expect(N_RBRAC);
                                         Expect<Statement>();
                                     }
@@ -105,7 +105,7 @@ namespace AS2CS.Nodes
                                     {
                                         //"for"["each"] "(" IDENTIFIER "in" expr ")" statement
                                         Expect(N_IN);
-                                        Expect<Expr>();
+                                        Expect<BExpr>();
                                         Expect(N_RBRAC);
                                         Expect<Statement>();
                                     }

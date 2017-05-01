@@ -99,7 +99,7 @@ namespace AS2CS.Nodes
                     {
                         if (!Accept(new CHolder(ts,
                             N_IS,
-                            new Expr(ts)
+                            new BExpr(ts)
                         )))
                         {
                             #region fancy
