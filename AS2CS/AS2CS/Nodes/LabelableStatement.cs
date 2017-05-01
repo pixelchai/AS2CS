@@ -9,7 +9,7 @@ namespace AS2CS.Nodes
 {
     public class LabelableStatement : Node
     {
-        protected LabelableStatement(TokenStream tokenStream) : base(tokenStream)
+        public LabelableStatement(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
