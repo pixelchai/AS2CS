@@ -67,6 +67,7 @@
     <Compile Include="Nodes\BExpr.cs" />
     <Compile Include="Nodes\Block.cs" />
     <Compile Include="Nodes\Catches.cs" />
+    <Compile Include="Nodes\CHolder.cs" />
     <Compile Include="Nodes\ClassBody.cs" />
     <Compile Include="Nodes\ClassDeclaration.cs" />
     <Compile Include="Nodes\CommaExpr.cs" />

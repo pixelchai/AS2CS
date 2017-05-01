@@ -14,7 +14,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept<Expr>())
+            if (!Accept<BExpr>())
             {
                 if (!Accept<ObjectLiteral>())
                 {
