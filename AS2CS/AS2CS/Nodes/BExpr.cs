@@ -104,7 +104,7 @@ namespace AS2CS.Nodes
                         {
                             #region fancy
                             //ad fancy
-                            if (Accept<InfixOperator>())
+                            if (base.Accept<InfixOperator>())
                             {
                                 if (Accept<Expr>())
                                 {

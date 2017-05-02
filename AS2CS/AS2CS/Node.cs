@@ -201,8 +201,10 @@ namespace AS2CS
             try {
                 Debug.Indent();
                 node.parent = this;
-                if ((lastAccepted = node.Select()) != null)
+                Node seld = node.Select();
+                if (seld != null)
                 {
+                    lastAccepted = seld;
                     if (Utils.DEBUG_PARSING)
                     {
                         Debug.WriteLine(this.typeName + " node accepted: " + node.typeName+" -- "+ts.look(-1).Value);

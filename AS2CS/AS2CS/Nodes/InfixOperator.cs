@@ -8,17 +8,19 @@ namespace AS2CS.Nodes
 {
     public class InfixOperator : Node
     {
-        public static string[] InfixOperators = new string[] { @"=", @"*=", @"/=", @"%=", @"+=", @"-=", @"=", @">>>=", @"&=", @"^=", @"|=", @"||", @"&&", @"|", @"^", @"&", @"==", @"!=", @"===", @"!==", @"<", @">", @"=", @"as", @"in", @"instanceof", @"is", @">", @">>>", @"+", @"-", @"*", @"/", @"%", @".", @"::" };
+        public static string[] InfixOperators = new string[] { /*@".",*/ @"instanceof", @">>>=", @"!==", @"===", @">>>", @"||", @"as", @"^=", @"/=", @"in", @"is", @"%=", @"&=", @"-=", @"==", @"&&", @"+=", @"|=", @"!=", @"*=", @"^", @">", @">", @"|", @"=", @"=", @"<", @"%", @"/", @".", @"-", @"+", @"*", @"&", @"=", @"::" };
+
 
         public InfixOperator(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
         public override Node Select()
-        {
+        {//this.GetValue().ToLower().Contains("ip")
             foreach (string op in InfixOperators)
             {
                 bool ya = true;
+                int no = 0;
                 foreach (char c in op)
                 {
                     if (!Accept(new TokenNode(ts, "", "" + c)))
@@ -26,8 +28,13 @@ namespace AS2CS.Nodes
                         ya = false;
                         break;
                     }
+                    else
+                    {
+                        no += base.lastAccepted.OffAmount();
+                    }
                 }
                 if (ya) return this;
+                else if(no>0){ base.ts.increment(no * -1); Debug.WriteLine("Infix Undo: " + op + "! (x" + no + ")"); }
             }
             return null;
         }
