@@ -8,7 +8,7 @@ namespace AS2CS.Nodes
 {
     public class InfixOperator : Node
     {
-        public static string[] InfixOperators = new string[] { /*@".",*/ @"instanceof", @">>>=", @"!==", @"===", @">>>", @"||", @"as", @"^=", @"/=", @"in", @"is", @"%=", @"&=", @"-=", @"==", @"&&", @"+=", @"|=", @"!=", @"*=", @"^", @">", @">", @"|", @"=", @"=", @"<", @"%", @"/", @".", @"-", @"+", @"*", @"&", @"=", @"::" };
+        public static string[] InfixOperators = new string[] { /*@".",*/ @"instanceof", @">>>=", @"!==", @"===", @">>>", @"||", @"as", @"^=", @"/=", @"in", @"is", @"%=", @"&=", @"-=", @"==", @"&&", @"+=", @"|=", @"!=", @"*=",@">=",@"<=", @"^", @">", @">", @"|", @"=", @"=", @"<", @"%", @"/", @".", @"-", @"+", @"*", @"&", @"=", @"::" };
 
 
         public InfixOperator(TokenStream tokenStream) : base(tokenStream)
