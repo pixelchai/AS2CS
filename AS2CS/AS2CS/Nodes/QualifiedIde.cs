@@ -18,7 +18,7 @@ namespace AS2CS.Nodes
             if (!Accept(N_IDENTIFIER)) return null;
             while (Accept(N_DOT))
             {
-                Expect(N_IDENTIFIER);
+                Accept(N_IDENTIFIER);//ad //opt
             }
             return this;
         }

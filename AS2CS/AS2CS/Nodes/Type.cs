@@ -28,6 +28,15 @@ namespace AS2CS.Nodes
                     }
                 }
             }
+            else
+            {
+                //for weird vector.<Number> types
+                if (Accept(N_LPOINTY))
+                {
+                    Expect(N_IDENTIFIER);
+                    Expect(N_RPOINTY);
+                }
+            }
             if (pbrac) Expect(N_RPOINTY);
             if (brac) Expect(N_RBRAC);
             return this;
