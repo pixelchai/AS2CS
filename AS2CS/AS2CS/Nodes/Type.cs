@@ -16,7 +16,8 @@ namespace AS2CS.Nodes
         public override Node Select()
         {
             //ad
-            bool bracketed = Accept(N_LPOINTY);
+            bool pbrac = Accept(N_LPOINTY);
+            bool brac = Accept(N_LBRAC);
             if (!Accept<QualifiedIde>())
             {
                 if (!Accept(N_ASTERISK))//q
@@ -27,7 +28,8 @@ namespace AS2CS.Nodes
                     }
                 }
             }
-            if (bracketed) Expect(N_RPOINTY);
+            if (pbrac) Expect(N_RPOINTY);
+            if (brac) Expect(N_RBRAC);
             return this;
         }
     }
