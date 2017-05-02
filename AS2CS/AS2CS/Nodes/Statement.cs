@@ -49,7 +49,7 @@ namespace AS2CS.Nodes
                                     }
                                     else
                                     {
-                                        Expect<ExprOrObjectLiteral>();
+                                        Accept<ExprOrObjectLiteral>();//opt
                                         Expect(N_SEMICOLON);
                                     }
                                 }
