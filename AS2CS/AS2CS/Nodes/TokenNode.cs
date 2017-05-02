@@ -127,7 +127,7 @@ namespace AS2CS.Nodes
             {
                 if (doMatchVal)
                 {
-                    if (t.Value != val) return null;
+                    if (t.Value.Trim() != val) return null;
                 }
                 value = t;
                 ts.increment();
