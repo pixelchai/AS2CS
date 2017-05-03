@@ -102,38 +102,41 @@ namespace AS2CS.Nodes
                             new BExpr(ts)
                         )))
                         {
-                            #region fancy
-                            //ad fancy
-                            if (base.Accept<InfixOperator>())
+                            if (!base.Accept<InfixOrPostfixOperator>())
                             {
-                                if (Accept<Expr>())
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    base.UndoAccept();//undo infix
-                                    if (Accept<PostfixOperator>())
-                                    {
-                                        continue;
-                                    }//else fall to next if
-                                }
-                            }
-                            #endregion
-                            if (!Accept(new CHolder(ts,
-                                N_LBRAC,
-                                new Arguments(ts),
-                                N_RBRAC
-                        )))
-                            {
+                                #region fancy
+                                ////ad fancy
+                                //if (base.Accept<InfixOperator>())
+                                //{
+                                //    if (Accept<Expr>())
+                                //    {
+                                //        continue;
+                                //    }
+                                //    else
+                                //    {
+                                //        base.UndoAccept();//undo infix
+                                //        if (Accept<PostfixOperator>())
+                                //        {
+                                //            continue;
+                                //        }//else fall to next if
+                                //    }
+                                //}
+                                #endregion
                                 if (!Accept(new CHolder(ts,
-                                    N_QUESTION,
-                                    new ExprOrObjectLiteral(ts),
-                                    N_COLON,
-                                    new ExprOrObjectLiteral(ts)
-                        )))
+                                    N_LBRAC,
+                                    new Arguments(ts),
+                                    N_RBRAC
+                            )))
                                 {
-                                    break;
+                                    if (!Accept(new CHolder(ts,
+                                        N_QUESTION,
+                                        new ExprOrObjectLiteral(ts),
+                                        N_COLON,
+                                        new ExprOrObjectLiteral(ts)
+                            )))
+                                    {
+                                        break;
+                                    }
                                 }
                             }
                         }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AS2CS.Nodes
 {
+    /// <summary>
+    /// DEPRECATED
+    /// </summary>
     public class InfixOperator : Node
     {
         public static string[] InfixOperators = new string[] { /*@".",*/ @"instanceof", @">>>=", @"!==", @"===", @">>>", @"||", @"as", @"^=", @"/=", @"in", @"is", @"%=", @"&=", @"-=", @"==", @"&&", @"+=", @"|=", @"!=", @"*=",@">=",@"<=", @"^", @">", @">", @"|", @"=", @"=", @"<", @"%", @"/", @".", @"-", @"+", @"*", @"&", @"=", @"::" };
@@ -17,6 +20,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {//this.GetValue().ToLower().Contains("ip")
+            throw new InvalidOperationException();
             foreach (string op in InfixOperators)
             {
                 bool ya = true;
