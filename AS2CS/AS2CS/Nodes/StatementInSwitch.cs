@@ -14,17 +14,32 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
-            if (!Accept<Statement>())
+            //if (!Accept<Statement>())
+            //{
+            //    if (!Accept(N_CASE))
+            //    {
+            //        if (!Accept(N_DEFAULT))
+            //        {
+            //            return null;
+            //        }
+            //        else
+            //        {
+            //            Expect(N_COLON);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (!Expect<BExpr>()) return null;
+            //        Expect(N_COLON);
+            //    }
+            //}
+            if (!Accept(N_DEFAULT))
             {
                 if (!Accept(N_CASE))
                 {
-                    if (!Accept(N_DEFAULT))
+                    if (!Accept<Statement>())
                     {
                         return null;
-                    }
-                    else
-                    {
-                        Expect(N_COLON);
                     }
                 }
                 else
@@ -32,6 +47,10 @@ namespace AS2CS.Nodes
                     if (!Expect<BExpr>()) return null;
                     Expect(N_COLON);
                 }
+            }
+            else
+            {
+                Expect(N_COLON);
             }
             return this;
         }

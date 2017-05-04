@@ -107,7 +107,7 @@ namespace AS2CS
         [JsonIgnore] public TokenNode N_FINALLY { get { return new TokenNode(this.ts, TokenTypes.Keyword, "finally"); } }
         [JsonIgnore] public TokenNode N_CATCH { get { return new TokenNode(this.ts, TokenTypes.Keyword, "catch"); } }
         [JsonIgnore] public TokenNode N_CASE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "case"); } }
-        [JsonIgnore] public TokenNode N_DEFAULT { get { return new TokenNode(this.ts, TokenTypes.Keyword, "default"); } }
+        [JsonIgnore] public TokenNode N_DEFAULT { get { return new TokenNode(this.ts, "", "default"); } }//not keyword apparently
         [JsonIgnore] public TokenNode N_PUBLIC { get { return new TokenNode(this.ts, TokenTypes.Keyword, "public"); } }
         [JsonIgnore] public TokenNode N_PROTECTED { get { return new TokenNode(this.ts, TokenTypes.Keyword, "protected"); } }
         [JsonIgnore] public TokenNode N_PRIVATE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "private"); } }
