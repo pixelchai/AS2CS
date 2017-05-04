@@ -90,7 +90,10 @@ namespace AS2CS.Nodes
                     if (op.IsInfix) Expect<BExpr>();
                     return this;
                 }
-                else if (no > 0) { base.ts.increment(no * -1); Debug.WriteLine("Operator Undo: " + op + "! (x" + no + ")"); }
+                else if (no > 0) {
+                    base.ts.increment(no * -1);
+                    if(Utils.DEBUG_PARSING)Debug.WriteLine("Operator Undo: " + op + "! (x" + no + ")");
+                }
             }
             return null;
         }

@@ -17,6 +17,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
+            //if (Accept(N_VAR)) { base.UndoAccept();return null; }
             if (!Accept<Expr>()) return null; //non overflowing Expr
             //check for overflowing things in non-overflowing way: (I.e, do not start with Expr)
 

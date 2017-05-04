@@ -15,6 +15,7 @@ namespace AS2CS
     {
         #region N_TOKENS
         [JsonIgnore] public TokenNode N_NAMESPACE { get { return new TokenNode(this.ts, TokenTypes.Name.Namespace); } }
+        [JsonIgnore] public TokenNode N_COMMENT { get { return new TokenNode(this.ts, TokenTypes.Comment); } }
         [JsonIgnore] public Identifier N_IDENTIFIER { get { return new Identifier(this.ts); } }
         /// <summary>
         /// ;
@@ -88,8 +89,8 @@ namespace AS2CS
         [JsonIgnore] public TokenNode N_NULL { get { return new TokenNode(this.ts, TokenTypes.Keyword, "null"); } }
         [JsonIgnore] public TokenNode N_FUNCTION { get { return new TokenNode(this.ts, TokenTypes.Keyword, "function"); } }
         [JsonIgnore] public TokenNode N_PACKAGE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "package"); } }
-        [JsonIgnore] public TokenNode N_CONST { get { return new TokenNode(this.ts, TokenTypes.Keyword, "const"); } }
-        [JsonIgnore] public TokenNode N_VAR { get { return new TokenNode(this.ts, TokenTypes.Keyword, "var"); } }
+        [JsonIgnore] public TokenNode N_CONST { get { return new TokenNode(this.ts, "", "const"); } }
+        [JsonIgnore] public TokenNode N_VAR { get { return new TokenNode(this.ts, "", "var"); } }//nk
         [JsonIgnore] public TokenNode N_VOID { get { return new TokenNode(this.ts, TokenTypes.Keyword, "void"); } }
         [JsonIgnore] public TokenNode N_BREAK { get { return new TokenNode(this.ts, TokenTypes.Keyword, "break"); } }
         [JsonIgnore] public TokenNode N_RETURN { get { return new TokenNode(this.ts, TokenTypes.Keyword, "return"); } }

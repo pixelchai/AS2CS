@@ -6,6 +6,7 @@
 //CHECK = needs checking/debugging
 //r = removed from CFG
 //CFGad = added to the CFG
+//nk = not keyword apparently (lol)
 
 DROPPED SUPPORT FOR:
 Expr NamespacedIdentifier

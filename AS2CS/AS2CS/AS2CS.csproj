@@ -71,6 +71,7 @@
     <Compile Include="Nodes\ClassBody.cs" />
     <Compile Include="Nodes\ClassDeclaration.cs" />
     <Compile Include="Nodes\CommaExpr.cs" />
+    <Compile Include="Nodes\Comment.cs" />
     <Compile Include="Nodes\CompilationUnit.cs" />
     <Compile Include="Nodes\CompilationUnitDeclaration.cs" />
     <Compile Include="Nodes\ConstOrVar.cs" />

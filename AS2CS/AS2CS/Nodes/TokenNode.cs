@@ -108,20 +108,26 @@ namespace AS2CS.Nodes
             }
 
             Token t = ts.getCur();
-            switch (mode)
+            if (Utils.NO_CHECK_KEYWORD && this.type == TokenTypes.Keyword.ToString())
             {
-                case VerificationMode.Has:
-                    matched = t.hasType(type);
-                    break;
-                case VerificationMode.Is:
-                    matched = t.isType(type);
-                    break;
-                case VerificationMode.IsX:
-                    matched = t.isTypeX(type);
-                    break;
-                case VerificationMode.None:
-                    matched = true;
-                    break;
+                matched = true;
+            }
+            else {
+                switch (mode)
+                {
+                    case VerificationMode.Has:
+                        matched = t.hasType(type);
+                        break;
+                    case VerificationMode.Is:
+                        matched = t.isType(type);
+                        break;
+                    case VerificationMode.IsX:
+                        matched = t.isTypeX(type);
+                        break;
+                    case VerificationMode.None:
+                        matched = true;
+                        break;
+                }
             }
             if (matched)
             {
