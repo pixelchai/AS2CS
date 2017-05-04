@@ -1,5 +1,4 @@
-﻿using PygmentSharp.Core.Tokens;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,49 +8,80 @@ namespace AS2CS.Nodes
 {
     public class Statement : Node
     {
-        public bool NeedSemicolon = true;
         public Statement(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
-        public Statement(TokenStream tokenStream, bool needSemicolon) : base(tokenStream)
-        {
-            this.NeedSemicolon = needSemicolon;
-        }
-
         public override Node Select()
         {
-            if (!Accept<Return>())
+            if (!Accept(N_SEMICOLON))
             {
-                if (!Accept<Conditional>())
+                if (!Accept<CommaExpr>())
                 {
-                    if (!Accept<Loop>())
+                    if (!Accept(N_IDENTIFIER))
                     {
-                        if (!Accept<Call>(NeedSemicolon))
+                        if (!Accept<VariableDeclaration>())
                         {
-                            if (!Accept<Variable>())
+                            if (!Accept(N_BREAK))
                             {
-                                if (!Accept(new Bracket<Statement>(ts)))
+                                if (!Accept(N_CONTINUE))
                                 {
-                                    if (!Accept<IncrDcr>())
+                                    if (!Accept(N_RETURN))
                                     {
-                                        //todo
-                                        //throw new Exceptions.CompilerException(ts);
-                                        return null;
-                                        // Skip();
+                                        if (!Accept(N_THROW))
+                                        {
+                                            if (!Accept(N_SUPER))
+                                            {
+                                                if(!Accept<LabelableStatement>())return null;
+                                            }
+                                            else
+                                            {
+                                                if(!Accept(N_LBRAC))return null;
+                                                Expect<Arguments>();
+                                                Expect(N_RBRAC);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Expect<CommaExpr>();
+                                            Expect(N_SEMICOLON);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Accept<ExprOrObjectLiteral>();//opt
+                                        Expect(N_SEMICOLON);
                                     }
                                 }
+                                else
+                                {
+                                    Accept(N_IDENTIFIER);//opt
+                                    Expect(N_SEMICOLON);
+                                }
+                            }
+                            else
+                            {
+                                Accept(N_IDENTIFIER);//opt
+                                Expect(N_SEMICOLON);
                             }
                         }
+                        else
+                        {
+                            Expect(N_SEMICOLON);
+                        }
                     }
+                    else
+                    {
+                        Expect(N_COLON);
+                        Expect<LabelableStatement>();
+                    }
+                }
+                else
+                {
+                    Expect(N_SEMICOLON);
                 }
             }
             return this;
-        }
-
-        private void Skip()
-        {
-            Accept(new SkipUntil(ts, new TokenNode(ts, TokenTypes.Operator, ";"), true));
         }
     }
 }

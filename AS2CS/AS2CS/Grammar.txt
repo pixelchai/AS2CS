@@ -1,0 +1,212 @@
+﻿
+
+
+
+anonFunctionExpr ::=  
+    "function" "(" parameters ")" [typeRelation] block;
+
+annotationFields ::=  
+    [annotationField {"," annotationField}];
+
+annotationField ::=  
+    (IDENTIFIER "=") expr;
+
+arguments ::=  
+    [exprOrObjectLiteral {"," exprOrObjectLiteral}];
+
+arrayLiteral ::=  
+    "[" arguments "]";
+
+block ::=  
+    "{" statements "}";
+
+catches ::=  
+    {"catch" "(" parameter ")" block};
+
+classBody ::=  
+    "{" {directive | memberDeclaration | staticInitializer} "}";
+
+classDeclaration ::=  
+    modifiers "class" IDENTIFIER  
+    ["extends" type] ["implements" type {"," type}]
+    classBody;
+
+commaExpr ::=  
+    expr {"," expr};
+
+compilationUnit ::=  
+    packageDeclaration  
+    "{" directives compilationUnitDeclaration "}"
+
+compilationUnitDeclaration ::=  
+    classDeclaration  
+  | memberDeclaration;
+
+constOrVar ::=  
+    "const"  
+  | "var";
+
+directives ::=  
+    {directive};
+
+directive ::=  
+    "import" type ["." "*"]  
+  | "[" IDENTIFIER ["(" annotationFields ")"] "]"  
+  | "use" IDENTIFIER type  
+  | ";";
+
+expr ::=  
+    INT_LITERAL  
+  | FLOAT_LITERAL  
+  | STRING_LITERAL  
+  | REGEXP_LITERAL  
+  | "true"  
+  | "false"  
+  | "null"  
+  | arrayLiteral  
+  | lvalue  
+  | anonFunctionExpr  
+  | "this"  
+  | parenthesizedExpr  
+  | "new" type ["(" arguments ")"]  
+  | "delete" expr  
+  | PREFIX_OPERATOR expr  
+  | expr "as" type  
+  | expr "is" expr  
+  | expr POSTFIX_OPERATOR  
+  | expr INFIX_OPERATOR expr  
+  | expr "(" arguments ")"  
+  | expr "?" exprOrObjectLiteral ":" exprOrObjectLiteral;
+
+exprOrObjectLiteral ::=  
+    expr  
+  | objectLiteral  
+  | namedFunctionExpr;
+
+fieldDeclaration ::=  
+    modifiers constOrVar identifierDeclaration  
+    {"," identifierDeclaration };
+
+identifierDeclaration ::=  
+    IDENTIFIER [typeRelation] ["=" exprOrObjectLiteral]  
+
+
+labelableStatement ::=  
+    "if" parenthesizedExpr statement "else" statement  
+  | "if" parenthesizedExpr statement  
+  | "switch" parenthesizedExpr "{" {statementInSwitch} "}"  
+  | "while" parenthesizedExpr statement  
+  | "do" statement "while" parenthesizedExpr ";"  
+  | "for" "(" [commaExpr] ";"  
+    [commaExpr] ";" [commaExpr] ")" statement  
+  | "for" "(" "var" identifierDeclaration {"," identifierDeclaration} ";"   
+    [commaExpr] ";" [commaExpr] ")" statement  
+  | "for" ["each"] "(" IDENTIFIER "in" expr ")" statement  
+  | "for" ["each"] "(" "var" IDENTIFIER [typeRelation]  
+    "in" expr ")" statement  
+  | "try" block catches  
+  | "try" block [catches] "finally" block  
+  | namedFunctionExpr  
+  | block;
+
+lvalue ::=  
+    namespacedIdentifier  
+  | expr "." namespacedIdentifier  
+  | expr "[" commaExpr"]"  
+  | "super" "." namespacedIdentifier;
+
+memberDeclaration ::=  
+    fieldDeclaration ";"  
+  | methodDeclaration;
+
+methodDeclaration ::=  
+    modifiers "function" ["get" | "set"] IDENTIFIER  
+    "(" parameters ")" [typeRelation] optBody;
+
+modifier ::=  
+    "public"  
+  | "protected"  
+  | "private"  
+  | "static"  
+  | "abstract"  
+  | "final"  
+  | "override"  
+  | "internal";
+
+modifiers ::=  
+   {modifier};
+
+namedFunctionExpr ::=  
+    "function" IDENTIFIER "(" parameters ")" [typeRelation]  
+    block;
+
+namespacedIdentifier ::=  
+    [modifier "::"] IDENTIFIER;
+
+objectField ::=  
+    IDENTIFIER ":" exprOrObjectLiteral  
+  | STRING_LITERAL ":" exprOrObjectLiteral  
+  | INT_LITERAL ":" exprOrObjectLiteral;
+
+objectFields ::=  
+    [objectField {"," objectField}];
+
+objectLiteral ::=  
+    "{" objectFields "}";
+
+optBody ::=  
+    block  
+  | ";";
+
+packageDeclaration ::=  
+    "package" [qualifiedIde];
+
+parameter ::=  
+    ["const"] IDENTIFIER [typeRelation] ["=" exprOrObjectLiteral];
+
+parameters ::=  
+    [parameter {"," parameter}]  
+  | [parameter {"," parameter} ","] IDENTIFIER [typeRelation];
+
+parenthesizedExpr ::=  
+    "(" exprOrObjectLiteral ")";
+
+qualifiedIde ::=  
+    IDENTIFIER {"." IDENTIFIER};
+
+statement ::=  
+    ";"  
+  | commaExpr ";"  
+  | IDENTIFIER ":" labelableStatement  
+  | variableDeclaration ";"  
+  | "break" [IDENTIFIER] ";"  
+  | "continue" [IDENTIFIER] ";"  
+  | "return" [exprOrObjectLiteral] ";"  
+  | "throw" commaExpr ";"  
+  | "super" "(" arguments ")"  
+  | labelableStatement;
+
+statements ::= {statement};
+
+statementInSwitch ::=  
+    statement  
+  | "case" expr ":"  
+  | "default" ":";  
+
+staticInitializer ::=  
+    block;
+
+type ::=  
+    qualifiedIde  
+  | "*"  
+  | "void";
+
+typeList ::=  
+    type {"," typeList};
+
+typeRelation ::=  
+    ":" type;
+
+variableDeclaration ::=  
+    constOrVar identifierDeclaration  
+    {"," identifierDeclaration};

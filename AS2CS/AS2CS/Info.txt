@@ -1,0 +1,11 @@
+﻿a in Node summary = always returns object (not null)
+//added or //ad = added (or adapted) by me from CFG
+//q = questionable implementation by the CFG but used anyway
+//PODO = Possible TODO
+//hanging or //h = working on this, hanging. (Like TODO)
+//CHECK = needs checking/debugging
+//r = removed from CFG
+//CFGad = added to the CFG
+
+DROPPED SUPPORT FOR:
+Expr NamespacedIdentifier

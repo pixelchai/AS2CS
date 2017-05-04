@@ -7,21 +7,18 @@ using System.Threading.Tasks;
 
 namespace AS2CS.Nodes
 {
-    public class Parameter : Node
+    public class QualifiedIde : Node
     {
-        public Parameter(TokenStream tokenStream) : base(tokenStream)
+        public QualifiedIde(TokenStream tokenStream) : base(tokenStream)
         {
         }
 
         public override Node Select()
         {
-            Accept(N_CONST);//opt
             if (!Accept(N_IDENTIFIER)) return null;
-            Accept<TypeRelation>();//optional
-            //optional
-            if (Accept(N_EQUALS))
+            while (Accept(N_DOT))
             {
-                Expect<ExprOrObjectLiteral>();
+                Accept(N_IDENTIFIER);//ad //opt
             }
             return this;
         }

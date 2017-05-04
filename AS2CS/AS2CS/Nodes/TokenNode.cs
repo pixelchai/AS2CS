@@ -24,6 +24,10 @@ namespace AS2CS.Nodes
             /// is type exclusive (this exact type)
             /// </summary>
             IsX,
+            /// <summary>
+            /// Always accept
+            /// </summary>
+            None,
         }
 
         public string type { get; private set; } = null;
@@ -98,6 +102,11 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
+            if (String.IsNullOrWhiteSpace(this.type))
+            {
+                mode = VerificationMode.None;
+            }
+
             Token t = ts.getCur();
             switch (mode)
             {
@@ -110,12 +119,15 @@ namespace AS2CS.Nodes
                 case VerificationMode.IsX:
                     matched = t.isTypeX(type);
                     break;
+                case VerificationMode.None:
+                    matched = true;
+                    break;
             }
             if (matched)
             {
                 if (doMatchVal)
                 {
-                    if (t.Value != val) return null;
+                    if (t.Value.Trim() != val) return null;
                 }
                 value = t;
                 ts.increment();
