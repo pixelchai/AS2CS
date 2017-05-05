@@ -33,7 +33,7 @@ namespace AS2CS.Nodes
                 //for weird vector.<Number> types
                 if (Accept(N_LPOINTY))
                 {
-                    Expect(N_IDENTIFIER);
+                    if(!Accept(N_IDENTIFIER))return null;
                     Expect(N_RPOINTY);
                 }
             }
