@@ -17,9 +17,9 @@ namespace AS2CS
     {
         public static void Main(string[] args)
         {
-            Console.WindowWidth = (Console.LargestWindowWidth/4)*3;
-            var lexed = Pygmentize.File("input.as").WithLexer(new ASLexer());
-            TokenStream ts = new TokenStream(lexed.GetTokens().ToList());
+            //Console.WindowWidth = (Console.LargestWindowWidth/4)*3;
+            //var lexed = Pygmentize.File("input.as").WithLexer(new ASLexer());
+            //TokenStream ts = new TokenStream(lexed.GetTokens().ToList());
 
             //foreach (Token t in lexed.GetTokens().ToList())
             //{
@@ -33,9 +33,76 @@ namespace AS2CS
             //    ));
             //Process.Start("output.html");
 
-            CompilationUnit file = null;
-            file = new Parser(ts).Parse();
-            new TreeDebug(file.ToJSON()).ShowDialog();
+            //CompilationUnit file = null;
+            //file = new Parser(ts).Parse();
+            //new TreeDebug(file.ToJSON()).ShowDialog();
+            BugScan("rotmgsrc");
+        }
+
+        public static void BugScan(string path)
+        {
+            Utils.DEBUG_PARSING = false;
+            List<string> r = new List<string>();
+            foreach (string f in Directory.GetFiles(path, "*.as", SearchOption.AllDirectories))
+            {
+                try
+                {
+                    var lexed = Pygmentize.File("input.as").WithLexer(new ASLexer());
+                    TokenStream ts = new TokenStream(lexed.GetTokens().ToList());
+                    ts.ProgressChanged += PrintProgress;
+                    CompilationUnit file = null;
+                    file = new Parser(ts).Parse();
+                    PrintProgress(100, 100);
+                }
+                catch
+                {
+                    Console.WriteLine("BUG!");
+                    r.Add(f);
+                }
+                Console.WriteLine(new FileInfo(f).Name);
+            }
+            using (StreamWriter sw = new StreamWriter("bugs.txt"))
+            {
+                foreach (string str in r)
+                {
+                    sw.WriteLine(str);
+                }
+            }
+        }
+
+        private static void PrintProgress(int progress, int total)
+        {
+            //draw empty progress bar
+            Console.CursorLeft = 0;
+            Console.Write("["); //start
+            Console.CursorLeft = 32;
+            Console.Write("]"); //end
+            Console.CursorLeft = 1;
+            float onechunk = 30.0f / total;
+
+            //draw filled part
+            int position = 1;
+            for (int i = 0; i < onechunk * progress; i++)
+            {
+                //Console.BackgroundColor = ConsoleColor.Gray;
+                Console.CursorLeft = position++;
+                Console.Write("=");
+            }
+
+            //draw unfilled part
+            for (int i = position; i <= 31; i++)
+            {
+                //Console.BackgroundColor = ConsoleColor.Black;
+                Console.CursorLeft = position++;
+                Console.Write(" ");
+            }
+
+            //draw totals
+            Console.CursorLeft = 35;
+            //Console.BackgroundColor = ConsoleColor.Black;
+
+            double perc = Math.Round((progress / (double)total) * 100, 2);
+            Console.Write(perc.ToString() + "%   "); //blanks at the end remove any excess
         }
     }
 }

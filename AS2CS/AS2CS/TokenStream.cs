@@ -7,11 +7,30 @@ using System.Threading.Tasks;
 
 namespace AS2CS
 {
+    public delegate void PrintProgress(int cur, int total);
+
     [System.Diagnostics.DebuggerStepThrough]
     public class TokenStream
     {
+        public event PrintProgress ProgressChanged;
+
         public List<Token> tokens = null;
-        public int index { get; private set; } = 0;
+        private int _index = 0;
+        public int index
+        {
+            get { return _index; }
+            set
+            {
+                _index = value;
+                if (value % 500 == 0)
+                {
+                    if (ProgressChanged != null)
+                    {
+                        ProgressChanged.Invoke(value, tokens.Count);
+                    }
+                }
+            }
+        } 
 
         public TokenStream(List<Token> tokens)
         {
