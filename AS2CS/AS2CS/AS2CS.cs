@@ -56,16 +56,27 @@ namespace AS2CS
             }
             catch (CompilerException e)
             {
-                treeView1.Nodes.Add(e.ToString());
+                treeView1.Nodes.Add(Exception2Tree(e));
                 fastColoredTextBox1.AddHint(new Range(fastColoredTextBox1, CharnoToPlace(this.fastColoredTextBox1, ts.charno), CharnoToPlace(this.fastColoredTextBox1, ts.charno)),e.ToString());
                 
             }
             catch (Exception e)
             {
-                treeView1.Nodes.Add(e.ToString());
+                treeView1.Nodes.Add(Exception2Tree(e));
             }
             ProgressChanged(1, 1);
             ProgressChanged(0, 1);
+        }
+
+        private TreeNode Exception2Tree(Exception e)
+        {
+            TreeNode root = new TreeNode(e.GetType()+" - "+e.Message);
+            foreach (string l in e.StackTrace.Split('\n'))
+            {
+                root.Nodes.Add(new TreeNode(l));
+            }
+            return root;
+
         }
 
         private Place CharnoToPlace(FastColoredTextBoxNS.FastColoredTextBox tb, int charnoo)
