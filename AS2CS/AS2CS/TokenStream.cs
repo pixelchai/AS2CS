@@ -13,8 +13,10 @@ namespace AS2CS
     public class TokenStream
     {
         public event PrintProgress ProgressChanged;
+        public int ProgressUpdate = 5;
 
         public List<Token> tokens = null;
+        public int charno { get; private set; } = 0;
         private int _index = 0;
         public int index
         {
@@ -22,7 +24,17 @@ namespace AS2CS
             set
             {
                 _index = value;
-                if (value % 500 == 0)
+
+                int dif = value - index;
+                if (dif > 0)
+                {
+                    for (int i = 0; i < dif; i++)
+                    {
+                        charno += tokens[value - i].Value.Length;
+                    }
+                }
+
+                if (value % ProgressUpdate == 0)
                 {
                     if (ProgressChanged != null)
                     {

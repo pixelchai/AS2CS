@@ -17,7 +17,9 @@ namespace AS2CS
     {
         public static void Main(string[] args)
         {
-            //Console.WindowWidth = (Console.LargestWindowWidth/4)*3;
+            Utils.DEBUG_PARSING = false;
+            new AS2CS().ShowDialog();
+            //Console.WindowWidth = (Console.LargestWindowWidth / 4) * 3;
             //var lexed = Pygmentize.File("input.as").WithLexer(new ASLexer());
             //TokenStream ts = new TokenStream(lexed.GetTokens().ToList());
 
@@ -36,12 +38,11 @@ namespace AS2CS
             //CompilationUnit file = null;
             //file = new Parser(ts).Parse();
             //new TreeDebug(file.ToJSON()).ShowDialog();
-            BugScan("rotmgsrc");
+            //BugScan("rotmgsrc");
         }
 
         public static void BugScan(string path)
         {
-            Utils.DEBUG_PARSING = false;
             List<string> r = new List<string>();
             foreach (string f in Directory.GetFiles(path, "*.as", SearchOption.AllDirectories))
             {
