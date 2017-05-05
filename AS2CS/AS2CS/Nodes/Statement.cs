@@ -20,39 +20,46 @@ namespace AS2CS.Nodes
                 {
                     if (!Accept<VariableDeclaration>())
                     {
-
-                        if (!Accept<CommaExpr>())
-                        {
-                            if (!Accept(N_IDENTIFIER))
+                        if (!Accept<LabelableStatement>())//ad
+                        { 
+                            if (!Accept<CommaExpr>())
                             {
-                                if (!Accept(N_BREAK))
+                                if (!Accept(N_IDENTIFIER))
                                 {
-                                    if (!Accept(N_CONTINUE))
+                                    if (!Accept(N_BREAK))
                                     {
-                                        if (!Accept(N_RETURN))
+                                        if (!Accept(N_CONTINUE))
                                         {
-                                            if (!Accept(N_THROW))
+                                            if (!Accept(N_RETURN))
                                             {
-                                                if (!Accept(N_SUPER))
+                                                if (!Accept(N_THROW))
                                                 {
-                                                    if (!Accept<LabelableStatement>()) return null;
+                                                    if (!Accept(N_SUPER))
+                                                    {
+                                                        if (!Accept<LabelableStatement>()) return null;
+                                                    }
+                                                    else
+                                                    {
+                                                        if (!Accept(N_LBRAC)) return null;
+                                                        Expect<Arguments>();
+                                                        Expect(N_RBRAC);
+                                                    }
                                                 }
                                                 else
                                                 {
-                                                    if (!Accept(N_LBRAC)) return null;
-                                                    Expect<Arguments>();
-                                                    Expect(N_RBRAC);
+                                                    Expect<CommaExpr>();
+                                                    Expect(N_SEMICOLON);
                                                 }
                                             }
                                             else
                                             {
-                                                Expect<CommaExpr>();
+                                                Accept<ExprOrObjectLiteral>();//opt
                                                 Expect(N_SEMICOLON);
                                             }
                                         }
                                         else
                                         {
-                                            Accept<ExprOrObjectLiteral>();//opt
+                                            Accept(N_IDENTIFIER);//opt
                                             Expect(N_SEMICOLON);
                                         }
                                     }
@@ -64,19 +71,17 @@ namespace AS2CS.Nodes
                                 }
                                 else
                                 {
-                                    Accept(N_IDENTIFIER);//opt
-                                    Expect(N_SEMICOLON);
+                                    Expect(N_COLON);
+                                    Expect<LabelableStatement>();
                                 }
                             }
                             else
                             {
-                                Expect(N_COLON);
-                                Expect<LabelableStatement>();
+                                Expect(N_SEMICOLON);
                             }
                         }
                         else
                         {
-                            Expect(N_SEMICOLON);
                         }
                     }
                     else

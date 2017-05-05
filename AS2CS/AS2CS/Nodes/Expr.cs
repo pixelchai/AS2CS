@@ -35,7 +35,7 @@ namespace AS2CS.Nodes
                         {
                             if (!Accept<ArrayLiteral>())
                             {
-                                if (!Accept<Lvalue>())//STACKOVERFLOW
+                                if (!Accept<Lvalue>())//STACKOVERFLOW //eee
                                 {
                                     if (!Accept<AnonFunctionExpr>())
                                     {

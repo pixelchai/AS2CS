@@ -12,8 +12,8 @@ namespace AS2CS
         private static int indent = 0;
         private static bool wasNewLine = true;
 
-        public static string indentBody = "=-";
-        public static string indentEnd = " ";
+        public static string indentBody = "-";
+        public static string indentEnd = "> ";
 
         private static IEnumerable<string> Chunk(this string str, int chunkSize)
         {

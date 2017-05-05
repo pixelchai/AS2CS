@@ -208,7 +208,7 @@ namespace AS2CS
                     lastAccepted = seld;
                     if (Utils.DEBUG_PARSING)
                     {
-                        Debug.WriteLine(this.typeName + " node accepted: " + node.typeName+" -- "+ts.look(-1).Value);
+                        Debug.WriteLine("["+ts.index+"] "+this.typeName + " node accepted: " + node.typeName+" -- "+ts.look(-1).Value);
                     }
                     children.Add(node);
                     this.value += node.GetValue()+" ";
