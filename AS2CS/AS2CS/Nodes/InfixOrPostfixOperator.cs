@@ -87,7 +87,13 @@ namespace AS2CS.Nodes
                 }
                 if (ya)
                 {
-                    if (op.IsInfix) Expect<BExpr>();
+                    if (op.IsInfix)
+                    {
+                        if (!Accept<Type>())//ad for Vector.<x>
+                        {
+                            Expect<BExpr>();
+                        }
+                    }
                     return this;
                 }
                 else if (no > 0) {

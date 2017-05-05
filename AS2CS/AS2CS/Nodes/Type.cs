@@ -37,8 +37,8 @@ namespace AS2CS.Nodes
                     Expect(N_RPOINTY);
                 }
             }
-            if (pbrac) Expect(N_RPOINTY);
-            if (brac) Expect(N_RBRAC);
+            if (pbrac && !Accept(N_RPOINTY)) return null;
+            if (brac&& !Accept(N_RBRAC)) return null;
             return this;
         }
     }
