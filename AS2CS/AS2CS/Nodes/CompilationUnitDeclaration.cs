@@ -14,6 +14,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
+            //TODO: interface
             if (!Accept<ClassDeclaration>())
             {
                 if (!Accept<MemberDeclaration>()) return null;
