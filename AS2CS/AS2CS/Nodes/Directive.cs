@@ -44,6 +44,7 @@ namespace AS2CS.Nodes
             else
             {
                 Expect(N_NAMESPACE); //ad //PODO: *s
+                Accept(N_ASTERISK); //opt
                 Expect(N_SEMICOLON);
             }
             return this;

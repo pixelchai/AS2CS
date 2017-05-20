@@ -23,7 +23,7 @@ namespace AS2CS
             //new AS2CS().ShowDialog()).Start();
             //Console.WindowWidth = (Console.LargestWindowWidth / 4) * 3;
 
-            var lexed = Pygmentize.File(@"rotmgsrc\com\company\assembleegameclient\account\ui\components\Selectable.as").WithLexer(new ASLexer());
+            var lexed = Pygmentize.File(@"rotmgsrc\kabam\rotmg\assets\EmbeddedAssets_brokenPillarEmbed_.as").WithLexer(new ASLexer());
             TokenStream ts = new TokenStream(lexed.GetTokens().ToList());
 
             //foreach (Token t in lexed.GetTokens().ToList())
@@ -48,6 +48,7 @@ namespace AS2CS
 
         public static void BugScan(string path)
         {
+            int no = 0;
             using (StreamWriter sw = new StreamWriter("bugs.txt"))
             {
                 //List<string> r = new List<string>();
@@ -70,10 +71,12 @@ namespace AS2CS
                         //r.Add(f);
                         sw.WriteLine(f);
                         sw.Flush();
+                        no++;
                     }
                     Console.WriteLine(new FileInfo(f).Name);
                     Console.ResetColor();
                 }
+                sw.WriteLine(no);
                 //using (StreamWriter sw = new StreamWriter("bugs.txt"))
                 //{
                 //    foreach (string str in r)
