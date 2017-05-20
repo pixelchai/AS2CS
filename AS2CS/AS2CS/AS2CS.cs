@@ -32,6 +32,7 @@ namespace AS2CS
         private void timer1_Tick(object sender, EventArgs e)
         {
             treeView1.Nodes.Clear();
+            Console.Clear();
             Compile();
             this.timer1.Stop();
         }

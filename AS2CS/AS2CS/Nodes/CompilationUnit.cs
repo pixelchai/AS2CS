@@ -15,6 +15,7 @@ namespace AS2CS.Nodes
 
         public override Node Select()
         {
+            Accept<Comment>();//opt
             Expect<PackageDeclaration>();
             Expect(N_LCURLY);
             Expect<Directives>(); //a

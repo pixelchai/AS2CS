@@ -117,6 +117,7 @@ namespace AS2CS
         [JsonIgnore] public TokenNode N_FINAL { get { return new TokenNode(this.ts, TokenTypes.Keyword, "final"); } }
         [JsonIgnore] public TokenNode N_OVERRIDE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "override"); } }
         [JsonIgnore] public TokenNode N_INTERNAL { get { return new TokenNode(this.ts, TokenTypes.Keyword, "internal"); } }
+        [JsonIgnore] public TokenNode N_DYNAMIC { get { return new TokenNode(this.ts, TokenTypes.Keyword, "dynamic"); } }
         [JsonIgnore] public TokenNode N_CONTINUE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "continue"); } }
         [JsonIgnore] public TokenNode N_THIS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "this"); } }
         [JsonIgnore] public TokenNode N_NEW { get { return new TokenNode(this.ts, TokenTypes.Keyword, "new"); } }

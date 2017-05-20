@@ -21,7 +21,8 @@ namespace AS2CS.Nodes
                 Accept(N_ABSTRACT)||
                 Accept(N_FINAL)||
                 Accept(N_OVERRIDE)||
-                Accept(N_INTERNAL)
+                Accept(N_INTERNAL)||
+                Accept(N_DYNAMIC)
                 )) return null;
             return this;
         }

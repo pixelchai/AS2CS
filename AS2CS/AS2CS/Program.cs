@@ -17,16 +17,18 @@ namespace AS2CS
     {
         public static void Main(string[] args)
         {
-            Utils.DEBUG_PARSING = false;
-            new AS2CS().ShowDialog();
-            //Console.WindowWidth = (Console.LargestWindowWidth / 4) * 3;
+            //Utils.DEBUG_PARSING = false;
+            new System.Threading.Thread(() =>
+            new AS2CS().ShowDialog()).Start();
+            Console.WindowWidth = (Console.LargestWindowWidth / 4) * 3;
+
             //var lexed = Pygmentize.File("input.as").WithLexer(new ASLexer());
             //TokenStream ts = new TokenStream(lexed.GetTokens().ToList());
 
-            //foreach (Token t in lexed.GetTokens().ToList())
-            //{
-            //    Console.WriteLine(t.ToString());
-            //}
+            ////foreach (Token t in lexed.GetTokens().ToList())
+            ////{
+            ////    Console.WriteLine(t.ToString());
+            ////}
             //lexed.WithFormatter(new HtmlFormatter(new HtmlFormatterOptions()
             //{
             //})).ToFile("output.html");
@@ -38,7 +40,7 @@ namespace AS2CS
             //CompilationUnit file = null;
             //file = new Parser(ts).Parse();
             //new TreeDebug(file.ToJSON()).ShowDialog();
-            //BugScan("rotmgsrc");
+            ////BugScan("rotmgsrc");
         }
 
         public static void BugScan(string path)
