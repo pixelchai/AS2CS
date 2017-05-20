@@ -35,19 +35,19 @@ namespace AS2CS.Nodes
                         {
                             if (!Accept<ArrayLiteral>())
                             {
-                                if (!Accept<Lvalue>())//STACKOVERFLOW //eee
+                                if (!Accept(N_DELETE))
                                 {
-                                    if (!Accept<AnonFunctionExpr>())
+                                    if (!Accept<Lvalue>())//STACKOVERFLOW //eee
                                     {
-                                        if (!Accept(N_THIS))
+                                        if (!Accept<AnonFunctionExpr>())
                                         {
-                                            if (!Accept<ParenthesizedExpr>())
+                                            if (!Accept(N_THIS))
                                             {
-                                                if (!Accept(N_NEW))
+                                                if (!Accept<ParenthesizedExpr>())
                                                 {
-
-                                                    if (!Accept(N_DELETE))
+                                                    if (!Accept(N_NEW))
                                                     {
+
                                                         //ad
                                                         if (!Accept<PrefixOperator>())
                                                         {
@@ -136,24 +136,25 @@ namespace AS2CS.Nodes
                                                         //        Expect<Type>();
                                                         //    }
                                                         //}
+
                                                     }
                                                     else
                                                     {
-                                                        Expect<BExpr>();
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    Expect<Type>();
-                                                    if (Accept(N_LBRAC))//opt
-                                                    {
-                                                        Expect<Arguments>();
-                                                        Expect(N_RBRAC);
+                                                        Expect<Type>();
+                                                        if (Accept(N_LBRAC))//opt
+                                                        {
+                                                            Expect<Arguments>();
+                                                            Expect(N_RBRAC);
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
                                     }
+                                }
+                                else
+                                {
+                                    Expect<BExpr>();
                                 }
                             }
                         }

@@ -388,4 +388,4 @@ public class Projectile extends BasicObject {
 
 
 }
-}//package com.company.assembleegameclient.objects
+}//package com.company.assembleegameclient.objectso

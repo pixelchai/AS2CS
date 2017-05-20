@@ -28,7 +28,7 @@ namespace AS2CS.Nodes
             new InfixOrPostfix(@">>>"),
             new InfixOrPostfix(@"++",false),
             new InfixOrPostfix(@"--",false),
-            //new InfixOrPostfix(@"||"),
+            new InfixOrPostfix(@"<<"),
             new InfixOrPostfix(@"||"),
             new InfixOrPostfix(@"as"),
             new InfixOrPostfix(@"^="),
