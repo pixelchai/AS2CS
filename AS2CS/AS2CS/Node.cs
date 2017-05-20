@@ -129,6 +129,7 @@ namespace AS2CS
         [JsonIgnore] public TokenNode N_CLASS { get { return new TokenNode(this.ts, TokenTypes.Keyword, "class"); } }
         [JsonIgnore] public TokenNode N_GET { get { return new TokenNode(this.ts, TokenTypes.Keyword, "get"); } }
         [JsonIgnore] public TokenNode N_SET { get { return new TokenNode(this.ts, TokenTypes.Keyword, "set"); } }
+        [JsonIgnore] public TokenNode N_INTERFACE { get { return new TokenNode(this.ts, TokenTypes.Keyword, "interface"); } }
 
         #endregion
 

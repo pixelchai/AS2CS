@@ -96,6 +96,7 @@
     <Compile Include="Nodes\IndexExpr.cs" />
     <Compile Include="Nodes\InfixOperator.cs" />
     <Compile Include="Nodes\InfixOrPostfixOperator.cs" />
+    <Compile Include="Nodes\Interface.cs" />
     <Compile Include="Nodes\LabelableStatement.cs" />
     <Compile Include="Nodes\Lvalue.cs" />
     <Compile Include="Nodes\MemberDeclaration.cs" />

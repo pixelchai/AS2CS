@@ -17,7 +17,13 @@ namespace AS2CS.Nodes
             //TODO: interface
             if (!Accept<ClassDeclaration>())
             {
-                if (!Accept<MemberDeclaration>()) return null;
+                if (!Accept<MemberDeclaration>())
+                {
+                    if (!Accept<Interface>())
+                    {
+                        return null;
+                    }
+                }
             }
             return this;
         }
