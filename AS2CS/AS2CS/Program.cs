@@ -17,13 +17,13 @@ namespace AS2CS
     {
         public static void Main(string[] args)
         {
-            Utils.DEBUG_PARSING = false;
+            //////////////Utils.DEBUG_PARSING = false;
 
             //new System.Threading.Thread(() =>
             //new AS2CS().ShowDialog()).Start();
             //Console.WindowWidth = (Console.LargestWindowWidth / 4) * 3;
 
-            var lexed = Pygmentize.File(@"rotmgsrc\kabam\rotmg\assets\EmbeddedAssets_brokenPillarEmbed_.as").WithLexer(new ASLexer());
+            var lexed = Pygmentize.File(@"rotmgsrc\com\company\assembleegameclient\appengine\SavedCharactersList.as").WithLexer(new ASLexer());
             TokenStream ts = new TokenStream(lexed.GetTokens().ToList());
 
             //foreach (Token t in lexed.GetTokens().ToList())
