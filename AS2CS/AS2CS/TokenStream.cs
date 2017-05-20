@@ -14,6 +14,7 @@ namespace AS2CS
     {
         public event PrintProgress ProgressChanged;
         public int ProgressUpdate = 5;
+        public bool dontPrUpdt = false;
 
         public List<Token> tokens = null;
         public int charno { get; private set; } = 0;
@@ -33,12 +34,14 @@ namespace AS2CS
                         charno += tokens[value - i].Value.Length;
                     }
                 }
-
-                if (value % ProgressUpdate == 0)
+                if (!dontPrUpdt)
                 {
-                    if (ProgressChanged != null)
+                    if (value % ProgressUpdate == 0)
                     {
-                        ProgressChanged.Invoke(value, tokens.Count);
+                        if (ProgressChanged != null)
+                        {
+                            ProgressChanged.Invoke(value, tokens.Count);
+                        }
                     }
                 }
             }
